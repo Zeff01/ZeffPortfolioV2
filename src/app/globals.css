@@ -25,3 +25,143 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.dropShadow {
+  background: url("/public/Ironmanhover.png");
+  filter: drop-shadow(0.8px 1px 2px rgba(241, 14, 14, 0.908));
+}
+
+.active-link {
+  border-bottom: 1px solid white;
+}
+
+.button-primary {
+  @apply border rounded-full p-2 md:p-4 w-36 md:w-full text-center   cursor-pointer;
+}
+
+/* BUTTON HOVER ANIMATION */
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: "<percentage>";
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: true;
+}
+
+:root {
+  --d: 2500ms;
+  --angle: 70deg;
+  --gradX: 150%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+@font-face {
+  font-family: "RobotRegular";
+  src: url("/public/fonts/Robot9000-MVxZx.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RobotItalic";
+  src: url("/public/fonts/Robot9000Italic-YzxE8.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.robotfont {
+  font-family: "RobotItalic";
+}
+
+.box {
+  border: 0.2rem solid black;
+  padding: 20px;
+  border-image: conic-gradient(
+      from var(--angle),
+      var(--c2),
+      var(--c1) 0.1turn,
+      var(--c1) 0.15turn,
+      var(--c2) 0.25turn
+    )
+    30;
+  animation: borderRotate var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
+  }
+}
+
+/* FOOTER STYLES   */
+
+.afooter {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  background: #282828;
+  color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.afooter i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  line-height: 40px !important;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 30.5px;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.afooter i:last-child {
+  top: 40px;
+  color: #fff !important;
+}
+.afooter:hover i {
+  top: -40px;
+}
+.afooter:hover i:last-child {
+  top: 0;
+}
+.afooter.facebook:hover {
+  background: #3b5998;
+}
+.afooter.twitter:hover {
+  background: #55acee;
+}
+.afooter.github:hover {
+  background: #999999;
+}
+.afooter.linkedin:hover {
+  background: #0174a9;
+}
+.afooter.instagram:hover {
+  background: #d62976;
+}
+.afooter.mail:hover {
+  background: #6567a5;
+}
