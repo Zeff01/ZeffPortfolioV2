@@ -24,7 +24,7 @@ const socialMediaIcons = [
 const Footer = () => {
   return (
     <div>
-      <div className=" md:p-4 w-full bg-[#170704] text-white  ">
+      <div className="p-2 md:p-4 w-full bg-[#170704] text-white  ">
         <div>
           <motion.ul className="flex justify-center items-center gap-8 -z-10">
             {socialMediaIcons.map((socialMedia, index) => (

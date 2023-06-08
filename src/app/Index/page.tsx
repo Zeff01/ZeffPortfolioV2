@@ -49,7 +49,7 @@ const Index = () => {
           className="flex items-center justify-center"
         >
           <Image
-            src="/ironmanlandingspraysplat.png"
+            src="/ironmanassets/ironmanlandingspraysplat.png"
             alt="Ironman landing"
             width={1000}
             height={200}
@@ -64,7 +64,7 @@ const Index = () => {
           variants={imageVariants}
           transition={{ delay: 3.5 }}
         >
-          <Image src="/tech5.png" alt="tech5" width={150} height={1} />
+          <Image src="/ironmanassets/tech5.png" alt="tech5" width={150} height={1} />
         </motion.div>
       </div>
 
@@ -77,7 +77,7 @@ const Index = () => {
           transition={{ delay: 3.8 }}
         >
           <Image
-            src="/techlines2.png"
+            src="/ironmanassets/techlines2.png"
             alt="techlines2"
             width={150}
             height={1}
@@ -90,7 +90,7 @@ const Index = () => {
           transition={{ delay: 3.9 }}
         >
           <Image
-            src="/techlines2.png"
+            src="/ironmanassets/techlines2.png"
             alt="techlines2"
             width={150}
             height={1}
@@ -103,7 +103,7 @@ const Index = () => {
           transition={{ delay: 4 }}
         >
           <Image
-            src="/techlines2.png"
+            src="/ironmanassets/techlines2.png"
             alt="techlines2"
             width={150}
             height={1}
@@ -116,7 +116,7 @@ const Index = () => {
           transition={{ delay: 4.1 }}
         >
           <Image
-            src="/techlines2.png"
+            src="/ironmanassets/techlines2.png"
             alt="techlines2"
             width={150}
             height={1}
@@ -129,7 +129,7 @@ const Index = () => {
           transition={{ delay: 4.2 }}
         >
           <Image
-            src="/techlines2.png"
+            src="/ironmanassets/techlines2.png"
             alt="techlines2"
             width={150}
             height={1}
@@ -149,7 +149,7 @@ const Index = () => {
         transition={{ type: "spring", duration: 0.8, delay: 2 }}
       >
         <Image
-          src="/Ironmanhover.png"
+          src="/ironmanassets/Ironmanhover.png"
           alt="Ironman Hover"
           width={80}
           height={80}
@@ -233,21 +233,21 @@ const Index = () => {
       >
         {showThirdImage ? (
           <Image
-            src="/ironmanflying3.png" // Replace with your third image path
+            src="/ironmanassets/ironmanflying3.png" // Replace with your third image path
             alt="Third Image"
             width={200}
             height={200}
           />
         ) : showSecondImage ? (
           <Image
-            src="/ironmanflying2.png" // Replace with your second image path
+            src="/ironmanassets/ironmanflying2.png" // Replace with your second image path
             alt="Second Image"
             width={200}
             height={200}
           />
         ) : (
           <Image
-            src="/ironmantailpipe.png"
+            src="/ironmanassets/ironmantailpipe.png"
             alt="Ironman Flying"
             width={200}
             height={200}
@@ -266,7 +266,7 @@ const Index = () => {
           transition={{ delay: 2, duration: 1 }}
         >
           <Image
-            src="/arcReactor.png"
+            src="/ironmanassets/arcReactor.png"
             alt="Third Image"
             width={200}
             height={200}

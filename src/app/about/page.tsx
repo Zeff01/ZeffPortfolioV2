@@ -4,7 +4,7 @@ import Experience from "./components/Experience";
 import Navbar from "@/components/Navbar";
 import Skills from "./components/Skills";
 import TransitionEffect from "@/hooks/TransitionEffect";
-import { useMotionValue, useSpring, useInView, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
@@ -77,7 +77,11 @@ const About = () => {
               transition={{ duration: 1, delay: 2.5 }}
             >
               <Image
-                src={isFlipped ? "/ironmanpolydp.png" : "/zeffdp.png"}
+                src={
+                  isFlipped
+                    ? "/ironmanassets/ironmanpolydp.png"
+                    : "/ironmanassets/zeffdp.png"
+                }
                 alt="Third Image"
                 width={400}
                 height={100}
