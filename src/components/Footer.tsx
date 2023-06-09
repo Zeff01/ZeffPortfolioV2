@@ -11,14 +11,27 @@ import {
 } from "react-icons/fa";
 
 const socialMediaIcons = [
-  { icon: FaGithub, link: "https://github.com/Zeff01" },
+  { name: "github", icon: FaGithub, link: "https://github.com/Zeff01" },
   {
+    name: "linkedin",
     icon: FaLinkedin,
     link: "https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/",
   },
-  { icon: FaFacebook, link: "https://www.facebook.com/Jzironman" },
-  { icon: FaInstagram, link: "https://www.instagram.com/zeffsomera/" },
-  { icon: FaTwitter, link: "https://twitter.com/jzeff_somera" },
+  {
+    name: "facebook",
+    icon: FaFacebook,
+    link: "https://www.facebook.com/Jzironman",
+  },
+  {
+    name: "instagram",
+    icon: FaInstagram,
+    link: "https://www.instagram.com/zeffsomera/",
+  },
+  {
+    name: "twitter",
+    icon: FaTwitter,
+    link: "https://twitter.com/jzeff_somera",
+  },
 ];
 
 const Footer = () => {
@@ -36,7 +49,7 @@ const Footer = () => {
                 transition={{ duration: 0.5, delay: 2 + index * 0.2 }}
               >
                 <a
-                  className={`afooter ${socialMedia.icon}`}
+                  className={`afooter ${socialMedia.name}`}
                   href={socialMedia.link}
                   target="_blank"
                 >

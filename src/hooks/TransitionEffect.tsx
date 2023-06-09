@@ -54,7 +54,7 @@ const TransitionEffect = () => {
           />
         ) : showSecondImage ? (
           <Image
-            src="/ironmanflying2.png" // Replace with your second image path
+            src="/ironmanassets/ironmanflying2.png" // Replace with your second image path
             alt="Second Image"
             width={200}
             height={200}
@@ -62,7 +62,7 @@ const TransitionEffect = () => {
           />
         ) : (
           <Image
-            src="/ironmanflying3.png"
+            src="/ironmanassets/ironmanflying3.png"
             alt="Ironman Flying"
             width={200}
             height={200}
