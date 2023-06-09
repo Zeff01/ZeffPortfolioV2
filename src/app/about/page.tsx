@@ -30,7 +30,7 @@ const About = () => {
             "Dream Big,{" "}
             <span className="text-textColor">Achieve Greatness!</span>"
           </motion.p>
-          <div className="md:grid md:grid-cols-4 lg:grid-cols-8 gap-16 w-full">
+          <div className="px-2 md:flex md:flex-col  lg:grid  lg:grid-cols-8 gap-16 w-full">
             {/* BIOGRAPHY */}
             <div className="col-span-2 lg:col-span-3 p-2 text-yellow-300 font-medium font-tech text-lg ml-2 text-justify xl:text-2xl md:text-lg">
               <motion.p
@@ -104,7 +104,7 @@ const About = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 2.8 }}
-                  className="text-md md:text-xl font-medium capitalize text-textColor"
+                  className="text-sm md:text-xl font-medium capitalize text-textColor"
                 >
                   Satisfied Clients
                 </motion.h2>
@@ -122,7 +122,7 @@ const About = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 2.4 }}
-                  className="text-md md:text-xl font-medium capitalize text-textColor"
+                  className="text-sm md:text-xl font-medium capitalize text-textColor"
                 >
                   Projects Completed
                 </motion.h2>
@@ -140,7 +140,7 @@ const About = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 2 }}
-                  className="text-md md:text-xl font-medium capitalize text-textColor"
+                  className="text-sm md:text-xl font-medium capitalize text-textColor"
                 >
                   Years of Experience
                 </motion.h2>
