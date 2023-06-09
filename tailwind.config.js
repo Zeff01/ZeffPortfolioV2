@@ -16,6 +16,7 @@ module.exports = {
         linkColor: "#FBCA03",
         backgroundColor: "#4B0908",
         backgroundColor2: "#5B0000",
+        blackBackground: "#0c0a0a",
       },
     },
   },

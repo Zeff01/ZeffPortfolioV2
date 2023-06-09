@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
+import ArcReactor from "@/components/ArcReactor";
 
 const Index = () => {
   const [showSecondImage, setShowSecondImage] = useState(false);
@@ -64,7 +65,12 @@ const Index = () => {
           variants={imageVariants}
           transition={{ delay: 3.5 }}
         >
-          <Image src="/ironmanassets/tech5.png" alt="tech5" width={150} height={1} />
+          <Image
+            src="/ironmanassets/tech5.png"
+            alt="tech5"
+            width={150}
+            height={1}
+          />
         </motion.div>
       </div>
 
@@ -145,7 +151,7 @@ const Index = () => {
           opacity: 1,
           scale: [1, 1.8, 1.5, 1],
         }}
-        className="absolute top-5 left-5 cursor-pointer"
+        className="absolute top-5 left-10 cursor-pointer w-12 h-12 md:w-20 md:h-20"
         transition={{ type: "spring", duration: 0.8, delay: 2 }}
       >
         <Image
@@ -156,13 +162,13 @@ const Index = () => {
         />
       </motion.div>
       <motion.div
-        className="ml-4 hidden md:flex gap-8 absolute bottom-0 left-6"
+        className="ml-4 hidden md:flex gap-8 absolute bottom-0 left-12"
         initial={{ height: 0 }}
         animate={{ height: "78%" }}
         transition={{ duration: 0.4, delay: 2 }}
       >
-        <div className="w-1 bg-yellow-500 rounded-full "></div>
-        <div className="w-1 bg-yellow-500 rounded-full "></div>
+        <div className="w-1 bg-yellow-500 rounded-full h-[72%] "></div>
+        <div className="w-1 bg-yellow-500 rounded-full h-[72%] "></div>
       </motion.div>
 
       {/* NAME ANIMATION */}
@@ -195,41 +201,41 @@ const Index = () => {
           style={{ fontSize: "2em" }}
         />
         <motion.div
-          className="button-primary border-textColor text-textColor text-[18px] hover:border-buttonColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 hover:text-[20px]"
+          className="button-primary border-textColor text-textColor   md:text-[20px] hover:border-buttonColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 hover:text-[20px] w-32 bg-[#0808087b] "
           whileHover={{ scale: 1.05 }}
         >
           <Link href="/about">More about me</Link>
         </motion.div>
+        <div className=" flex gap-4 md:gap-8 z-10   w-40 md:w-80 text-[12px] md:text-[20px] ">
+          <motion.div
+            className="button-primary text-buttonColor bg-textColor border-textColor font-bold hover:border-2 hover:bg-buttonColor hover:text-textColor hover:scale-105 transform transition-all duration-300 w-28 "
+            variants={imageVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.3, delay: 3.6 }}
+          >
+            Github
+          </motion.div>
+          <motion.div
+            className="button-primary bg-buttonColor font-bold text-textColor border-buttonColor hover:border-2 hover:bg-textColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 w-28 "
+            variants={imageVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.3, delay: 3.8 }}
+          >
+            Download CV
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* BUTTON ANIMATION */}
-      <div className="absolute top-[70%] left-[10%] flex gap-8 z-10 md:top-[44%]  w-80 text-[20px]">
-        <motion.div
-          className="button-primary text-buttonColor bg-textColor border-textColor font-bold hover:border-2 hover:bg-buttonColor hover:text-textColor hover:scale-105 transform transition-all duration-300"
-          variants={imageVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.3, delay: 3.6 }}
-        >
-          Github
-        </motion.div>
-        <motion.div
-          className="button-primary bg-buttonColor font-bold text-textColor border-buttonColor hover:border-2 hover:bg-textColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300"
-          variants={imageVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.3, delay: 3.8 }}
-        >
-          Download CV
-        </motion.div>
-      </div>
 
       {/* IRONMAN FLYING ANIMATION */}
       <motion.div
         initial={{ x: "20vw" }}
         animate={{ x: "-100vw" }}
         transition={{ duration: 2, delay: 0, ease: customEasing }}
-        className="absolute top-10 right-0 "
+        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40"
       >
         {showThirdImage ? (
           <Image
@@ -258,19 +264,13 @@ const Index = () => {
       {/* ARC REACTOR ANIMATION */}
       <div>
         <motion.div
-          className="bottom-10 absolute left-6 w-20 h-20 flex justify-center items-center text-yellow-500 hover:animate-spin  rounded-full hover:border-[#0c8983] hover:border cursor-pointer "
-          whileHover={{ scale: 1.1 }}
+          className="bottom-0 absolute left-2 w-40 h-40    cursor-pointer   "
           variants={imageVariants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 2, duration: 1 }}
         >
-          <Image
-            src="/ironmanassets/arcReactor.png"
-            alt="Third Image"
-            width={200}
-            height={200}
-          />
+          <ArcReactor />
         </motion.div>
       </div>
     </div>

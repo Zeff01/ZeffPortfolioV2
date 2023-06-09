@@ -42,11 +42,11 @@ const TransitionEffect = () => {
         initial={{ x: "-100vw" }}
         animate={{ x: "100vw" }}
         transition={{ duration: 3, delay: 0, ease: customEasing }}
-        className="absolute top-10 right-0 "
+        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 "
       >
         {showThirdImage ? (
           <Image
-            src="/ironmantailpipe.png" // Replace with your third image path
+            src="/ironmanassets/ironmantailpipe.png" // Replace with your third image path
             alt="Third Image"
             width={200}
             height={200}

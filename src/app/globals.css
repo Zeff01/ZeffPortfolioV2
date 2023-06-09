@@ -36,7 +36,7 @@ body {
 }
 
 .button-primary {
-  @apply border rounded-full p-2 md:p-4 w-36 md:w-full text-center   cursor-pointer;
+  @apply border rounded-full p-1 md:p-4  md:w-full text-center z-10  cursor-pointer;
 }
 
 /* BUTTON HOVER ANIMATION */

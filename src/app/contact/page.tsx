@@ -1,7 +1,12 @@
+import ArcReactor from "@/components/ArcReactor";
 import React from "react";
 
 const Contact = () => {
-  return <div>Contact</div>;
+  return (
+    <div className="h-screen bg-black">
+      <ArcReactor />
+    </div>
+  );
 };
 
 export default Contact;
