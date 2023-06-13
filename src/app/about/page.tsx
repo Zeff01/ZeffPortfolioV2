@@ -9,6 +9,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
+import ArcReactor from "@/components/ArcReactor";
 
 const About = () => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -16,7 +17,7 @@ const About = () => {
     setIsFlipped(!isFlipped);
   };
   return (
-    <div className="h-full min-h-screen  bg-[#0c0a0a] overflow-x-hidden  relative ">
+    <div className="h-full min-h-screen  bg-[#0c0a0a]  overflow-x-hidden  relative ">
       <Navbar />
       <TransitionEffect />
       <div className="relative  w-full text-white ">
@@ -155,6 +156,7 @@ const About = () => {
           <Experience />
         </div>
       </div>
+      <ArcReactor />
       <Footer />
     </div>
   );

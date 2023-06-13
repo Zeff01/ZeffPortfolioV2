@@ -4,7 +4,7 @@ import css from "../../public/techicons/css.png";
 import firebase from "../../public/techicons/firebase.png";
 import github from "../../public/techicons/github.png";
 import html from "../../public/techicons/html.png";
-import js from "../../public/techicons/js.png";
+import javascript from "../../public/techicons/javascript.png";
 import materialui from "../../public/techicons/materialui.png";
 import mongo from "../../public/techicons/mongo.png";
 import nextjs from "../../public/techicons/nextjs.png";
@@ -29,14 +29,14 @@ export const skillsData = [
     link: "https://developer.mozilla.org/en-US/docs/Glossary/HTML5",
   },
   {
-    image: js,
+    image: javascript,
     title: "JavaScript",
     link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   { image: materialui, title: "Material UI", link: "https://mui.com/" },
   { image: mongo, title: "MongoDB", link: "https://www.mongodb.com/" },
-  { image: nextjs, title: "Next.js", link: "https://nextjs.org/" },
-  { image: node, title: "Node.js", link: "https://nodejs.org/en/" },
+  { image: nextjs, title: "Next.javascript", link: "https://nextjs.org/" },
+  { image: node, title: "Node.javascript", link: "https://nodejs.org/en/" },
   {
     image: postgresSQL,
     title: "PostgreSQL",

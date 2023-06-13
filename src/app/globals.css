@@ -26,6 +26,28 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/* .slick-dots {
+  position: absolute !important;
+  bottom: -200px !important;
+  left: 0px;
+  text-align: start !important;
+}
+.slick-dots > li {
+  display: block;
+  height: 200px !important;
+  width: 350px !important;
+  background-color: rgb(228, 168, 5);
+  margin: 2px;
+}
+
+.slick-active {
+  border: 5px solid orange;
+} */
+
+.slide-item {
+  margin-right: 10px; /* Adjust the desired gap between slides */
+}
+
 .dropShadow {
   background: url("/public/Ironmanhover.png");
   filter: drop-shadow(0.8px 1px 2px rgba(241, 14, 14, 0.908));

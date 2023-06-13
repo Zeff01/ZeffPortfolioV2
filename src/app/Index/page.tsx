@@ -167,8 +167,8 @@ const Index = () => {
         animate={{ height: "78%" }}
         transition={{ duration: 0.4, delay: 2 }}
       >
-        <div className="w-1 bg-yellow-500 rounded-full h-[72%] "></div>
-        <div className="w-1 bg-yellow-500 rounded-full h-[72%] "></div>
+        <div className="w-1 bg-yellow-500 rounded-full h-[100%] "></div>
+        <div className="w-1 bg-yellow-500 rounded-full h-[100%] "></div>
       </motion.div>
 
       {/* NAME ANIMATION */}
@@ -228,8 +228,6 @@ const Index = () => {
         </div>
       </motion.div>
 
-      {/* BUTTON ANIMATION */}
-
       {/* IRONMAN FLYING ANIMATION */}
       <motion.div
         initial={{ x: "20vw" }}
@@ -264,7 +262,6 @@ const Index = () => {
       {/* ARC REACTOR ANIMATION */}
       <div>
         <motion.div
-          className="bottom-0 absolute left-2 w-40 h-40    cursor-pointer   "
           variants={imageVariants}
           initial="hidden"
           animate="visible"

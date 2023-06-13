@@ -39,19 +39,7 @@ const Navbar = () => {
           ABOUT
         </motion.span>
       </Link>
-      <Link href="/contact">
-        <motion.span
-          className={`text-textColor  hover:text-buttonColor ${
-            pathname === "/contact" ? "box" : ""
-          }`}
-          variants={linkVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.5, delay: 1.2 }}
-        >
-          CONTACT
-        </motion.span>
-      </Link>
+
       <Link href="/projects">
         <motion.span
           className={`text-textColor  hover:text-buttonColor ${
@@ -60,9 +48,22 @@ const Navbar = () => {
           variants={linkVariants}
           initial="hidden"
           animate="visible"
-          transition={{ duration: 0.5, delay: 1.1 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
         >
           PROJECTS
+        </motion.span>
+      </Link>
+      <Link href="/contact">
+        <motion.span
+          className={`text-textColor  hover:text-buttonColor ${
+            pathname === "/contact" ? "box" : ""
+          }`}
+          variants={linkVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.1 }}
+        >
+          CONTACT
         </motion.span>
       </Link>
     </nav>
