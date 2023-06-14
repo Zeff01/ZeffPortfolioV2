@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,10 +13,25 @@ import { projects } from "@/data/projectsData";
 const Carousel = () => {
   const sliderRef = useRef<Slider>(null);
   const thumbnailRef = useRef<Slider>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const goToSlide = (index: number) => {
     sliderRef.current?.slickGoTo(index);
     thumbnailRef.current?.slickGoTo(index);
+  };
+
+  const previous = () => {
+    // const currentSlide = sliderRef.current?.innerSlider?.state?.currentSlide;
+    if (currentSlide !== undefined) {
+      goToSlide(currentSlide - 1);
+    }
+  };
+
+  const next = () => {
+    // const currentSlide = sliderRef.current?.innerSlider?.state?.currentSlide;
+    if (currentSlide !== undefined) {
+      goToSlide(currentSlide + 1);
+    }
   };
 
   const settings = {
@@ -30,6 +44,8 @@ const Carousel = () => {
     nextArrow: <></>,
     prevArrow: <></>,
     beforeChange: (current: number, next: number) => {
+      setCurrentSlide(next);
+      console.log("current>>", current, "next>>", next);
       goToSlide(next);
     },
   };
@@ -44,22 +60,10 @@ const Carousel = () => {
     nextArrow: <></>,
     prevArrow: <></>,
     afterChange: (current: number) => {
+      setCurrentSlide(current);
+      console.log("current", current);
       goToSlide(current);
     },
-  };
-
-  const previous = () => {
-    const currentSlide = sliderRef.current?.innerSlider!.state!.currentSlide;
-    if (currentSlide !== undefined) {
-      goToSlide(currentSlide - 1);
-    }
-  };
-
-  const next = () => {
-    const currentSlide = sliderRef.current?.innerSlider!.state!.currentSlide;
-    if (currentSlide !== undefined) {
-      goToSlide(currentSlide + 1);
-    }
   };
 
   return (
@@ -93,13 +97,13 @@ const Carousel = () => {
           className="w-16 md:w-20 h-16 md:h-20 bg-black text-yellow-500 flex items-center justify-center rounded-md"
           onClick={previous}
         >
-          <MdOutlineArrowBackIos className="w-20 h-20" />
+          <MdOutlineArrowBackIos className="w-6 h-6 md:w-8 md:h-8" />
         </button>
         <button
           className="w-16 md:w-20 h-16 md:h-20 text-black bg-yellow-500 flex items-center justify-center rounded-md"
           onClick={next}
         >
-          <MdOutlineArrowForwardIos className="w-20 h-20" />
+          <MdOutlineArrowForwardIos className="w-6 h-6 md:w-8 md:h-8" />
         </button>
       </div>
     </div>

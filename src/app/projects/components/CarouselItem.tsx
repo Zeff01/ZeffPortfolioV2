@@ -84,16 +84,11 @@ const CarouselItem = ({
             <div className="flex gap-4 bg-[#e91b1b23] rounded-lg p-2 mt-2">
               {techIcons.map((techIcon) => (
                 <motion.div
+                  key={techIcon}
                   whileHover={{ scale: 1.3, opacity: 1 }}
                   className="flex flex-col justify-center items-center"
                 >
-                  <Image
-                    key={techIcon}
-                    src={techIcon}
-                    alt={techIcon}
-                    width={40}
-                    height={40}
-                  />
+                  <Image src={techIcon} alt={techIcon} width={40} height={40} />
                 </motion.div>
               ))}
             </div>
