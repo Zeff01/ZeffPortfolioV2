@@ -52,9 +52,9 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-full md:h-[900px] font-tech">
-      <div className="flex flex-col md:flex-row p-2">
-        <div className=" flex flex-col items-center gap-4  w-full md:w-[60%] justify-center  ">
+    <div className=" p-2 h-full md:h-[900px] font-tech ">
+      <div className="flex flex-col md:flex-row p-2  h-full">
+        <div className=" flex flex-col items-center gap-4  w-full md:w-[60%] justify-center ">
           {/* MAIN PIC OF CURRENT SLIDE */}
           <div className="flex flex-col justify-center  ">
             <Image src={imageUrl} width={800} height={800} alt={alt} />

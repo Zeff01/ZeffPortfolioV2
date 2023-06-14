@@ -92,7 +92,7 @@ const Carousel = () => {
         <div className="border-2 border-red-500 bg-white">PROJECT 1</div>
       </Slider>
 
-      <div className="absolute bottom-10 right-0 md:right-2 flex gap-4">
+      <div className="absolute bottom-10 left-4 flex gap-4">
         <button
           className="w-16 md:w-20 h-16 md:h-20 bg-black text-yellow-500 flex items-center justify-center rounded-md"
           onClick={previous}
