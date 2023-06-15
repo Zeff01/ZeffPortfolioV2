@@ -266,9 +266,7 @@ const Index = () => {
           initial="hidden"
           animate="visible"
           transition={{ delay: 2, duration: 1 }}
-        >
-          <ArcReactor />
-        </motion.div>
+        ></motion.div>
       </div>
     </div>
   );

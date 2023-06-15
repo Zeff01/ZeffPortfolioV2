@@ -52,9 +52,9 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-full md:h-[900px] font-tech ">
-      <div className="flex flex-col md:flex-row p-2  h-full">
-        <div className=" flex flex-col items-center gap-4  w-full md:w-[60%] justify-center ">
+    <div className=" p-2 h-[30%] md:h-[800px] font-tech  m-0  ">
+      <div className="flex flex-col md:flex-row p-2  h-full  ">
+        <div className=" flex flex-col items-center gap-4  w-full md:w-[60%] pt-4">
           {/* MAIN PIC OF CURRENT SLIDE */}
           <div className="flex flex-col justify-center  ">
             <Image src={imageUrl} width={800} height={800} alt={alt} />
@@ -62,7 +62,7 @@ const CarouselItem = ({
           {/* PREVIEW OF CURRENT SLIDE */}
           <Slider
             {...innerSettings}
-            className=" w-full md:w-[70%] h-[200px] flex gap-2 relative "
+            className=" preview-slider w-full md:w-[70%] h-[200px] flex gap-2 relative "
           >
             {previewUrl.map((preview) => (
               <Image
@@ -86,7 +86,7 @@ const CarouselItem = ({
                 <motion.div
                   key={techIcon}
                   whileHover={{ scale: 1.3, opacity: 1 }}
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col justify-center items-center cursor-pointer"
                 >
                   <Image src={techIcon} alt={techIcon} width={40} height={40} />
                 </motion.div>
@@ -95,14 +95,15 @@ const CarouselItem = ({
           </div>
           <div className="space-y-4">
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
-            <p className="text-lg">{description}</p>
+            <p className="text-sm md:text-lg">{description}</p>
 
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.div
-              className="text-2xl font-bold border rounded-full p-1 mx-auto text-center z-10  cursor-pointer  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 w-[50%] justify-self-center"
+              className="text-2xl font-bold border rounded-full p-1 mx-auto text-center z-10  cursor-pointer  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 w-[50%] justify-self-center shadow-md shadow-[#ffd56cc3]"
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Link href={projectUrl} target="_blank" className="w-[50%]">
+              <Link href={projectUrl} target="_blank" className="w-[50%] ">
                 View Site
               </Link>
             </motion.div>

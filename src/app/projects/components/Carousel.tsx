@@ -4,11 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarouselItem from "./CarouselItem";
-import {
-  MdOutlineArrowBackIos,
-  MdOutlineArrowForwardIos,
-} from "react-icons/md";
-import { projects } from "@/data/projectsData";
+
+import { projects, thumbnailData } from "@/data/projectsData";
+import Image from "next/image";
+import CarouselButton from "./CarouselButton";
 
 const Carousel = () => {
   const sliderRef = useRef<Slider>(null);
@@ -67,44 +66,44 @@ const Carousel = () => {
   };
 
   return (
-    <div className="mx-1 md:mx-8 relative">
-      <Slider ref={sliderRef} {...settings}>
-        {projects.map((project) => (
-          <CarouselItem
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            imageUrl={project.imageUrl}
-            alt={project.alt}
-            ratings={project.ratings}
-            techIcons={project.techIcons}
-            projectUrl={project.projectUrl}
-            previewUrl={project.previewUrl}
-          />
-        ))}
-      </Slider>
-      <Slider ref={thumbnailRef} {...thumbnailSettings}>
-        <div className="border-2 border-red-500 bg-white">PROJECT 2</div>
-        <div className="border-2 border-red-500 bg-white">PROJECT 3</div>
-        <div className="border-2 border-red-500 bg-white">PROJECT 4</div>
-        <div className="border-2 border-red-500 bg-white">PROJECT 5</div>
-        <div className="border-2 border-red-500 bg-white">PROJECT 6</div>
-        <div className="border-2 border-red-500 bg-white">PROJECT 1</div>
-      </Slider>
+    <div className="mx-1 md:mx-8 relative flex flex-col">
+      <div className=" ">
+        <Slider ref={sliderRef} {...settings} className="carousel-slider">
+          {projects.map((project) => (
+            <CarouselItem
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              imageUrl={project.imageUrl}
+              alt={project.alt}
+              ratings={project.ratings}
+              techIcons={project.techIcons}
+              projectUrl={project.projectUrl}
+              previewUrl={project.previewUrl}
+            />
+          ))}
+        </Slider>
+      </div>
 
-      <div className="absolute bottom-10 left-4 flex gap-4">
-        <button
-          className="w-16 md:w-20 h-16 md:h-20 bg-black text-yellow-500 flex items-center justify-center rounded-md"
-          onClick={previous}
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center ">
+        <Slider
+          ref={thumbnailRef}
+          {...thumbnailSettings}
+          className="thumbnail-slider w-full md:w-[80%]  h-full flex justify-center items-center"
         >
-          <MdOutlineArrowBackIos className="w-6 h-6 md:w-8 md:h-8" />
-        </button>
-        <button
-          className="w-16 md:w-20 h-16 md:h-20 text-black bg-yellow-500 flex items-center justify-center rounded-md"
-          onClick={next}
-        >
-          <MdOutlineArrowForwardIos className="w-6 h-6 md:w-8 md:h-8" />
-        </button>
+          {thumbnailData.map((thumbnail) => (
+            <div className="border-[8px] border-blackBackground ">
+              <Image
+                src={thumbnail.url}
+                key={thumbnail.id}
+                width={600}
+                height={600}
+                alt={thumbnail.url}
+              />
+            </div>
+          ))}
+        </Slider>
+        <CarouselButton next={next} previous={previous} />
       </div>
     </div>
   );

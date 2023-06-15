@@ -18,7 +18,6 @@ const About = () => {
   };
   return (
     <div className="h-full min-h-screen  bg-[#0c0a0a]  overflow-x-hidden  relative ">
-      <Navbar />
       <TransitionEffect />
       <div className="relative  w-full text-white ">
         <div className=" flex flex-col gap-8 md:gap-16 justify-center items-center h-full lg:h-screen w-full mt-32 ">
@@ -156,8 +155,6 @@ const About = () => {
           <Experience />
         </div>
       </div>
-      <ArcReactor />
-      <Footer />
     </div>
   );
 };

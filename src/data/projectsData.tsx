@@ -24,7 +24,6 @@ export const projects = [
       "/projectimages/zecommerce7.png",
       "/projectimages/zecommerce8.png",
     ],
-    thumbnail: ["projectimages/thumbnail1.png"],
   },
   {
     id: 2,
@@ -49,10 +48,35 @@ export const projects = [
       "/projectimages/pokemon3.png",
       "/projectimages/pokemon4.png",
     ],
-    thumbnail: ["/projectimages/thumbnail2.png"],
   },
   {
     id: 3,
+    title: "Z-MAP",
+    description: `Z-MAP is an interactive, user-oriented web application that brilliantly fuses the power of the MERN stack with mapbox UI API and tailwind for aesthetically pleasing, highly functional, and intuitive design. The app employs MongoDB for robust and flexible database structures, Express.js for streamlined and efficient server operations, React.js for dynamic and responsive UI components, and Node.js for a powerful, Javascript runtime environment. Complementing the MERN stack, Mapbox UI API brings in top-tier geographical and mapping functionality, while tailwind CSS provides low-level utility for crafting modern and responsive interfaces, ensuring a seamless, appealing user experience.
+
+    Z-MAP is centered around user engagement and geolocation features. Registered users can create and log into their accounts, enabling them to engage with the map in personalized ways. Users can create pins on the globe, adding a layer of interaction that goes beyond simple map viewing. Each pin allows users to rate and review specific places, offering crowd-sourced insights and experiences. This not only enables users to share their experiences but also helps other users discover new locations through shared pins. Overall, Z-MAP offers a vibrant, communal platform for map interaction and location-based discussions, combining the power of modern technologies with a focus on user engagement.`,
+    imageUrl: "/projectimages/zmap.png",
+    alt: "Zmap",
+    ratings: 4,
+    techIcons: [
+      "/techicons/html.png",
+      "/techicons/css.png",
+      "/techicons/typescript.png",
+      "/techicons/react.png",
+      "/techicons/node.png",
+      "/techicons/mongo.png",
+      "/techicons/tailwind.png",
+    ],
+    projectUrl: "https://z-map-fe.vercel.app/",
+    previewUrl: [
+      "/projectimages/zmap2.png",
+      "/projectimages/zmap3.png",
+      "/projectimages/zmap4.png",
+      "/projectimages/zmap5.png",
+    ],
+  },
+  {
+    id: 4,
     title: "Cryptoverse",
     description: `The app is built with ReactJS, Redux Toolkit, and query, utilizing the power of RapidAPI to retrieve and manipulate diverse sets of data. With its built-in query functionalities, the app allows efficient data retrieval, enabling users to access and work with a wide range of information. The integration of RapidAPI ensures smooth and reliable data fetching, while the implementation of Ant Design enhances the user interface with visually appealing and modern components. This powerful combination provides a seamless and feature-rich experience, empowering users to efficiently retrieve, manipulate, and analyze data, creating dynamic and data-driven experiences.`,
     imageUrl: "/projectimages/cryptoverse.png",
@@ -73,6 +97,64 @@ export const projects = [
       "/projectimages/cryptoverse3.png",
       "/projectimages/cryptoverse4.png",
     ],
-    thumbnail: ["/projectimages/thumbnail2.png"],
+  },
+  {
+    id: 5,
+    title: "Zeff Portfoliov1",
+    description: `Crafted with dedication in 2022, my first portfolio is a testament to my skills, creativity, and commitment as a developer. Leveraging the power of ReactJS, a highly efficient and dynamic JavaScript library for building user interfaces, this portfolio presents an engaging and interactive experience. Utilizing Tailwind CSS for styling, it showcases a modern, clean, and responsive design. Tailwind, with its low-level utility classes, offers a high degree of flexibility and customization, which has been put to optimal use in crafting the aesthetic of this portfolio.
+
+    The heart of the portfolio lies in showcasing the projects I've worked on, each presented with detailed descriptions, functionalities, and the technologies used. A standout feature of this portfolio is its extensive use of animations. They serve not just as a visually appealing element but also to guide visitors through the portfolio in an engaging and interactive way, breathing life into every interaction. These animations demonstrate the careful attention paid to the user experience, ensuring that navigating through the portfolio is not just informative, but also delightful and memorable. This portfolio serves as a direct reflection of my skills, detailing my journey and growth as a developer.`,
+    imageUrl: "/projectimages/zeffportfoliov1.png",
+    alt: "zeffportfoliov1",
+    ratings: 4,
+    techIcons: [
+      "/techicons/html.png",
+      "/techicons/css.png",
+      "/techicons/javascript.png",
+      "/techicons/react.png",
+      "/techicons/tailwind.png",
+    ],
+    projectUrl: "https://zeff-portfolio.vercel.app/",
+    previewUrl: [
+      "/projectimages/zeffportfoliov12.png",
+      "/projectimages/zeffportfoliov13.png",
+      "/projectimages/zeffportfoliov14.png",
+      "/projectimages/zeffportfoliov15.png",
+    ],
+  },
+];
+
+export const thumbnailData = [
+  {
+    id: "t2",
+    url: "/projectimages/thumbnails/thumbnail2.png",
+  },
+  {
+    id: "t3",
+    url: "/projectimages/thumbnails/thumbnail3.png",
+  },
+  {
+    id: "t4",
+    url: "/projectimages/thumbnails/thumbnail4.png",
+  },
+  {
+    id: "t5",
+    url: "/projectimages/thumbnails/thumbnail5.png",
+  },
+  // {
+  //   id: "t6",
+  //   url: "/projectimages/thumbnails/thumbnail6.png",
+  // },
+  // {
+  //   id: "t7",
+  //   url: "/projectimages/thumbnails/thumbnail7.png",
+  // },
+  // {
+  //   id: "t8",
+  //   url: "/projectimages/thumbnails/thumbnail8.png",
+  // },
+  {
+    id: "t1",
+    url: "/projectimages/thumbnails/thumbnail1.png",
   },
 ];
