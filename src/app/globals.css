@@ -54,12 +54,9 @@ body {
   align-items: center;
   margin-bottom: 10px;
 }
-.carousel-slider .slick-track {
-  @apply h-[1200px] md:h-full p-0;
-}
 
 .slide-item {
-  margin-right: 10px; /* Adjust the desired gap between slides */
+  margin-right: 20px;
 }
 
 .dropShadow {

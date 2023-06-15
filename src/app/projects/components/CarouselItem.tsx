@@ -52,36 +52,90 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-[30%] md:h-[800px] font-tech  m-0  ">
+    <div className=" p-2 h-[35%] md:h-[800px] font-tech  m-0 ">
       <div className="flex flex-col md:flex-row p-2  h-full  ">
-        <div className=" flex flex-col items-center gap-4  w-full md:w-[60%] pt-4">
+        <motion.div className=" flex flex-col items-center gap-4  w-full md:w-[50%] pt-4 ">
           {/* MAIN PIC OF CURRENT SLIDE */}
-          <div className="flex flex-col justify-center  ">
+          <motion.div
+            className="flex flex-col justify-center  "
+            initial={{ y: "-100vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 2,
+              delay: 2.6,
+            }}
+          >
             <Image src={imageUrl} width={800} height={800} alt={alt} />
-          </div>
+          </motion.div>
           {/* PREVIEW OF CURRENT SLIDE */}
+
           <Slider
             {...innerSettings}
-            className=" preview-slider w-full md:w-[70%] h-[200px] flex gap-2 relative "
+            className=" preview-slider w-full   flex gap-2 relative= "
           >
             {previewUrl.map((preview) => (
-              <Image
+              <motion.div
                 key={preview}
-                src={preview}
-                width={200}
-                height={200}
-                alt={preview}
-                className="border-r-4 border-black"
-              />
+                initial={{ y: "100vh", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 2,
+                  delay: 2.6,
+                }}
+              >
+                <Image
+                  src={preview}
+                  width={200}
+                  height={200}
+                  alt={preview}
+                  className="border-r-4 border-black "
+                />
+              </motion.div>
             ))}
           </Slider>
-        </div>
+        </motion.div>
         {/* DESCRIPTION OF CURRENT SLIDE */}
-        <div className="text-white flex-col w-full md:w-[50%] space-y-4 md:space-y-12  p-2  relative">
+        <motion.div
+          className="text-white flex-col w-full md:w-[50%] space-y-4 md:space-y-12  p-2  relative "
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 1,
+            delay: 2.6,
+          }}
+        >
           <div>
-            <h1 className="text-4xl">{title}</h1>
-            <p className="flex text-4xl">{stars}</p>
-            <div className="flex gap-4 bg-[#e91b1b23] rounded-lg p-2 mt-2">
+            <motion.h1
+              className="text-4xl text-cyan-500"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 1,
+                delay: 2.7,
+              }}
+            >
+              {title}
+            </motion.h1>
+            <motion.p
+              className="flex text-4xl"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 1,
+                delay: 2.8,
+              }}
+            >
+              {stars}
+            </motion.p>
+            <motion.div
+              className="flex gap-4 bg-[#e91b1b23] rounded-lg p-2 mt-2"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 1,
+                delay: 2.9,
+              }}
+            >
               {techIcons.map((techIcon) => (
                 <motion.div
                   key={techIcon}
@@ -91,24 +145,40 @@ const CarouselItem = ({
                   <Image src={techIcon} alt={techIcon} width={40} height={40} />
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
           <div className="space-y-4">
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
-            <p className="text-sm md:text-lg">{description}</p>
+            <motion.p
+              className="text-sm md:text-md lg:text-lg"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 1,
+                delay: 3,
+              }}
+            >
+              {description}
+            </motion.p>
 
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.div
               className="text-2xl font-bold border rounded-full p-1 mx-auto text-center z-10  cursor-pointer  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 w-[50%] justify-self-center shadow-md shadow-[#ffd56cc3]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 1,
+                delay: 3.1,
+              }}
             >
               <Link href={projectUrl} target="_blank" className="w-[50%] ">
                 View Site
               </Link>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

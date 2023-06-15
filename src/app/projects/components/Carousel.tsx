@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarouselItem from "./CarouselItem";
+import { motion } from "framer-motion";
 
 import { projects, thumbnailData } from "@/data/projectsData";
 import Image from "next/image";
@@ -44,7 +45,6 @@ const Carousel = () => {
     prevArrow: <></>,
     beforeChange: (current: number, next: number) => {
       setCurrentSlide(next);
-      console.log("current>>", current, "next>>", next);
       goToSlide(next);
     },
   };
@@ -60,47 +60,66 @@ const Carousel = () => {
     prevArrow: <></>,
     afterChange: (current: number) => {
       setCurrentSlide(current);
-      console.log("current", current);
       goToSlide(current);
     },
+    responsive: [
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="mx-1 md:mx-8 relative flex flex-col">
-      <div className=" ">
-        <Slider ref={sliderRef} {...settings} className="carousel-slider">
-          {projects.map((project) => (
-            <CarouselItem
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              imageUrl={project.imageUrl}
-              alt={project.alt}
-              ratings={project.ratings}
-              techIcons={project.techIcons}
-              projectUrl={project.projectUrl}
-              previewUrl={project.previewUrl}
-            />
-          ))}
-        </Slider>
-      </div>
+    <div className="mx-1 md:mx-8 relative flex flex-col ">
+      <Slider ref={sliderRef} {...settings} className="carousel-slider  ">
+        {projects.map((project) => (
+          <CarouselItem
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            imageUrl={project.imageUrl}
+            alt={project.alt}
+            ratings={project.ratings}
+            techIcons={project.techIcons}
+            projectUrl={project.projectUrl}
+            previewUrl={project.previewUrl}
+          />
+        ))}
+      </Slider>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center ">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center  ">
         <Slider
           ref={thumbnailRef}
           {...thumbnailSettings}
           className="thumbnail-slider w-full md:w-[80%]  h-full flex justify-center items-center"
         >
-          {thumbnailData.map((thumbnail) => (
-            <div className="border-[8px] border-blackBackground ">
+          {thumbnailData.map((thumbnail, index) => (
+            <motion.div
+              key={thumbnail.id}
+              className="border-[8px] border-blackBackground"
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              initial={{
+                opacity: 0,
+                scale: 0,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: 2.9 + index * 0.1,
+              }}
+            >
               <Image
                 src={thumbnail.url}
-                key={thumbnail.id}
                 width={600}
                 height={600}
                 alt={thumbnail.url}
               />
-            </div>
+            </motion.div>
           ))}
         </Slider>
         <CarouselButton next={next} previous={previous} />

@@ -52,9 +52,8 @@ export const projects = [
   {
     id: 3,
     title: "Z-MAP",
-    description: `Z-MAP is an interactive, user-oriented web application that brilliantly fuses the power of the MERN stack with mapbox UI API and tailwind for aesthetically pleasing, highly functional, and intuitive design. The app employs MongoDB for robust and flexible database structures, Express.js for streamlined and efficient server operations, React.js for dynamic and responsive UI components, and Node.js for a powerful, Javascript runtime environment. Complementing the MERN stack, Mapbox UI API brings in top-tier geographical and mapping functionality, while tailwind CSS provides low-level utility for crafting modern and responsive interfaces, ensuring a seamless, appealing user experience.
-
-    Z-MAP is centered around user engagement and geolocation features. Registered users can create and log into their accounts, enabling them to engage with the map in personalized ways. Users can create pins on the globe, adding a layer of interaction that goes beyond simple map viewing. Each pin allows users to rate and review specific places, offering crowd-sourced insights and experiences. This not only enables users to share their experiences but also helps other users discover new locations through shared pins. Overall, Z-MAP offers a vibrant, communal platform for map interaction and location-based discussions, combining the power of modern technologies with a focus on user engagement.`,
+    description: `Z-MAP is a user-oriented web app that combines the MERN stack, Mapbox UI API, and tailwind CSS. It uses MongoDB for a flexible database, Express.js for efficient server operations, React.js for dynamic UI components, and Node.js for a powerful runtime environment. With Mapbox UI API and tailwind CSS, Z-MAP offers geolocation features and aesthetically pleasing, responsive design. Users can create accounts, place pins on the map, rate and review locations, and engage in location-based discussions. It's a vibrant platform that merges modern technologies with user engagement.
+    `,
     imageUrl: "/projectimages/zmap.png",
     alt: "Zmap",
     ratings: 4,
@@ -101,9 +100,8 @@ export const projects = [
   {
     id: 5,
     title: "Zeff Portfoliov1",
-    description: `Crafted with dedication in 2022, my first portfolio is a testament to my skills, creativity, and commitment as a developer. Leveraging the power of ReactJS, a highly efficient and dynamic JavaScript library for building user interfaces, this portfolio presents an engaging and interactive experience. Utilizing Tailwind CSS for styling, it showcases a modern, clean, and responsive design. Tailwind, with its low-level utility classes, offers a high degree of flexibility and customization, which has been put to optimal use in crafting the aesthetic of this portfolio.
-
-    The heart of the portfolio lies in showcasing the projects I've worked on, each presented with detailed descriptions, functionalities, and the technologies used. A standout feature of this portfolio is its extensive use of animations. They serve not just as a visually appealing element but also to guide visitors through the portfolio in an engaging and interactive way, breathing life into every interaction. These animations demonstrate the careful attention paid to the user experience, ensuring that navigating through the portfolio is not just informative, but also delightful and memorable. This portfolio serves as a direct reflection of my skills, detailing my journey and growth as a developer.`,
+    description: `
+    Crafted with dedication in 2022, my first portfolio showcases my skills, creativity, and commitment as a developer. It is a comprehensive representation of my expertise and growth. Powered by ReactJS, a dynamic JavaScript library for building user interfaces, the portfolio delivers an engaging and interactive experience to visitors. The utilization of Tailwind CSS enables a modern, clean, and responsive design, with flexible utility classes providing customization options. The portfolio emphasizes my projects, offering detailed descriptions, functionalities, and the technologies employed. Notably, the integration of animations guides visitors through an engaging user experience, making navigation informative, delightful, and memorable. Through thoughtful design choices and comprehensive project presentations, this portfolio reflects my passion for creating exceptional user experiences and showcases my growth as a developer. It serves as a testament to my dedication in delivering top-notch solutions.`,
     imageUrl: "/projectimages/zeffportfoliov1.png",
     alt: "zeffportfoliov1",
     ratings: 4,

@@ -4,7 +4,7 @@ import React from "react";
 
 const Projects = () => {
   return (
-    <div className="h-full   bg-blackBackground overflow-x-hidden  relative">
+    <div className="min-h-screen h-full   bg-blackBackground overflow-x-hidden  relative">
       <TransitionEffect />
       <div className="h-full relative md:mt-28">
         <Carousel />
