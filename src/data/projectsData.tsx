@@ -60,7 +60,7 @@ export const projects = [
     techIcons: [
       "/techicons/html.png",
       "/techicons/css.png",
-      "/techicons/typescript.png",
+      "/techicons/ts.png",
       "/techicons/react.png",
       "/techicons/node.png",
       "/techicons/mongo.png",

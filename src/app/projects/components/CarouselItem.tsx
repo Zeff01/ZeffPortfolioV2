@@ -52,7 +52,7 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-[35%] md:h-[800px] font-tech  m-0 ">
+    <div className=" p-2 h-[35%] md:h-[750px] font-tech  m-0 ">
       <div className="flex flex-col md:flex-row p-2  h-full  ">
         <motion.div className=" flex flex-col items-center gap-4  w-full md:w-[50%] pt-4 ">
           {/* MAIN PIC OF CURRENT SLIDE */}
@@ -74,23 +74,13 @@ const CarouselItem = ({
             className=" preview-slider w-full   flex gap-2 relative= "
           >
             {previewUrl.map((preview) => (
-              <motion.div
-                key={preview}
-                initial={{ y: "100vh", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: 2,
-                  delay: 2.6,
-                }}
-              >
-                <Image
-                  src={preview}
-                  width={200}
-                  height={200}
-                  alt={preview}
-                  className="border-r-4 border-black "
-                />
-              </motion.div>
+              <Image
+                src={preview}
+                width={200}
+                height={200}
+                alt={preview}
+                className="border-r-4 border-black "
+              />
             ))}
           </Slider>
         </motion.div>
