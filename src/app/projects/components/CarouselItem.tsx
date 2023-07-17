@@ -89,6 +89,7 @@ const CarouselItem = ({
                   height={200}
                   alt={preview}
                   className="border-r-2 border-black"
+                  loading="lazy"
                 />
               </motion.div>
             ))}
