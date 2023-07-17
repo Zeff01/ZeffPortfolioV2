@@ -73,14 +73,24 @@ const CarouselItem = ({
             {...innerSettings}
             className=" preview-slider w-full   flex gap-2 relative= "
           >
-            {previewUrl.map((preview) => (
-              <Image
-                src={preview}
-                width={200}
-                height={200}
-                alt={preview}
-                className="border-r-4 border-black "
-              />
+            {previewUrl.map((preview, index) => (
+              <motion.div
+                key={preview}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 2.6 + index * 0.1, // Adjust the delay to create the desired stagger effect
+                }}
+              >
+                <Image
+                  src={preview}
+                  width={200}
+                  height={200}
+                  alt={preview}
+                  className="border-r-2 border-black"
+                />
+              </motion.div>
             ))}
           </Slider>
         </motion.div>
