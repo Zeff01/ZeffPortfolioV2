@@ -80,7 +80,7 @@ const CarouselItem = ({
                 animate={{ opacity: 1 }}
                 transition={{
                   duration: 1,
-                  delay: 2.6 + index * 0.1, // Adjust the delay to create the desired stagger effect
+                  delay: 3 + index * 0.1,
                 }}
               >
                 <Image
