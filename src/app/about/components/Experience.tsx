@@ -34,7 +34,7 @@ const Experience = () => {
             position="Front End Developer"
             company="HookSales"
             companyLink=""
-            time="2023 - PRESENT"
+            time="2023"
             address="California, USA"
             work="
             Experienced in designing and developing diverse UI/UX elements and functionalities using Next.js, catering to specific client requirements. Proficient in translating client requests into innovative and visually appealing designs, while ensuring seamless functionality. Demonstrated ability to effectively collaborate with clients to deliver customized solutions that meet their unique needs."
