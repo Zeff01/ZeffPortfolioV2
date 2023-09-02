@@ -80,8 +80,8 @@ const About = () => {
                     : "/ironmanassets/zeffdp.png"
                 }
                 alt="Third Image"
-                width={400}
-                height={100}
+                width={800}
+                height={800}
                 className=" object-contain"
               />
             </motion.div>

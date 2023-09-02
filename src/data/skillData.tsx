@@ -16,6 +16,8 @@ import sass from "../../public/techicons/sass.png";
 import solidity from "../../public/techicons/solidity.png";
 import tailwind from "../../public/techicons/tailwind.png";
 import ts from "../../public/techicons/ts.png";
+import shadcn from "../../public/techicons/shadcn.png";
+import ror from "../../public/techicons/ror.png";
 
 export const skillsData = [
   { image: angular, title: "Angular", link: "https://angular.io/" },
@@ -56,4 +58,6 @@ export const skillsData = [
   },
   { image: tailwind, title: "Tailwind CSS", link: "https://tailwindcss.com/" },
   { image: ts, title: "TypeScript", link: "https://www.typescriptlang.org/" },
+  { image: shadcn, title: "ShadCN", link: "https://ui.shadcn.com/" },
+  { image: ror, title: "Ruby on Rails", link: "https://rubyonrails.org/" },
 ];

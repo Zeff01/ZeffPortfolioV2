@@ -39,7 +39,7 @@ const Skills = () => {
 
       <div className="flex w-full p-4 justify-center ">
         <motion.div
-          className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-16 "
+          className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-16 "
           variants={container}
           initial="hidden"
           whileInView="show"
