@@ -23,7 +23,7 @@ const Skills = () => {
           className=" text-buttonColor text-6xl md:text-8xl"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0 }}
+          transition={{ duration: 1, delay: 2 }}
         >
           S<span className="text-textColor">kills</span>
         </motion.h2>
@@ -31,7 +31,7 @@ const Skills = () => {
           className="text-textColor text-lg"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 2.2 }}
         >
           Here are the technologies I've worked with
         </motion.p>

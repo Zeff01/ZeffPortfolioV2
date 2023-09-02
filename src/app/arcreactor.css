@@ -1,3 +1,8 @@
+.marks_small {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .marks {
   list-style: none;
   margin: 0;
@@ -17,6 +22,19 @@
     inset 0px 0px 60px 15px rgba(2, 255, 255, 0.3);
 }
 
+.arc_reactor_small {
+  position: relative;
+  top: 50%;
+  margin-top: -60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 30px 8px rgba(2, 255, 255, 0.3),
+    inset 0px 0px 30px 8px rgba(2, 255, 255, 0.3);
+}
+
 .case_container {
   width: 90px;
   height: 90px;
@@ -25,7 +43,30 @@
   margin-left: 12px;
   margin-top: 14px;
 }
+.case_container_small {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 7px;
+}
+
 .e7 {
+  width: 100%;
+  height: 100%;
+  left: 2.5475%;
+  right: 2.5475%;
+  border: 6px solid transparent;
+  background: transparent;
+  border-radius: 50%;
+  transform: rotateZ(0deg);
+  transition: box-shadow 3s ease;
+  text-align: center;
+  line-height: 100px;
+}
+
+.e7_small {
   width: 100%;
   height: 100%;
   left: 2.5475%;
@@ -50,6 +91,17 @@
   margin-right: auto;
   margin-top: 19px;
 }
+.core2_small {
+  background: #cedce0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(2, 255, 255, 0.15);
+  animation: flicker2 0.2s infinite;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+}
 
 .marks li {
   display: block;
@@ -59,6 +111,17 @@
   position: absolute;
   margin-left: 42px;
   margin-top: -50px;
+  animation: color_ease2 3s infinite ease-in-out;
+}
+
+.marks_small li {
+  display: block;
+  width: 1px;
+  height: 11px;
+  background: rgba(2, 254, 255, 0.8);
+  position: absolute;
+  margin-left: 23px;
+  margin-top: -28px;
   animation: color_ease2 3s infinite ease-in-out;
 }
 
@@ -79,6 +142,25 @@
   animation: rotate 4s linear infinite;
   text-align: center;
   line-height: 129px;
+}
+
+.semi_arc_3_small {
+  content: "";
+  position: absolute;
+  width: 94%;
+  height: 94%;
+  left: 3%;
+  top: 3%;
+  border: 2px solid #02feff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  animation: rotate 4s linear infinite;
+  text-align: center;
+  line-height: 80px;
 }
 
 .e5_1 {
@@ -343,4 +425,186 @@
 }
 .marks li:nth-child(60) {
   transform: rotate(360deg) translateY(60px);
+}
+
+/* Apply rotation transforms to each mark */
+.marks_small li:nth-child(1) {
+  transform: rotate(6deg) translateY(30px);
+}
+.marks_small li:nth-child(2) {
+  transform: rotate(12deg) translateY(30px);
+}
+.marks_small li:nth-child(3) {
+  transform: rotate(18deg) translateY(30px);
+}
+.marks_small li:nth-child(4) {
+  transform: rotate(24deg) translateY(30px);
+}
+.marks_small li:nth-child(5) {
+  transform: rotate(30deg) translateY(30px);
+}
+.marks_small li:nth-child(6) {
+  transform: rotate(36deg) translateY(30px);
+}
+.marks_small li:nth-child(7) {
+  transform: rotate(42deg) translateY(30px);
+}
+.marks_small li:nth-child(8) {
+  transform: rotate(48deg) translateY(30px);
+}
+.marks_small li:nth-child(9) {
+  transform: rotate(54deg) translateY(30px);
+}
+.marks_small li:nth-child(10) {
+  transform: rotate(60deg) translateY(30px);
+}
+.marks_small li:nth-child(11) {
+  transform: rotate(66deg) translateY(30px);
+}
+.marks_small li:nth-child(12) {
+  transform: rotate(72deg) translateY(30px);
+}
+.marks_small li:nth-child(13) {
+  transform: rotate(78deg) translateY(30px);
+}
+.marks_small li:nth-child(14) {
+  transform: rotate(84deg) translateY(30px);
+}
+.marks_small li:nth-child(15) {
+  transform: rotate(90deg) translateY(30px);
+}
+.marks_small li:nth-child(16) {
+  transform: rotate(96deg) translateY(30px);
+}
+.marks_small li:nth-child(17) {
+  transform: rotate(102deg) translateY(30px);
+}
+.marks_small li:nth-child(18) {
+  transform: rotate(108deg) translateY(30px);
+}
+.marks_small li:nth-child(19) {
+  transform: rotate(114deg) translateY(30px);
+}
+.marks_small li:nth-child(20) {
+  transform: rotate(120deg) translateY(30px);
+}
+.marks_small li:nth-child(21) {
+  transform: rotate(126deg) translateY(30px);
+}
+.marks_small li:nth-child(22) {
+  transform: rotate(132deg) translateY(30px);
+}
+.marks_small li:nth-child(23) {
+  transform: rotate(138deg) translateY(30px);
+}
+.marks_small li:nth-child(24) {
+  transform: rotate(144deg) translateY(30px);
+}
+.marks_small li:nth-child(25) {
+  transform: rotate(150deg) translateY(30px);
+}
+.marks_small li:nth-child(26) {
+  transform: rotate(156deg) translateY(30px);
+}
+.marks_small li:nth-child(27) {
+  transform: rotate(162deg) translateY(30px);
+}
+.marks_small li:nth-child(28) {
+  transform: rotate(168deg) translateY(30px);
+}
+.marks_small li:nth-child(29) {
+  transform: rotate(174deg) translateY(30px);
+}
+.marks_small li:nth-child(30) {
+  transform: rotate(180deg) translateY(30px);
+}
+.marks_small li:nth-child(31) {
+  transform: rotate(186deg) translateY(30px);
+}
+.marks_small li:nth-child(32) {
+  transform: rotate(192deg) translateY(30px);
+}
+.marks_small li:nth-child(33) {
+  transform: rotate(198deg) translateY(30px);
+}
+.marks_small li:nth-child(34) {
+  transform: rotate(204deg) translateY(30px);
+}
+.marks_small li:nth-child(35) {
+  transform: rotate(210deg) translateY(30px);
+}
+.marks_small li:nth-child(36) {
+  transform: rotate(216deg) translateY(30px);
+}
+.marks_small li:nth-child(37) {
+  transform: rotate(222deg) translateY(30px);
+}
+.marks_small li:nth-child(38) {
+  transform: rotate(228deg) translateY(30px);
+}
+.marks_small li:nth-child(39) {
+  transform: rotate(234deg) translateY(30px);
+}
+.marks_small li:nth-child(40) {
+  transform: rotate(240deg) translateY(30px);
+}
+.marks_small li:nth-child(41) {
+  transform: rotate(246deg) translateY(30px);
+}
+.marks_small li:nth-child(42) {
+  transform: rotate(252deg) translateY(30px);
+}
+.marks_small li:nth-child(43) {
+  transform: rotate(258deg) translateY(30px);
+}
+.marks_small li:nth-child(44) {
+  transform: rotate(264deg) translateY(30px);
+}
+.marks_small li:nth-child(45) {
+  transform: rotate(270deg) translateY(30px);
+}
+.marks_small li:nth-child(46) {
+  transform: rotate(276deg) translateY(30px);
+}
+.marks_small li:nth-child(47) {
+  transform: rotate(282deg) translateY(30px);
+}
+.marks_small li:nth-child(48) {
+  transform: rotate(288deg) translateY(30px);
+}
+.marks_small li:nth-child(49) {
+  transform: rotate(294deg) translateY(30px);
+}
+.marks_small li:nth-child(50) {
+  transform: rotate(300deg) translateY(30px);
+}
+.marks_small li:nth-child(51) {
+  transform: rotate(306deg) translateY(30px);
+}
+.marks_small li:nth-child(52) {
+  transform: rotate(312deg) translateY(30px);
+}
+.marks_small li:nth-child(53) {
+  transform: rotate(318deg) translateY(30px);
+}
+.marks_small li:nth-child(54) {
+  transform: rotate(324deg) translateY(30px);
+}
+.marks_small li:nth-child(55) {
+  transform: rotate(330deg) translateY(30px);
+}
+.marks_small li:nth-child(56) {
+  transform: rotate(336deg) translateY(30px);
+}
+.marks_small li:nth-child(57) {
+  transform: rotate(342deg) translateY(30px);
+}
+.marks_small li:nth-child(58) {
+  transform: rotate(348deg) translateY(30px);
+}
+.marks_small li:nth-child(59) {
+  transform: rotate(354deg) translateY(30px);
+}
+.marks_small li:nth-child(60) {
+  transform: rotate(360deg) translateY(30px);
 }

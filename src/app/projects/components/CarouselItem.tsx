@@ -151,7 +151,7 @@ const CarouselItem = ({
           <div className="space-y-4  justify-between">
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.p
-              className="text-sm md:text-md lg:text-lg"
+              className="text-xs md:text-md lg:text-lg"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{

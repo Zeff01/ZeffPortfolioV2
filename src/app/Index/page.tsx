@@ -259,16 +259,6 @@ const Index = () => {
           />
         )}
       </motion.div>
-
-      {/* ARC REACTOR ANIMATION */}
-      <div>
-        <motion.div
-          variants={imageVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 2, duration: 1 }}
-        ></motion.div>
-      </div>
     </div>
   );
 };

@@ -72,11 +72,7 @@ const Carousel = () => {
 
   return (
     <div className="mx-1 md:mx-8 relative flex flex-col ">
-      <Slider
-        ref={sliderRef}
-        {...settings}
-        className="carousel-slider  "
-      >
+      <Slider ref={sliderRef} {...settings} className="carousel-slider ">
         {projects.map((project) => (
           <CarouselItem
             key={project.id}
@@ -92,7 +88,7 @@ const Carousel = () => {
         ))}
       </Slider>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center ">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-2">
         <Slider
           ref={thumbnailRef}
           {...thumbnailSettings}

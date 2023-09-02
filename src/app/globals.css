@@ -26,6 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.carousel-slider {
+  height: 800px;
+}
+
 .thumbnail-slider .slick-track {
   display: flex !important;
   align-items: center;
