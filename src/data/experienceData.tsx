@@ -1,11 +1,45 @@
 export const experienceData = [
   {
     position: "Front End Developer",
-    company: "HookSales",
+    company: "Mango Dream",
     companyLink: "",
     time: "2023",
-    address: "California, USA",
-    work: "Experienced in designing and developing diverse UI/UX elements and functionalities using Next.js, catering to specific client requirements. Proficient in translating client requests into innovative and visually appealing designs, while ensuring seamless functionality. Demonstrated ability to effectively collaborate with clients to deliver customized solutions that meet their unique needs.",
+    address: "USA",
+    work: "I was responsible for building an e-commerce platform that seamlessly integrated with major marketplaces such as eBay, Amazon, and Square. This platform enabled resellers to efficiently market and sell products. The development stack included React for the frontend and Node.js with Express for the backend. The project was organized into two-week sprints to ensure a structured and efficient development process.",
+  },
+  {
+    position: "Front End Developer",
+    company: "Ashtree Block Ventures LLC",
+    companyLink: "https://www.ashtreebv.com/",
+    time: "2023",
+    address: "Jackson, USA",
+    work: "I became a member of a medium-sized team that employed agile methodologies. Within this team, I worked on the development of 'Pecado Wallet,' a digital wallet that seamlessly integrates with web3 technology. My responsibilities included crafting features and tokens within the web3 environment, utilizing Solidity for the backend logic and Next.js for the frontend.",
+  },
+  {
+    position: "Front End Developer",
+    company: "Impala Services Inc",
+    companyLink: "",
+    time: "2023",
+    address: "Ortigas, Philippines",
+    work: `I served as the initial front-end developer tasked with modernizing an established application known as 'Pergamon Labs,' specializing in label and blueprint production for various products. In this capacity, I successfully migrated the application to Next.js while maintaining the existing PHP backend and integrating localization with Next-i18.
+
+    Moreover, I'm proud to mention that due to my contributions and performance, the company has plans to promote me to the position of Senior Front-End Developer after six months. In this elevated role, I will be responsible for leading a team of frontend developers, further advancing my career and responsibilities within the organization.`,
+  },
+  {
+    position: "Front End Developer",
+    company: "Casting Call Club LLC",
+    companyLink: "https://www.castingcall.club/",
+    time: "2023",
+    address: "USA",
+    work: "As a full-stack developer, I was responsible for crafting a website known as 'Recdeer,' which drew inspiration from Senja.io. This endeavor involved the utilization of React for the front-end and Ruby on Rails for the back-end.",
+  },
+  {
+    position: "Front End Developer",
+    company: "Matthew Bender",
+    companyLink: "",
+    time: "2023",
+    address: "USA",
+    work: "I served as a freelance developer for Matthew Bender at Ironfence Company. My responsibilities included transforming an existing static website, originally built with vanilla JavaScript and jQuery, into a dynamic Next.js application with a PHP backend. Additionally, I developed a content management system (CMS) web application and a mobile application for the Disconnector Golf app, where PHP served as the backend technology.",
   },
   {
     position: "Front End Developer",
