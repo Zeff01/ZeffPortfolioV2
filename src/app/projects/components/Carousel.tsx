@@ -72,7 +72,11 @@ const Carousel = () => {
 
   return (
     <div className="mx-1 md:mx-8 relative flex flex-col ">
-      <Slider ref={sliderRef} {...settings} className="carousel-slider  ">
+      <Slider
+        ref={sliderRef}
+        {...settings}
+        className="carousel-slider  "
+      >
         {projects.map((project) => (
           <CarouselItem
             key={project.id}
@@ -88,16 +92,16 @@ const Carousel = () => {
         ))}
       </Slider>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center  border-2 border">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center ">
         <Slider
           ref={thumbnailRef}
           {...thumbnailSettings}
-          className="thumbnail-slider w-full md:w-[80%]  h-full flex justify-center items-center"
+          className="thumbnail-slider w-full md:w-[80%] flex justify-center items-center "
         >
           {thumbnailData.map((thumbnail, index) => (
             <motion.div
               key={thumbnail.id}
-              className="border-[8px] border-blackBackground"
+              className="border-[4px] border-blackBackground"
               animate={{
                 opacity: 1,
                 scale: 1,

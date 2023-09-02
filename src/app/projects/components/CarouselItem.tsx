@@ -52,12 +52,12 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-[35%] md:h-[750px] font-tech  m-0 ">
+    <div className=" p-2 h-[35%] md:h-[750px] font-tech  m-0  ">
       <div className="flex flex-col md:flex-row p-2  h-full  ">
         <motion.div className=" flex flex-col items-center gap-4  w-full md:w-[50%] pt-4 ">
           {/* MAIN PIC OF CURRENT SLIDE */}
           <motion.div
-            className="flex flex-col justify-center  "
+            className="flex flex-col justify-center"
             initial={{ y: "-100vh", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
@@ -97,7 +97,7 @@ const CarouselItem = ({
         </motion.div>
         {/* DESCRIPTION OF CURRENT SLIDE */}
         <motion.div
-          className="text-white flex-col w-full md:w-[50%] space-y-4 md:space-y-12  p-2  relative "
+          className="text-white flex-col w-full md:w-[50%] gap-4 justify-between  p-2  relative "
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -105,9 +105,9 @@ const CarouselItem = ({
             delay: 2.6,
           }}
         >
-          <div>
+          <div className="   justify-between">
             <motion.h1
-              className="text-4xl text-cyan-500"
+              className="text-4xl text-cyan-500 "
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -148,7 +148,7 @@ const CarouselItem = ({
               ))}
             </motion.div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4  justify-between">
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.p
               className="text-sm md:text-md lg:text-lg"
