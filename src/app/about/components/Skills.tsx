@@ -20,7 +20,7 @@ const Skills = () => {
     <div className=" w-full font-tech">
       <div className="flex flex-col justify-center items-center text-titleColor  w-full text-xl mt-5">
         <motion.h2
-          className=" text-buttonColor text-2xl md:text-8xl"
+          className=" text-buttonColor text-6xl md:text-8xl"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0 }}

@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${techFont.variable}`}>
+      <body className={`${inter.className} ${techFont.variable} `}>
         <Navbar />
         {children}
         <ArcReactor />

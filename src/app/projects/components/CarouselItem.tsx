@@ -88,7 +88,7 @@ const CarouselItem = ({
                   width={200}
                   height={200}
                   alt={preview}
-                  className="border-r-2 border-black"
+                  className="border-r-1 border-black"
                   loading="eager"
                 />
               </motion.div>

@@ -21,14 +21,12 @@ const Carousel = () => {
   };
 
   const previous = () => {
-    // const currentSlide = sliderRef.current?.innerSlider?.state?.currentSlide;
     if (currentSlide !== undefined) {
       goToSlide(currentSlide - 1);
     }
   };
 
   const next = () => {
-    // const currentSlide = sliderRef.current?.innerSlider?.state?.currentSlide;
     if (currentSlide !== undefined) {
       goToSlide(currentSlide + 1);
     }
@@ -90,7 +88,7 @@ const Carousel = () => {
         ))}
       </Slider>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center  ">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center  border-2 border">
         <Slider
           ref={thumbnailRef}
           {...thumbnailSettings}

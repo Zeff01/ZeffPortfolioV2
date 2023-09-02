@@ -26,24 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-/* .slick-dots {
-  position: absolute !important;
-  bottom: -200px !important;
-  left: 0px;
-  text-align: start !important;
-}
-.slick-dots > li {
-  display: block;
-  height: 200px !important;
-  width: 350px !important;
-  background-color: rgb(228, 168, 5);
-  margin: 2px;
-}
-
-.slick-active {
-  border: 5px solid orange;
-} */
-
 .thumbnail-slider .slick-track {
   display: flex !important;
   align-items: center;
@@ -69,7 +51,7 @@ body {
 }
 
 .button-primary {
-  @apply border rounded-full p-1 md:p-4  md:w-full text-center z-10  cursor-pointer;
+  @apply border rounded-full p-1  md:w-full text-center z-10  cursor-pointer;
 }
 
 /* BUTTON HOVER ANIMATION */

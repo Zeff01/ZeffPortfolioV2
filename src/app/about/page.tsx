@@ -1,15 +1,12 @@
 "use client";
 
 import Experience from "./components/Experience";
-import Navbar from "@/components/Navbar";
 import Skills from "./components/Skills";
 import TransitionEffect from "@/hooks/TransitionEffect";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import Footer from "@/components/Footer";
+import React, { useState } from "react";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
-import ArcReactor from "@/components/ArcReactor";
 
 const About = () => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -17,22 +14,22 @@ const About = () => {
     setIsFlipped(!isFlipped);
   };
   return (
-    <div className="h-full min-h-screen  bg-[#0c0a0a]  overflow-x-hidden  relative ">
+    <div className="h-full  bg-[#0c0a0a]  overflow-x-hidden  relative ">
       <TransitionEffect />
-      <div className="relative  w-full text-white ">
-        <div className=" flex flex-col gap-8 md:gap-16 justify-center items-center h-full lg:h-screen w-full mt-32 ">
+      <div className="relative  w-full  px-4">
+        <div className=" flex flex-col gap-8 md:gap-16 justify-center items-center h-full w-full  mt-8 md:mt-28 ">
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2.5 }}
-            className="font-tech text-buttonColor text-2xl md:text-7xl"
+            className="font-tech text-buttonColor text-2xl md:text-5xl"
           >
             "Dream Big,{" "}
             <span className="text-textColor">Achieve Greatness!</span>"
           </motion.p>
           <div className="px-2 md:flex md:flex-col  lg:grid  lg:grid-cols-8 gap-16 w-full">
             {/* BIOGRAPHY */}
-            <div className="col-span-2 lg:col-span-3 p-2 text-yellow-300 font-medium font-tech text-lg ml-2 text-justify xl:text-2xl md:text-lg">
+            <div className="col-span-2 lg:col-span-3 p-2 text-yellow-300 font-medium font-tech text-lg ml-2 text-justify  ">
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -68,7 +65,7 @@ const About = () => {
 
             {/* PICTURE */}
             <motion.div
-              className="col-span-3 flex justify-center shadow-lg  shadow-yellow-500 hover:shadow-red-500  rounded-lg  mt-5 md:mt-0 object-contain cursor-pointer h-[500px]"
+              className="col-span-3 flex justify-center shadow-lg  shadow-yellow-500 hover:shadow-red-500  rounded-lg  mt-5 md:mt-0 object-contain cursor-pointer h-[700px]"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               whileHover={{ scale: 1.1 }}

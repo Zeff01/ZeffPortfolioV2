@@ -12,7 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="text-white gap-12 font-tech text-[22px]  md:flex pt-8 ml-40  m-2 hidden z-20 absolute items-center">
+    <nav className="text-white gap-12 font-tech text-lg  md:flex pt-8 ml-40  m-2 hidden z-20 absolute items-center">
       <Link href="/">
         <motion.span
           className={`text-textColor   hover:text-buttonColor ${

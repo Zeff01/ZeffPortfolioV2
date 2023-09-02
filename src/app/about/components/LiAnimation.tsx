@@ -64,7 +64,7 @@ const LiAnimation = ({
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-2xl">
+        <h3 className="capitalize font-bold text-sm md:text-2xl">
           {position} &nbsp;
           <Link
             href={companyLink}

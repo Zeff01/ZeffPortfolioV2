@@ -206,7 +206,8 @@ const Index = () => {
         >
           <Link href="/about">More about me</Link>
         </motion.div>
-        <div className=" flex gap-4 md:gap-8 z-10   w-40 md:w-80 text-[12px] md:text-[20px] ">
+        {/* BUTTON ANIMATION */}
+        <div className=" flex gap-4 md:gap-8 z-10 px-2 w-40 md:w-80 text-[12px] md:text-[18px] ">
           <motion.div
             className="button-primary text-buttonColor bg-textColor border-textColor font-bold hover:border-2 hover:bg-buttonColor hover:text-textColor hover:scale-105 transform transition-all duration-300 w-28 "
             variants={imageVariants}
@@ -217,7 +218,7 @@ const Index = () => {
             Github
           </motion.div>
           <motion.div
-            className="button-primary bg-buttonColor font-bold text-textColor border-buttonColor hover:border-2 hover:bg-textColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 w-28 "
+            className="button-primary bg-buttonColor font-bold text-textColor border-buttonColor hover:border-2 hover:bg-textColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 w-28"
             variants={imageVariants}
             initial="hidden"
             animate="visible"

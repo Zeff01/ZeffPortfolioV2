@@ -3,7 +3,7 @@ import "../app/arcreactor.css";
 
 const ArcReactor = () => {
   return (
-    <div className="bottom-0 fixed left-4 w-40 h-40  z-10  cursor-pointer">
+    <div className="bottom-24 md:bottom-0 fixed left-4 w-40 h-40  z-10  cursor-pointer">
       <div className="arc_reactor">
         <div className="case_container">
           <div className="e7">

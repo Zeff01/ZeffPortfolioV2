@@ -35,8 +35,8 @@ export const skillsData = [
   },
   { image: materialui, title: "Material UI", link: "https://mui.com/" },
   { image: mongo, title: "MongoDB", link: "https://www.mongodb.com/" },
-  { image: nextjs, title: "Next.javascript", link: "https://nextjs.org/" },
-  { image: node, title: "Node.javascript", link: "https://nodejs.org/en/" },
+  { image: nextjs, title: "Next", link: "https://nextjs.org/" },
+  { image: node, title: "Node", link: "https://nodejs.org/en/" },
   {
     image: postgresSQL,
     title: "PostgreSQL",
