@@ -164,7 +164,7 @@ const CarouselItem = ({
 
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.div
-              className="text-2xl font-bold border rounded-full p-1 mx-auto text-center z-10  cursor-pointer  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 w-[50%] justify-self-center shadow-md shadow-[#ffd56cc3]"
+              className="text-2xl font-bold   p-1 mx-auto text-center  cursor-pointer  w-[50%] justify-self-center z-20"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               initial={{ y: 10, opacity: 0 }}
@@ -173,9 +173,12 @@ const CarouselItem = ({
                 duration: 1,
                 delay: 3.1,
               }}
+              onClick={() => console.log("clicked")}
             >
-              <Link href={projectUrl} target="_blank" className="w-[50%] ">
-                View Site
+              <Link href={projectUrl} target="_blank">
+                <div className=" z-10 shadow-md shadow-[#ffd56cc3] border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full py-4 px-2">
+                  View Site
+                </div>
               </Link>
             </motion.div>
           </div>
