@@ -58,10 +58,10 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: 320px;
   height: 500px;
   border-radius: 30px;
-  background: #5b0000;
+  background: #270101;
   z-index: 90;
 }
 

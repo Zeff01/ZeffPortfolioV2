@@ -105,11 +105,9 @@ const Carousel = () => {
     dotsClass: "slick-dots slick-thumb",
     infinite: true,
     slidesToShow: 2,
-    slidesToScroll: 1,
-    cssEase: "linear",
-    centerPadding: "60px",
     className: "center",
     centerMode: true,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 700,
@@ -313,37 +311,36 @@ const Carousel = () => {
           Here are a few web projects I've been involved with.
         </motion.p>
       </div>
-      <div className="mb-0 md:mb-8 ">
-        <Slider {...otherProjectsSettings}>
-          {otherProjects.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 * index }}
-            >
-              <div className="flex flex-col gap-2 items-center justify-center">
-                <Image src={item.url} alt={item.url} width={400} height={400} />
 
-                {item.link ? (
-                  <Link
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className=" z-10  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  p-1 md:p-2 text-center w-[50%] text-xs md:text-md"
-                  >
-                    Visit Project
-                  </Link>
-                ) : (
-                  <div className="mt-2 text-center text-gray-500">
-                    No link available
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </Slider>
-      </div>
+      <Slider {...otherProjectsSettings}>
+        {otherProjects.map((item, index) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 * index }}
+          >
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <Image src={item.url} alt={item.url} width={800} height={800} />
+
+              {item.link ? (
+                <Link
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" z-10  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  p-1 md:p-2 text-center w-[50%] text-xs md:text-md"
+                >
+                  Visit Project
+                </Link>
+              ) : (
+                <div className="mt-2 text-center text-gray-500">
+                  No link available
+                </div>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </Slider>
     </div>
   );
 };
