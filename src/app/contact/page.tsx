@@ -41,29 +41,34 @@ const Contact = () => {
       progress: undefined,
     });
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSending(true);
 
-    emailjs
-      .sendForm(
-        "service_z1dd26g",
-        "template_21yh8jj",
-        form?.current,
-        "y42g9nykusHell-eu"
-      )
-      .then(
-        (result) => {
-          setIsSending(false);
-          successEmail();
-          e.target.reset();
-        },
-        (error) => {
-          errorEmail();
-          console.log(error.text);
-        }
-      );
+    if (form.current) {
+      emailjs
+        .sendForm(
+          "service_z1dd26g",
+          "template_21yh8jj",
+          form.current,
+          "y42g9nykusHell-eu"
+        )
+        .then(
+          (result) => {
+            setIsSending(false);
+            successEmail();
+            (e.target as HTMLFormElement).reset();
+          },
+          (error) => {
+            errorEmail();
+            console.log(error.text);
+          }
+        );
+    } else {
+      console.error("Form reference is null");
+    }
   };
+
   return (
     <div className="h-full min-h-screen  bg-[#0c0a0a] overflow-x-hidden  relative">
       <Navbar />
