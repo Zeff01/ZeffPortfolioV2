@@ -16,7 +16,7 @@ const About = () => {
   return (
     <div className="h-full  bg-[#0c0a0a]  overflow-x-hidden  relative ">
       <TransitionEffect />
-      <div className="relative  w-full  px-4">
+      <div className="relative  w-full  px-4 mt-20 md:mt-0">
         <div className=" flex flex-col gap-8 md:gap-16 justify-center items-center h-full w-full  mt-8 md:mt-28 ">
           <motion.p
             initial={{ opacity: 0, y: 50 }}

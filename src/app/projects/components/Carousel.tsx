@@ -115,13 +115,14 @@ const Carousel = () => {
         breakpoint: 700,
         settings: {
           slidesToShow: 1,
+          centerMode: true,
         },
       },
     ],
   };
 
   return (
-    <div className="mx-1 md:mx-8 relative flex flex-col gap-4  overflow-hidden">
+    <div className="mx-1 md:mx-8 relative flex flex-col gap-4  overflow-hidden mt-20 md:mt-0">
       <motion.p
         animate={{
           opacity: 1,
@@ -312,7 +313,7 @@ const Carousel = () => {
           Here are a few web projects I've been involved with.
         </motion.p>
       </div>
-      <div className="mb-8 ">
+      <div className="mb-0 md:mb-8 ">
         <Slider {...otherProjectsSettings}>
           {otherProjects.map((item, index) => (
             <motion.div
@@ -322,19 +323,14 @@ const Carousel = () => {
               transition={{ duration: 0.5, delay: 0.2 * index }}
             >
               <div className="flex flex-col gap-2 items-center justify-center">
-                <Image
-                  src={item.url}
-                  alt={item.url}
-                  width={1200}
-                  height={800}
-                />
+                <Image src={item.url} alt={item.url} width={400} height={400} />
 
                 {item.link ? (
                   <Link
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className=" z-10  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  p-2 text-center w-[50%]"
+                    className=" z-10  border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  p-1 md:p-2 text-center w-[50%] text-xs md:text-md"
                   >
                     Visit Project
                   </Link>
