@@ -12,9 +12,9 @@ interface CarouselButtonProps {
 
 const CarouselButton = ({ previous, next }: CarouselButtonProps) => {
   return (
-    <div className="mx-auto flex gap-2 ">
+    <div className="mx-auto flex gap-4 z-50 ">
       <motion.button
-        className="w-16 md:w-16 h-16 md:h-20 bg-black text-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
+        className="w-16 md:w-20 h-16 md:h-28 bg-black text-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
         onClick={previous}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -34,7 +34,7 @@ const CarouselButton = ({ previous, next }: CarouselButtonProps) => {
         <MdOutlineArrowBackIos className="w-6 h-6 md:w-8 md:h-8" />
       </motion.button>
       <motion.button
-        className="w-16 md:w-16 h-16 md:h-20 text-black bg-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
+        className="w-16 md:w-20 h-16 md:h-28 text-black bg-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
         onClick={next}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

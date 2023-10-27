@@ -131,7 +131,7 @@ const About = () => {
                   transition={{ duration: 1, delay: 2.2 }}
                   className="inline-block text-2xl md:text-8xl text-buttonColor"
                 >
-                  <AnimatedNumbers value={2} />+
+                  <AnimatedNumbers value={3} />+
                 </motion.span>
                 <motion.h2
                   initial={{ opacity: 0 }}

@@ -12,6 +12,9 @@ module.exports = {
       tech: ["var(--font-tech)"],
     },
     extend: {
+      screens: {
+        xs: { max: "475px" },
+      },
       colors: {
         textColor: "#F6AE2A",
         buttonColor: "#AA0505",

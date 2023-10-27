@@ -26,25 +26,20 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.carousel-slider {
-  height: 800px;
-}
-
 .thumbnail-slider .slick-track {
   display: flex !important;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
 }
 .preview-slider .slick-slider {
   display: flex !important;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
 }
 
-.slide-item {
-  margin-right: 20px;
+.slick-slide > div {
+  margin: 0 5px;
 }
-
 .dropShadow {
   background: url("/public/Ironmanhover.png");
   filter: drop-shadow(0.8px 1px 2px rgba(241, 14, 14, 0.908));

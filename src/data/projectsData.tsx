@@ -156,3 +156,65 @@ export const thumbnailData = [
     url: "/projectimages/thumbnails/thumbnail1.png",
   },
 ];
+
+export const mobileProjects = [
+  {
+    id: "m1",
+    url: "/mobileprojects/1.png",
+  },
+  {
+    id: "m2",
+    url: "/mobileprojects/2.png",
+  },
+  {
+    id: "m3",
+    url: "/mobileprojects/3.png",
+  },
+];
+export const otherProjects = [
+  {
+    id: "op1",
+    url: "/otherprojects/1.png",
+    link: "https://www.simplfulfillment.com/",
+  },
+  {
+    id: "op2",
+    url: "/otherprojects/2.png",
+    link: "https://www.playfriends.gg/",
+  },
+  {
+    id: "op3",
+    url: "/otherprojects/3.png",
+    link: "https://www.agoda.com/design/",
+  },
+  {
+    id: "op4",
+    url: "/otherprojects/4.png",
+    link: "https://www.ironfenceshop.com/",
+  },
+  {
+    id: "op5",
+    url: "/otherprojects/5.png",
+    link: "",
+  },
+  {
+    id: "op6",
+    url: "/otherprojects/6.png",
+    link: "https://development.pergamonlabs.com/frontend/views/",
+  },
+  {
+    id: "op7",
+    url: "/otherprojects/7.png",
+    link: "https://www.pecado.io/",
+  },
+  {
+    id: "op8",
+    url: "/otherprojects/8.png",
+    link: "https://copyt.io/",
+  },
+  {
+    id: "op9",
+    url: "/otherprojects/9.png",
+    link: "https://www.ashtreebv.com/",
+  },
+];

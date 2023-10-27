@@ -4,7 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { GiMoebiusStar } from "react-icons/gi";
+import { AiFillStar } from "react-icons/ai";
 import { motion } from "framer-motion";
 
 interface CarouselItemProps {
@@ -44,7 +44,7 @@ const CarouselItem = ({
   previewUrl,
 }: CarouselItemProps) => {
   const stars = Array.from({ length: 5 }).map((_, index) => (
-    <GiMoebiusStar
+    <AiFillStar
       key={index}
       className={`${index < ratings ? "filled" : "empty"}`}
       color={index < ratings ? "yellow" : "white"}
@@ -52,7 +52,7 @@ const CarouselItem = ({
   ));
 
   return (
-    <div className=" p-2 h-[35%] md:h-[750px] font-tech  m-0  ">
+    <div className=" p-2 h-[35%] md:h-[700px] font-tech  m-0   ">
       <div className="flex flex-col md:flex-row p-2  h-full  ">
         <motion.div className=" flex flex-col items-center gap-4  w-full md:w-[50%] pt-4 ">
           {/* MAIN PIC OF CURRENT SLIDE */}
@@ -65,13 +65,13 @@ const CarouselItem = ({
               delay: 2.6,
             }}
           >
-            <Image src={imageUrl} width={800} height={800} alt={alt} />
+            <Image src={imageUrl} width={600} height={600} alt={alt} />
           </motion.div>
           {/* PREVIEW OF CURRENT SLIDE */}
 
           <Slider
             {...innerSettings}
-            className=" preview-slider w-full   flex gap-2 relative= "
+            className=" preview-slider w-full   flex gap-2 relative  "
           >
             {previewUrl.map((preview, index) => (
               <motion.div
@@ -107,7 +107,7 @@ const CarouselItem = ({
         >
           <div className="   justify-between">
             <motion.h1
-              className="text-4xl text-cyan-500 "
+              className="text-2xl md:text-4xl text-cyan-500 "
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -118,7 +118,7 @@ const CarouselItem = ({
               {title}
             </motion.h1>
             <motion.p
-              className="flex text-4xl"
+              className="flex text-lg md:text-2xl"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -129,7 +129,7 @@ const CarouselItem = ({
               {stars}
             </motion.p>
             <motion.div
-              className="flex gap-4 bg-[#e91b1b23] rounded-lg p-2 mt-2"
+              className="flex gap-4 bg-[#e91b1b23] rounded-lg md:p-2 mt-2"
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -143,12 +143,12 @@ const CarouselItem = ({
                   whileHover={{ scale: 1.3, opacity: 1 }}
                   className="flex flex-col justify-center items-center cursor-pointer"
                 >
-                  <Image src={techIcon} alt={techIcon} width={40} height={40} />
+                  <Image src={techIcon} alt={techIcon} width={32} height={32} />
                 </motion.div>
               ))}
             </motion.div>
           </div>
-          <div className="space-y-4  justify-between">
+          <div className="space-y-2 md:space-y-4  justify-between">
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.p
               className="text-xs md:text-md lg:text-lg"
@@ -164,7 +164,7 @@ const CarouselItem = ({
 
             <hr className=" border-backgroundColor2 shadow-xl shadow-yellow-500" />
             <motion.div
-              className="text-2xl font-bold   p-1 mx-auto text-center  cursor-pointer  w-[50%] justify-self-center z-20"
+              className="text-xs md:text-2xl font-bold mx-auto text-center  cursor-pointer  w-[50%] justify-self-center z-20"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               initial={{ y: 10, opacity: 0 }}
@@ -176,7 +176,7 @@ const CarouselItem = ({
               onClick={() => console.log("clicked")}
             >
               <Link href={projectUrl} target="_blank">
-                <div className=" z-10 shadow-md shadow-[#ffd56cc3] border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full py-4 px-2">
+                <div className=" z-10 shadow-md shadow-[#ffd56cc3] border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  pt-2 md:py-4 px-2">
                   View Site
                 </div>
               </Link>
