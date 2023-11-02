@@ -65,7 +65,14 @@ const CarouselItem = ({
               delay: 2.6,
             }}
           >
-            <Image src={imageUrl} width={600} height={600} alt={alt} />
+            <Image
+              src={imageUrl}
+              width={600}
+              height={600}
+              alt={alt}
+              className="transition-opacity opacity-0 duration-[2s]"
+              onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+            />
           </motion.div>
           {/* PREVIEW OF CURRENT SLIDE */}
 
@@ -88,7 +95,10 @@ const CarouselItem = ({
                   width={200}
                   height={200}
                   alt={preview}
-                  className="border-r-1 border-black"
+                  className="border-r-1 border-black transition-opacity opacity-0 duration-[2s]"
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                   loading="eager"
                 />
               </motion.div>
@@ -143,7 +153,16 @@ const CarouselItem = ({
                   whileHover={{ scale: 1.3, opacity: 1 }}
                   className="flex flex-col justify-center items-center cursor-pointer"
                 >
-                  <Image src={techIcon} alt={techIcon} width={32} height={32} />
+                  <Image
+                    src={techIcon}
+                    alt={techIcon}
+                    width={32}
+                    height={32}
+                    className="border-r-1 border-black transition-opacity opacity-0 duration-[2s]"
+                    onLoadingComplete={(image) =>
+                      image.classList.remove("opacity-0")
+                    }
+                  />
                 </motion.div>
               ))}
             </motion.div>

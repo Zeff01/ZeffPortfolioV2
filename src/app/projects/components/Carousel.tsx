@@ -207,7 +207,10 @@ const Carousel = () => {
                 width={400}
                 height={400}
                 alt={thumbnail.url}
-                className=""
+                className="transition-opacity opacity-0 duration-[2s]"
+                onLoadingComplete={(image) =>
+                  image.classList.remove("opacity-0")
+                }
               />
             </motion.div>
           ))}
@@ -267,6 +270,10 @@ const Carousel = () => {
                   alt={mobileImg.url}
                   width={300}
                   height={300}
+                  className="transition-opacity opacity-0 duration-[2s]"
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
               </div>
             </motion.div>
@@ -321,7 +328,16 @@ const Carousel = () => {
             transition={{ duration: 0.5, delay: 0.2 * index }}
           >
             <div className="flex flex-col gap-2 items-center justify-center">
-              <Image src={item.url} alt={item.url} width={800} height={800} />
+              <Image
+                src={item.url}
+                alt={item.url}
+                width={800}
+                height={800}
+                className="transition-opacity opacity-0 duration-[2s]"
+                onLoadingComplete={(image) =>
+                  image.classList.remove("opacity-0")
+                }
+              />
 
               {item.link ? (
                 <Link
