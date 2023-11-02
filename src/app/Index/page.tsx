@@ -41,7 +41,7 @@ const Index = () => {
       <div className="relative bg-backgroundColor2 transform skew-y-[-70deg] h-[1000px] md:h-[1800px] flex justify-center items-center"></div>
 
       {/* IRONMAN LANDINGPAGE LOGO ANIMATION */}
-      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden -z-10">
+      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden ">
         <motion.div
           initial="hidden"
           animate="visible"

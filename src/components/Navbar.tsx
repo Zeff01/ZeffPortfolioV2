@@ -8,7 +8,7 @@ import { MenuToggle } from "./MenuToggle";
 
 const Navbar = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  console.log("isOpen:", isOpen);
+
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
