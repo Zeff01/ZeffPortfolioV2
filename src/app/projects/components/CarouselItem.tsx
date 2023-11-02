@@ -99,7 +99,6 @@ const CarouselItem = ({
                   onLoadingComplete={(image) =>
                     image.classList.remove("opacity-0")
                   }
-                  loading="eager"
                 />
               </motion.div>
             ))}
