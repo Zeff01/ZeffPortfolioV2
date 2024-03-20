@@ -148,27 +148,39 @@ const Contact = () => {
              mt-2 md:mt-0 "
           >
             <fieldset disabled={isSending} className="flex flex-col ">
-              <input
+              <motion.input
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 100 }}
                 className="bg-[#e3e7f4] p-2 rounded-sm outline-[#cfcc07]"
                 type="text"
                 placeholder="Name"
                 name="name"
                 required
               />
-              <input
+
+              <motion.input
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 100 }}
                 className="my-4 p-2 bg-[#e3e7f4] rounded-sm outline-[#cfcc07]"
                 type="email"
                 placeholder="Email"
                 name="email"
                 required
               />
-              <textarea
+
+              <motion.textarea
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 className="bg-[#e3e7f4] p-2 rounded-sm outline-[#cfcc07]"
                 name="message"
                 rows={5}
                 placeholder="Message"
                 required
-              ></textarea>
+              ></motion.textarea>
+
               <div className="flex md:flex">
                 <motion.button
                   className="text-textColor font-bold  border-t rounded-lg border-[#cdc55d] hover:text-[#cb0d0d] hover:rounded-md hover:border p-2 md:p-6 my-8 mx-auto shadow-md shadow-[#eaf36b] bg-buttonColor"

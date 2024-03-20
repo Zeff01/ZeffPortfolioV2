@@ -37,7 +37,7 @@ const socialMediaIcons = [
 const Footer = () => {
   return (
     <div>
-      <div className="py-2 px-1 md:p-2 w-full bg-[#170704] text-white  ">
+      <div className="py-2 px-1 md:p-2 w-full bg-blackBackground text-white  ">
         <div>
           <motion.ul className="flex justify-center items-center gap-6  mb-2 md:mb-0 -z-10">
             {socialMediaIcons.map((socialMedia, index) => (
@@ -65,19 +65,17 @@ const Footer = () => {
           </motion.ul>
         </div>
         <div className=" flex flex-col justify-center items-center px-1  md:p-2">
-          <h3 className="text-md text-[#dcb834] font-Quicksand hover:text-[#ffd43a] cursor-pointer">
-            Jzeff Kendrew Somera{" "}
-            <span className="text-sm text-[#ffffff]">©2022</span>
-          </h3>
+        
           <div
             className="text-xl  text-yellow-500  px-4 flex justify-center rounded-lg  pt-2 items-center"
-            style={{
-              boxShadow: "0px 8px 10px 2px #5B0000", // Add shadow effect
-            }}
           >
             <span className="mr-2 ">I LOVE YOU</span>
             <AnimatedNumbers value={3000} delayTimer={100} duration={8000} />
           </div>
+          <h3 className="text-lg text-white font-Quicksand">
+            Jzeff Kendrew Somera{" "}
+            <span className="text-md text-[#ffffff]">©2022</span>
+          </h3>
         </div>
       </div>
     </div>
