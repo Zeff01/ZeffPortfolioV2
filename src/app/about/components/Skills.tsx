@@ -9,7 +9,7 @@ const Skills = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
         mass: 2,
         stiffness: 1000,
         velocity: 200,
@@ -17,8 +17,8 @@ const Skills = () => {
     },
   };
   return (
-    <div className=" w-full font-tech">
-      <div className="flex flex-col justify-center items-center text-titleColor  w-full text-xl mt-5">
+    <div className=" w-full font-tech ">
+      <div className="flex flex-col justify-center items-center text-titleColor  w-full text-xl mt-8">
         <motion.h2
           className=" text-buttonColor text-6xl md:text-8xl"
           initial={{ opacity: 0, y: 50 }}
@@ -37,9 +37,9 @@ const Skills = () => {
         </motion.p>
       </div>
 
-      <div className="flex w-full p-4 justify-center ">
+      <div className="flex w-full p-4 justify-center mt-6">
         <motion.div
-          className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-16 "
+          className="grid grid-cols-3 md:grid-cols-4  gap-4 md:gap-8 "
           variants={container}
           initial="hidden"
           whileInView="show"

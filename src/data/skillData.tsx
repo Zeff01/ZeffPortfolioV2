@@ -18,6 +18,10 @@ import tailwind from "../../public/techicons/tailwind.png";
 import ts from "../../public/techicons/ts.png";
 import shadcn from "../../public/techicons/shadcn.png";
 import ror from "../../public/techicons/ror.png";
+import php from "../../public/techicons/php.png";
+import wp from "../../public/techicons/wordpress.png";
+import supabase from "../../public/techicons/supabase.png";
+import nginx from "../../public/techicons/nginx.png";
 
 export const skillsData = [
   { image: angular, title: "Angular", link: "https://angular.io/" },
@@ -39,6 +43,7 @@ export const skillsData = [
   { image: mongo, title: "MongoDB", link: "https://www.mongodb.com/" },
   { image: nextjs, title: "Next", link: "https://nextjs.org/" },
   { image: node, title: "Node", link: "https://nodejs.org/en/" },
+  { image: nginx, title: "Nginx", link: "https://www.nginx.com/" },
   {
     image: postgresSQL,
     title: "PostgreSQL",
@@ -56,8 +61,11 @@ export const skillsData = [
     title: "Solidity",
     link: "https://docs.soliditylang.org/en/v0.8.17/",
   },
-  { image: tailwind, title: "Tailwind CSS", link: "https://tailwindcss.com/" },
+  { image: supabase, title: "Supabase", link: "https://supabase.com/" },
+  { image: tailwind, title: "Tailwind", link: "https://tailwindcss.com/" },
   { image: ts, title: "TypeScript", link: "https://www.typescriptlang.org/" },
   { image: shadcn, title: "ShadCN", link: "https://ui.shadcn.com/" },
   { image: ror, title: "Ruby on Rails", link: "https://rubyonrails.org/" },
+  { image: php, title: "PHP", link: "https://www.php.net/" },
+  { image: wp, title: "Wordpress", link: "https://wordpress.org/" },
 ];

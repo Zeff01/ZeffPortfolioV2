@@ -36,8 +36,8 @@ const socialMediaIcons = [
 
 const Footer = () => {
   return (
-    <div>
-      <div className="py-2 px-1 md:p-2 w-full bg-blackBackground text-white  ">
+    
+      <div className="py-2 px-1 md:p-2 w-full bg-blackBackground text-white ">
         <div>
           <motion.ul className="flex justify-center items-center gap-6  mb-2 md:mb-0 -z-10">
             {socialMediaIcons.map((socialMedia, index) => (
@@ -78,7 +78,7 @@ const Footer = () => {
           </h3>
         </div>
       </div>
-    </div>
+   
   );
 };
 

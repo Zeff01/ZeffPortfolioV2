@@ -38,10 +38,15 @@ const Index = () => {
   };
   return (
     <div className="h-screen  overflow-hidden font-tech">
-      <div className="relative bg-backgroundColor2 transform skew-y-[-70deg] h-[1000px] md:h-[1800px] flex justify-center items-center"></div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 3 }}
+        className="relative bg-backgroundColor2 transform skew-y-[-70deg] h-[1000px] md:h-[1800px] flex justify-center items-center "
+      ></motion.div>
 
       {/* IRONMAN LANDINGPAGE LOGO ANIMATION */}
-      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden ">
+      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden z-10">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -54,11 +59,11 @@ const Index = () => {
             alt="Ironman landing"
             width={1000}
             height={200}
-            className="z-10"
+            className="z-40"
           />
         </motion.div>
       </div>
-      <div className="absolute top-20 right-4">
+      <div className="absolute top-20 right-4  z-40">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -151,7 +156,7 @@ const Index = () => {
           opacity: 1,
           scale: [1, 1.8, 1.5, 1],
         }}
-        className="absolute top-5 left-10 cursor-pointer w-12 h-12 md:w-20 md:h-20"
+        className="absolute top-5 left-10 cursor-pointer w-12 h-12 md:w-20 md:h-20 z-40"
         transition={{ type: "spring", duration: 0.8, delay: 2 }}
       >
         <Image
@@ -239,7 +244,7 @@ const Index = () => {
         initial={{ x: "20vw" }}
         animate={{ x: "-100vw" }}
         transition={{ duration: 2, delay: 0, ease: customEasing }}
-        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40"
+        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 z-40"
       >
         {showThirdImage ? (
           <Image

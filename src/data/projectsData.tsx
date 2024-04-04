@@ -22,7 +22,6 @@ export const projects = [
       "/projectimages/zecommerce5.png",
       "/projectimages/zecommerce6.png",
       "/projectimages/zecommerce7.png",
-      "/projectimages/zecommerce8.png",
     ],
   },
   {
@@ -126,18 +125,26 @@ export const thumbnailData = [
   {
     id: "t2",
     url: "/projectimages/thumbnails/thumbnail2.png",
+    projectUrl: "https://pokemon-nftstaking.vercel.app/",
+    title: "Pokemon NFT Staker",
   },
   {
     id: "t3",
     url: "/projectimages/thumbnails/thumbnail3.png",
+    projectUrl: "https://z-map-fe.vercel.app/",
+    title: "Z-MAP",
   },
   {
     id: "t4",
     url: "/projectimages/thumbnails/thumbnail4.png",
+    projectUrl: "https://cryptoverse-smoky-phi.vercel.app/news",
+    title: "Cryptoverse",
   },
   {
     id: "t5",
     url: "/projectimages/thumbnails/thumbnail5.png",
+    projectUrl: "https://zeff-portfolio.vercel.app/",
+    title: "Zeff Portfoliov1",
   },
   // {
   //   id: "t6",
@@ -154,6 +161,8 @@ export const thumbnailData = [
   {
     id: "t1",
     url: "/projectimages/thumbnails/thumbnail1.png",
+    projectUrl: "https://z-ecommerce-frontend.onrender.com/",
+    title: "Z-Ecommerce",
   },
 ];
 

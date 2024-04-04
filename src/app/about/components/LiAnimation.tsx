@@ -25,9 +25,12 @@ const LiAnimation = ({
     offset: ["center end", "center center"],
   });
   return (
-    <li
+    <motion.li
       ref={ref}
-      className=" my-12 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-center justify-between"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 3 }}
+      className=" my-8 first:mt-0  w-[60%] mx-auto flex flex-col items-center justify-between "
     >
       <figure className="absolute left-0 stroke-white">
         <svg
@@ -64,7 +67,7 @@ const LiAnimation = ({
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-sm md:text-2xl">
+        <h3 className="capitalize font-bold text-md">
           {position} &nbsp;
           <Link
             href={companyLink}
@@ -80,7 +83,7 @@ const LiAnimation = ({
           <p className="font-light text-md text-gray-500 w-full">{work}</p>
         </h3>
       </motion.div>
-    </li>
+    </motion.li>
   );
 };
 
