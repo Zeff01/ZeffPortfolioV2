@@ -127,7 +127,7 @@ const About = () => {
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 3 }}
+                  transition={{ duration: 1, delay: 2.8 }}
                   className="inline-block text-2xl md:text-8xl text-buttonColor"
                 >
                   <AnimatedNumbers value={20} />+
@@ -145,7 +145,7 @@ const About = () => {
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.6 }}
+                  transition={{ duration: 1, delay: 2.8 }}
                   className="inline-block text-2xl md:text-8xl text-buttonColor"
                 >
                   <AnimatedNumbers value={40} />+

@@ -171,7 +171,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             transition={{
               duration: 1,
-              delay: 3.2,
+              delay: 2.8,
             }}
             className="text-lg"
           >
@@ -199,7 +199,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             transition={{
               duration: 1,
-              delay: 3.2,
+              delay: 3,
             }}
             className="text-lg mb-4 white"
           >
@@ -212,7 +212,7 @@ const Projects = () => {
                   key={thumbnail.id}
                   animate={{ opacity: 1, scale: 1 }}
                   initial={{ opacity: 0, scale: 0 }}
-                  transition={{ duration: 0.5, delay: 3 + index * 0.1 }}
+                  transition={{ duration: 0.5, delay: 2.8 + index * 0.1 }}
                 >
                   <Thumbnail thumbnail={thumbnail} />
                 </motion.div>
@@ -228,7 +228,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             transition={{
               duration: 1,
-              delay: 3.2,
+              delay: 2.8,
             }}
             className="text-xl"
           >
@@ -246,7 +246,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             transition={{
               duration: 1,
-              delay: 3.2,
+              delay: 2.8,
             }}
             className="text-xl"
           >

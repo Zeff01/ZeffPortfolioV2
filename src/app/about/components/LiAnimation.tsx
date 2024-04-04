@@ -29,7 +29,7 @@ const LiAnimation = ({
       ref={ref}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 3 }}
+      transition={{ duration: 1, delay: 2.8 }}
       className=" my-8 first:mt-0  w-[60%] mx-auto flex flex-col items-center justify-between "
     >
       <figure className="absolute left-0 stroke-white">
