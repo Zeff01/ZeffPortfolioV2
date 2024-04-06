@@ -162,10 +162,10 @@ const Projects = () => {
   };
 
   return (
-    <div className="h-full   bg-blackBackground overflow-x-hidden  relative ">
+    <div className="h-full   bg-blackBackground overflow-x-hidden  relative  ">
       <TransitionEffect />
-      <div className="flex flex-col md:flex-row  md:flex-wrap">
-        <div className="md:w-4/5  text-white p-8  ">
+      <div className="flex flex-col md:flex-row  md:flex-wrap mt-16 md:mt-0">
+        <div className="md:w-4/5  text-white p-4 md:p-8  ">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

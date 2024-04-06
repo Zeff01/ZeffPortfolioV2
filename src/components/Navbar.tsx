@@ -66,7 +66,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-blackBackground z-30">
+    <nav className="bg-blackBackground ">
       <div className="text-white gap-12 font-tech text-lg  md:flex py-8 ml-40 hidden items-center ">
         <Link href="/">
           <motion.span
@@ -130,7 +130,7 @@ const Navbar = () => {
           custom={height}
           ref={containerRef}
         >
-          <motion.div className="background" variants={sidebar} />
+          <motion.div className="background z-90" variants={sidebar} />
           <motion.ul variants={ulVariants} className="ulToggle">
             <motion.li
               variants={liVariants}

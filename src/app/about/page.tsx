@@ -17,7 +17,7 @@ const About = () => {
   return (
     <div className="h-full  bg-[#0c0a0a]  overflow-x-hidden  relative  ">
       <TransitionEffect />
-      <div className=" flex flex-col md:flex-row justify-center  p-8 mt-12 md:mt-0">
+      <div className=" flex flex-col md:flex-row justify-center  p-4 md:p-8 mt-16 md:mt-0">
         <div className="flex-col ">
           <motion.p
             initial={{ opacity: 0, y: 50 }}

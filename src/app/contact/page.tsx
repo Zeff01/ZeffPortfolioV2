@@ -108,7 +108,7 @@ const Contact = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="  h-full  flex flex-col gap-8 p-8 mt-12 "
+        className="  h-full  flex flex-col gap-2 md:p-8 mt-16 md:mt-0 "
       >
         <motion.h2
           variants={itemVariants}
@@ -118,10 +118,10 @@ const Contact = () => {
         </motion.h2>
         <motion.div
           variants={itemVariants}
-          className=" flex md:flex-row flex-col-reverse w-full bg-[#0f0d0d] p-8"
+          className=" flex md:flex-row flex-col-reverse w-full bg-[#0f0d0d] p-4  "
         >
-          <div className=" w-full">
-            <div className="flex flex-col justify-center w-full h-full p-8 ">
+          <div className=" w-full  ">
+            <div className="flex flex-col justify-center w-full h-full p-4  ">
               <div className="flex flex-col items-center w-full ">
                 <div className="flex md:flex-col lg:grid  gap-4 w-full  ">
                   <div className="w-full rounded-md p-2 md:p-4 lg:p-8 flex flex-col md:flex-row justify-center md:justify-start items-center border my-1 md:my-4 md:mx-2 lg:mx-0">

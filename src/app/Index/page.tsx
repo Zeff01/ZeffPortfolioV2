@@ -63,7 +63,7 @@ const Index = () => {
           />
         </motion.div>
       </div>
-      <div className="absolute top-20 right-4  z-40">
+      <div className="absolute top-20 right-4  z-20">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -156,7 +156,7 @@ const Index = () => {
           opacity: 1,
           scale: [1, 1.8, 1.5, 1],
         }}
-        className="absolute top-5 left-10 cursor-pointer w-12 h-12 md:w-20 md:h-20 z-40"
+        className="absolute top-5 left-10 cursor-pointer w-12 h-12 md:w-20 md:h-20 z-30"
         transition={{ type: "spring", duration: 0.8, delay: 2 }}
       >
         <Image
