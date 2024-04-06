@@ -179,6 +179,26 @@ export const mobileProjects = [
     id: "m3",
     url: "/mobileprojects/3.png",
   },
+  {
+    id: "m4",
+    url: "/mobileprojects/4.png",
+  },
+  {
+    id: "m5",
+    url: "/mobileprojects/5.png",
+  },
+  {
+    id: "m6",
+    url: "/mobileprojects/6.png",
+  },
+  {
+    id: "m7",
+    url: "/mobileprojects/7.png",
+  },
+  {
+    id: "m8",
+    url: "/mobileprojects/8.png",
+  },
 ];
 export const otherProjects = [
   {
@@ -219,11 +239,26 @@ export const otherProjects = [
   {
     id: "op8",
     url: "/otherprojects/8.png",
-    link: "https://copyt.io/",
+    link: "https://chingu.fun/",
   },
   {
     id: "op9",
     url: "/otherprojects/9.png",
     link: "https://www.ashtreebv.com/",
+  },
+  {
+    id: "op10",
+    url: "/otherprojects/10.png",
+    link: "https://copyt.io/",
+  },
+  {
+    id: "op11",
+    url: "/otherprojects/11.png",
+    link: "https://www.autopilotapp.io/",
+  },
+  {
+    id: "op12",
+    url: "/otherprojects/9.png",
+    link: "https://dappstore.me/",
   },
 ];
