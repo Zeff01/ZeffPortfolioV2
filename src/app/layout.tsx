@@ -5,6 +5,7 @@ import { Share_Tech } from "next/font/google";
 import Footer from "@/components/Footer";
 import ArcReactor from "@/components/ArcReactor";
 import SmallArcReactor from "@/components/SmallArcReactor";
+import TransitionEffect from "@/hooks/TransitionEffect";
 
 const techFont = Share_Tech({
   weight: "400",
@@ -20,18 +21,21 @@ export const metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className={`${inter.className} ${techFont.variable} `}>
-        <Navbar />
-        {children}
 
+  
+  return (
+    <html >
+      <body className={`${inter.className} ${techFont.variable} overflow-x-hidden flex flex-col min-h-screen`}>
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
         <div className="hidden md:flex">
-          <ArcReactor />
+          <SmallArcReactor />
         </div>
         <div className="md:hidden">
           <SmallArcReactor />
@@ -40,4 +44,5 @@ export default function RootLayout({
       </body>
     </html>
   );
+  
 }

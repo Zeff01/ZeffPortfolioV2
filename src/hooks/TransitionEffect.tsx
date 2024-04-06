@@ -6,7 +6,7 @@ import Image from "next/image";
 const TransitionEffect = () => {
   const [showSecondImage, setShowSecondImage] = useState(false);
   const [showThirdImage, setShowThirdImage] = useState(false);
-
+  const [documentHeight, setDocumentHeight] = useState(0);
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowSecondImage(true);
@@ -22,21 +22,25 @@ const TransitionEffect = () => {
       clearTimeout(timer2);
     };
   }, []);
+
   const customEasing = [0.42, 0, 0.58, 1];
+
   return (
     <>
-      <motion.div
+      {/* <motion.div
+ 
         className="absolute top-0 bottom-0 right-full w-screen h-full z-30 bg-yellow-500"
         initial={{ x: "-10%", width: "0%" }}
         animate={{ x: "110%", width: "100%" }}
         transition={{ delay: 0.2, duration: 2.5, ease: "easeInOut" }}
       />
       <motion.div
+  
         className="absolute top-0 bottom-0 right-full w-screen h-full z-30 bg-backgroundColor2"
         initial={{ x: "-10%", width: "0%" }}
         animate={{ x: "110%", width: "100%" }}
         transition={{ delay: 0.3, duration: 2.5, ease: "easeInOut" }}
-      />
+      /> */}
 
       <motion.div
         initial={{ x: "-100vw" }}

@@ -66,11 +66,11 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav>
-      <div className="text-white gap-12 font-tech text-lg  md:flex pt-8 ml-40  m-2 hidden z-20 absolute items-center ">
+    <nav className="bg-blackBackground z-30">
+      <div className="text-white gap-12 font-tech text-lg  md:flex py-8 ml-40 hidden items-center ">
         <Link href="/">
           <motion.span
-            className={`text-textColor   hover:text-buttonColor ${
+            className={`text-white   hover:text-textColor ${
               pathname === "/" ? "box" : ""
             }`}
             variants={linkVariants}
@@ -83,7 +83,7 @@ const Navbar = () => {
         </Link>
         <Link href="/about">
           <motion.span
-            className={`text-textColor  hover:text-buttonColor ${
+            className={`text-white  hover:text-textColor ${
               pathname === "/about" ? "box" : ""
             }`}
             variants={linkVariants}
@@ -97,7 +97,7 @@ const Navbar = () => {
 
         <Link href="/projects">
           <motion.span
-            className={`text-textColor  hover:text-buttonColor ${
+            className={`text-white  hover:text-textColor ${
               pathname === "/projects" ? "box" : ""
             }`}
             variants={linkVariants}
@@ -110,7 +110,7 @@ const Navbar = () => {
         </Link>
         <Link href="/contact">
           <motion.span
-            className={`text-textColor  hover:text-buttonColor ${
+            className={`text-white  hover:text-textColor ${
               pathname === "/contact" ? "box" : ""
             }`}
             variants={linkVariants}

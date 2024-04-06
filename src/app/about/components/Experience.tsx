@@ -11,18 +11,21 @@ const Experience = () => {
   });
 
   return (
-    <div className="my-64   border-red-500 font-tech text-white">
+    <div className="font-tech text-white  overflow-y-hidden">
       <motion.h2
-        className="font-bold text-6xl md:text-8xl mb-32 text-center text-textColor"
+        className="font-bold text-6xl  text-center text-textColor"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0 }}
+        transition={{ duration: 1, delay: 2.8 }}
       >
         <span className="text-buttonColor">E</span>xperience
       </motion.h2>
 
-      <div ref={ref} className="md:w-[75%] mx-auto relative h-full  ">
+      <div ref={ref} className="  relative h-full mt-12">
         <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2.8 }}
           className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top shadow-xl "
           style={{
             scaleY: scrollYProgress,
@@ -30,7 +33,7 @@ const Experience = () => {
           }}
         />
 
-        <ul className="w-full flex flex-col items-start justify-between ml-4">
+        <ul>
           {experienceData.map((exp) => (
             <LiAnimation
               key={exp.company}
@@ -44,7 +47,7 @@ const Experience = () => {
           ))}
 
           <motion.h2
-            className="font-bold text-6xl my-32  text-center  mx-auto"
+            className="font-bold text-6xl my-8  text-center  mx-auto "
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0 }}

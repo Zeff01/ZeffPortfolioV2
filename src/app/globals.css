@@ -8,6 +8,29 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+::-webkit-scrollbar {
+  width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b10702; 
+  border-radius: 6px; 
+  box-shadow: 0 2px 15px 5px rgb(255, 42, 4), 
+               0 0 15px 5px rgb(235, 67, 1); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #01d5e0; 
+  box-shadow: 0 0 50px #00e5ff, 
+               0 0 50px #00e5ff; 
+}
+
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -16,30 +39,23 @@
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+html {
+  display: flex;
+  min-height: 100vh; /* This ensures that the html element can contain a flex body */
+}
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  flex: 1; /* This allows the body to expand to fill the available space */
 }
 
-.thumbnail-slider .slick-track {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-.preview-slider .slick-slider {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
 
-.slick-slide > div {
-  margin: 0 5px;
-}
 .dropShadow {
   background: url("/public/Ironmanhover.png");
   filter: drop-shadow(0.8px 1px 2px rgba(241, 14, 14, 0.908));
@@ -196,14 +212,14 @@ body {
 
 .afooter {
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   overflow: hidden;
   text-align: center;
   position: relative;
   background: #282828;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -213,8 +229,8 @@ body {
   align-items: center;
   position: absolute;
   line-height: 40px !important;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   text-align: center;
   font-size: 30.5px;
   top: 0;

@@ -1,6 +1,22 @@
 export const experienceData = [
   {
-    position: "Front End Developer",
+    position: "Full Stack Developer | Mobile Developer",
+    company: "Decenternet",
+    companyLink: "https://decenternet.com/",
+    time: "2023",
+    address: "Korea",
+    work: "In 2023, as a Full Stack Developer | Mobile Developer at Decenternet in Korea, I led the integration of AI and blockchain technologies into our web and mobile platforms. I designed applications utilizing OpenAI's APIs and developed secure blockchain solutions, employing React for front-end and Node.js with Express for the backend. My responsibilities extended to deploying applications using Nginx, ensuring scalability and security across environments. Through agile methodologies, I managed project deliverables, fostering innovation and positioning Decenternet as a leader in cutting-edge technology integration.",
+  },
+  {
+    position: "Full Stack Developer | Mobile Developer",
+    company: "autopilot",
+    companyLink: "https://www.autopilotapp.io/",
+    time: "2023",
+    address: "US",
+    work: "In 2023, as a Full Stack Developer | Mobile Developer at Autopilot in the US, I developed a CRM platform for outsourcing services, managing both web and mobile versions with Next.js and Supabase. My role involved creating scalable, efficient solutions to enhance operational workflows and user experiences. Employing agile methodologies, I ensured seamless project execution, contributing to Autopilot's innovation in CRM and outsourcing services",
+  },
+  {
+    position: "Front End Developer | Mobile Developer",
     company: "Mango Dream",
     companyLink: "",
     time: "2023",
@@ -34,7 +50,7 @@ export const experienceData = [
     work: "As a full-stack developer, I was responsible for crafting a website known as 'Recdeer,' which drew inspiration from Senja.io. This endeavor involved the utilization of React for the front-end and Ruby on Rails for the back-end.",
   },
   {
-    position: "Front End Developer",
+    position: "Front End Developer | Mobile Developer",
     company: "Matthew Bender",
     companyLink: "",
     time: "2023",
@@ -58,7 +74,7 @@ export const experienceData = [
     work: "I completed diverse tasks for Agoda, demonstrating creativity and meticulous attention to detail. Additionally, I contributed to WordPress website development and maintenance, showcasing proficiency in the platform. I also successfully developed EquitySwarm using React, highlighting my expertise in front-end development and commitment to delivering exceptional user experiences.",
   },
   {
-    position: "Front End Developer",
+    position: "Front End Developer | Mobile Developer",
     company: "Outposter",
     companyLink: "https://outposter.com.au/",
     time: "2023 - PRESENT",
