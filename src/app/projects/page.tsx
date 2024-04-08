@@ -13,7 +13,7 @@ import Thumbnail from "./components/Thumbnail";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
 import CollaborativeProjects from "./components/CollaborativeProjects";
 import MobileProjects from "./components/MobileProjects";
@@ -28,6 +28,14 @@ const Projects = () => {
   const thumbnailSlider = useRef<Slider | null>(null);
   const collaborativeSliderRef = useRef<Slider | null>(null);
   const mobileSliderRef = useRef<Slider | null>(null);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({
+      opacity: 1,
+      transition: { duration: 1, delay: 2.8 },
+    });
+  }, [controls]);
 
   useEffect(() => {
     thumbnailSlider.current?.slickGoTo(currentSlide);
@@ -38,14 +46,15 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{
-          duration: 1,
-          delay: 3.2,
+        whileHover={{ scale: 1.1 }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(e);
         }}
-        onClick={onClick}
-        className=" absolute bottom-0 right-0 transform -translate-x-1/2 -translate-y-1/2  z-90 bg-yellow-300 rounded-full z-90"
+        className="absolute bottom-0 right-0 bg-yellow-300 rounded-full z-50 cursor-pointer"
+        style={{ zIndex: 1000 }}
       >
-        <MdOutlineNavigateNext size={40} color="red" />
+        <MdOutlineNavigateNext size={34} color="red" />
       </motion.div>
     );
   };
@@ -55,14 +64,15 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{
-          duration: 1,
-          delay: 3.2,
+        whileHover={{ scale: 1.1 }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(e);
         }}
-        onClick={onClick}
-        className=" absolute bottom-0 left-0 transform -translate-x-1/2 -translate-y-1/2  z-90 bg-yellow-300 rounded-full z-90"
+        className="absolute bottom-0 left-0 bg-yellow-300 rounded-full z-50 cursor-pointer"
+        style={{ zIndex: 1000 }}
       >
-        <MdOutlineNavigateBefore size={40} color="red" />
+        <MdOutlineNavigateBefore size={34} color="red" />
       </motion.div>
     );
   };
@@ -78,10 +88,22 @@ const Projects = () => {
       setCurrentSlide(next);
     },
     nextArrow: (
-      <CustomNextButton onClick={() => mainSlider.current?.slickNext()} />
+      <CustomNextButton
+        onClick={(e) => {
+          console.log("Next clicked");
+          e.stopPropagation();
+          mainSlider.current?.slickNext();
+        }}
+      />
     ),
     prevArrow: (
-      <CustomPrevButton onClick={() => mainSlider.current?.slickPrev()} />
+      <CustomPrevButton
+        onClick={(e) => {
+          console.log("Prev clicked");
+          e.stopPropagation();
+          mainSlider.current?.slickPrev();
+        }}
+      />
     ),
   };
 
@@ -111,11 +133,13 @@ const Projects = () => {
     dots: true,
     infinite: true,
     speed: 1000,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     adaptiveHeight: false,
     autoplay: true,
     autoplaySpeed: 3000,
+    centerMode: true,
+    centerPadding: "20px",
     nextArrow: (
       <CustomNextButton
         onClick={() => collaborativeSliderRef.current?.slickNext()}
@@ -130,7 +154,7 @@ const Projects = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
         },
       },
     ],
@@ -155,7 +179,7 @@ const Projects = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
         },
       },
     ],
@@ -164,7 +188,7 @@ const Projects = () => {
   return (
     <div className="h-full   bg-blackBackground overflow-x-hidden  relative  ">
       <TransitionEffect />
-      <div className="flex flex-col md:flex-row  md:flex-wrap mt-16 md:mt-0">
+      <div className="flex flex-col md:flex-row  md:flex-wrap mt-16 md:mt-0 ">
         <div className="md:w-4/5  text-white p-4 md:p-8  ">
           <motion.h1
             initial={{ opacity: 0 }}
@@ -222,7 +246,7 @@ const Projects = () => {
         </div>
       </div>
       <div className="w-full flex flex-col ">
-        <div className="w-full text-white p-8">
+        <div className="w-full text-white p-8 ">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -240,7 +264,7 @@ const Projects = () => {
             ))}
           </Slider>
         </div>
-        <div className="w-full  text-white p-8">
+        <div className="w-full  text-white p-8 ">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -46,7 +46,7 @@ const Index = () => {
       ></motion.div>
 
       {/* IRONMAN LANDINGPAGE LOGO ANIMATION */}
-      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden z-10">
+      <div className="absolute inset-0 flex items-center justify-center md:mr-16 overflow-hidden z-10 mt-20">
         <motion.div
           initial="hidden"
           animate="visible"

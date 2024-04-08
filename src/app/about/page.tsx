@@ -22,7 +22,7 @@ const About = () => {
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 3 }}
+            transition={{ duration: 1, delay: 2.8 }}
             className="font-tech text-buttonColor  text-6xl "
           >
             "Dream Big,{" "}

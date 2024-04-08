@@ -37,10 +37,17 @@ const CollaborativeProjects: React.FC<CollaborativeProjectsProps> = ({
         <div className="absolute top-0 left-0 right-0 bottom-0">
           <Image
             src={item.url}
-            alt={item.title || "Default alt text"}
             priority
             fill
-            objectFit="contain"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={item.title || "Website title"}
             className="transition-opacity duration-[2s]"
           />
         </div>
@@ -51,7 +58,7 @@ const CollaborativeProjects: React.FC<CollaborativeProjectsProps> = ({
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block z-10 border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full p-1 md:p-2 text-center w-[50%] text-xs md:text-sm"
+          className="inline-block z-10 border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full p-1 md:p-2 text-center w-[50%] text-sm font-bold"
         >
           Visit Project
         </a>

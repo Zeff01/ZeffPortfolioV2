@@ -37,7 +37,7 @@ const SelfMadeProjects = ({
   return (
     <div className=" font-tech  m-0  ">
       <div className="flex flex-col p-4  h-full justify-between ">
-        <motion.div className="flex w-full  justify-between gap-2">
+        <motion.div className="flex flex-col md:flex-row w-full  justify-between gap-2">
           {/* MAIN PICTURE SECTION */}
           <div
             className="relative w-full cursor-pointer"
@@ -92,7 +92,7 @@ const SelfMadeProjects = ({
           </div>
 
           {/* PREVIEW IMAGES SECTION */}
-          <div className="flex-basis[30%] gap-2 grid grid-cols-2">
+          <div className="gap-2 grid grid-cols-3 md:grid-cols-2">
             {previewUrl.map((preview, index) => (
               <motion.div
                 key={preview}

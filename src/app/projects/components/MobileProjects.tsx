@@ -18,8 +18,8 @@ const MobileProjects = ({ mobileImg, index }: MobileProjectsProps) => {
       key={mobileImg.id}
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="w-full max-w-xl mx-auto flex flex-col gap-2 items-center justify-center p-4 rounded-lg"
+      transition={{ duration: 0.5, delay: 2.9 + 0.2 * index }}
+      className="w-full mx-auto flex flex-col gap-2 items-center justify-center p-4 rounded-lg"
     >
       <div
         className={`relative w-full h-auto overflow-hidden rounded-lg ${
