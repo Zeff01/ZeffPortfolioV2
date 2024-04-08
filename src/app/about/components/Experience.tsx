@@ -16,7 +16,7 @@ const Experience = () => {
         className="font-bold text-6xl  text-center text-textColor"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2.8 }}
+        transition={{ duration: 1, delay: 2 }}
       >
         <span className="text-buttonColor">E</span>xperience
       </motion.h2>
@@ -25,7 +25,7 @@ const Experience = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2.8 }}
+          transition={{ duration: 1, delay: 2 }}
           className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top shadow-xl "
           style={{
             scaleY: scrollYProgress,

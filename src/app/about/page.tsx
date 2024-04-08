@@ -122,60 +122,82 @@ const About = () => {
             </motion.div>
 
             {/* NUMBERS */}
-            <div className="lg:col-span-2 flex items-center justify-between font-tech pr-4 w-full mt-2  col-span-4 ">
-              <div className="flex flex-col justify-center items-center md:items-end">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.8 }}
-                  className="inline-block text-2xl md:text-8xl text-buttonColor"
-                >
-                  <AnimatedNumbers value={20} />+
-                </motion.span>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.8 }}
-                  className="text-sm md:text-xl font-medium capitalize text-textColor"
-                >
-                  Satisfied Clients
-                </motion.h2>
+            <div className="flex items-center justify-center font-tech w-full mt-2 gap-8 ">
+              <div className=" flex flex-col md:flex-row gap-12">
+                <div className="flex flex-col justify-center items-center ">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.8 }}
+                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                  >
+                    <AnimatedNumbers value={20} />+
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.8 }}
+                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                  >
+                    Satisfied Clients
+                  </motion.h2>
+                </div>
+                <div className="flex flex-col justify-center items-center ">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.8 }}
+                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                  >
+                    <AnimatedNumbers value={40} />+
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.4 }}
+                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                  >
+                    Projects Completed
+                  </motion.h2>
+                </div>
               </div>
-              <div className="flex flex-col justify-center items-center md:items-end">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.8 }}
-                  className="inline-block text-2xl md:text-8xl text-buttonColor"
-                >
-                  <AnimatedNumbers value={40} />+
-                </motion.span>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.4 }}
-                  className="text-sm md:text-xl font-medium capitalize text-textColor"
-                >
-                  Projects Completed
-                </motion.h2>
-              </div>
-              <div className="flex flex-col justify-center items-center md:items-end">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2.2 }}
-                  className="inline-block text-2xl md:text-8xl text-buttonColor"
-                >
-                  <AnimatedNumbers value={3} />+
-                </motion.span>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2 }}
-                  className="text-sm md:text-xl font-medium capitalize text-textColor"
-                >
-                  Years of Experience
-                </motion.h2>
+              <div className=" flex flex-col md:flex-row gap-12">
+                <div className="flex flex-col justify-center items-center ">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.2 }}
+                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                  >
+                    <AnimatedNumbers value={3} />+
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2 }}
+                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                  >
+                    Years of Experience
+                  </motion.h2>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.2 }}
+                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                  >
+                    <AnimatedNumbers value={50} />+
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2 }}
+                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                  >
+                    Interns Mentored
+                  </motion.h2>
+                </div>
               </div>
             </div>
           </div>
