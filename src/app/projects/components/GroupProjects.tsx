@@ -41,7 +41,7 @@ const GroupProjects: React.FC<GroupProjectsProps> = ({
     >
       <div className="text-3xl text-white">{item.title}</div>{" "}
       {/* Increased font size */}
-      <div className="flex flex-col items-center">
+      <div className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-20 lg:aspect-w-16 lg:aspect-h-9 relative w-full max-w-4xl">
         <div
           className="relative w-full max-w-4xl" // Set a maximum width for better control over size
           style={{ paddingTop: aspectRatioPadding }}
@@ -50,6 +50,7 @@ const GroupProjects: React.FC<GroupProjectsProps> = ({
             src={spotlightUrl}
             layout="fill"
             priority
+            objectFit="contain"
             alt={item.title || "Website title"}
             className="transition-opacity duration-[2s] object-cover" // Changed to object-cover for a fuller image
           />
