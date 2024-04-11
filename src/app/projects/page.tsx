@@ -7,6 +7,7 @@ import {
   thumbnailData,
   mobileProjects,
   otherProjects,
+  groupProjects,
 } from "@/data/projectsData";
 import SelfMadeProjects from "./components/SelfMadeProjects";
 import Thumbnail from "./components/Thumbnail";
@@ -17,6 +18,7 @@ import { motion, useAnimation } from "framer-motion";
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
 import CollaborativeProjects from "./components/CollaborativeProjects";
 import MobileProjects from "./components/MobileProjects";
+import GroupProjects from "./components/GroupProjects";
 
 interface CustomButtonProps {
   onClick: React.MouseEventHandler<HTMLDivElement>;
@@ -27,6 +29,7 @@ const Projects = () => {
   const mainSlider = useRef<Slider | null>(null);
   const thumbnailSlider = useRef<Slider | null>(null);
   const collaborativeSliderRef = useRef<Slider | null>(null);
+  const groupSliderRef = useRef<Slider | null>(null);
   const mobileSliderRef = useRef<Slider | null>(null);
   const controls = useAnimation();
 
@@ -184,6 +187,32 @@ const Projects = () => {
       },
     ],
   };
+  const groupSettings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    centerMode: true,
+    centerPadding: "20px",
+    nextArrow: (
+      <CustomNextButton onClick={() => groupSliderRef.current?.slickNext()} />
+    ),
+    prevArrow: (
+      <CustomPrevButton onClick={() => groupSliderRef.current?.slickPrev()} />
+    ),
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="h-full   bg-blackBackground overflow-x-hidden  relative  ">
@@ -197,7 +226,7 @@ const Projects = () => {
               duration: 1,
               delay: 2.8,
             }}
-            className="text-lg"
+            className="text-xl"
           >
             SELF - MADE PROJECTS
           </motion.h1>
@@ -225,7 +254,7 @@ const Projects = () => {
               duration: 1,
               delay: 3,
             }}
-            className="text-lg mb-4 white"
+            className="text-xl mb-4 white"
           >
             PREVIEW PANEL
           </motion.h1>
@@ -279,6 +308,24 @@ const Projects = () => {
           <Slider ref={mobileSliderRef} {...mobileSettings}>
             {mobileProjects.map((mobileImg, index) => (
               <MobileProjects mobileImg={mobileImg} index={index} />
+            ))}
+          </Slider>
+        </div>
+        <div className="w-full  text-white p-8 ">
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: 2.8,
+            }}
+            className="text-xl"
+          >
+            GROUP PROJECTS
+          </motion.h1>
+          <Slider ref={groupSliderRef} {...groupSettings}>
+            {groupProjects.map((groupImg, index) => (
+              <GroupProjects item={groupImg} index={index} />
             ))}
           </Slider>
         </div>

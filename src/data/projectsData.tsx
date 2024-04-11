@@ -262,3 +262,55 @@ export const otherProjects = [
     link: "https://dappstore.me/",
   },
 ];
+
+export const groupProjects = [
+  {
+    id: "gp1",
+    url: "/myGroupProjects/apex1.png",
+    link: "https://apexpointph.com/",
+    title: "Apexpoint",
+    otherUrl: [
+      "/myGroupProjects/apex2.png",
+      "/myGroupProjects/apex3.png",
+      "/myGroupProjects/apex4.png",
+      "/myGroupProjects/apex5.png",
+    ],
+  },
+  {
+    id: "gp2",
+    url: "/myGroupProjects/code1.png",
+    link: "https://codebility.tech",
+    title: "Codebility",
+    otherUrl: [
+      "/myGroupProjects/code2.png",
+      "/myGroupProjects/code3.png",
+      "/myGroupProjects/code4.png",
+      "/myGroupProjects/code5.png",
+    ],
+  },
+  {
+    id: "gp3",
+    url: "/myGroupProjects/bdb1.png",
+    link: "https://bdb-fe-react.vercel.app",
+    title: "BDB",
+    otherUrl: [
+      "/myGroupProjects/bdb2.png",
+      "/myGroupProjects/bdb3.png",
+      "/myGroupProjects/bdb4.png",
+      "/myGroupProjects/bdb5.png",
+    ],
+  },
+
+  {
+    id: "gp4",
+    url: "/myGroupProjects/form1.png",
+    link: "https://formapp-fe.vercel.app/",
+    title: "FormApp",
+    otherUrl: [
+      "/myGroupProjects/form2.png",
+      "/myGroupProjects/form3.png",
+      "/myGroupProjects/form4.png",
+      "/myGroupProjects/form5.png",
+    ],
+  },
+];
