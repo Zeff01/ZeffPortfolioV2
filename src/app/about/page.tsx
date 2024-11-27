@@ -15,9 +15,9 @@ const About = () => {
     setIsFlipped(!isFlipped);
   };
   return (
-    <div className="h-full  bg-[#0c0a0a]  overflow-x-hidden  relative  ">
+    <div className="h-full bg-[#0c0a0a] overflow-x-hidden relative">
       <TransitionEffect />
-      <div className=" flex flex-col md:flex-row justify-center  p-4 md:p-8 mt-16 md:mt-0">
+      <div className="max-w-8xl mx-auto flex flex-col md:flex-row justify-center p-4 md:p-8 mt-16 md:mt-0">
         <div className="flex-col ">
           <motion.p
             initial={{ opacity: 0, y: 50 }}
@@ -122,9 +122,13 @@ const About = () => {
             </motion.div>
 
             {/* NUMBERS */}
-            <div className="flex items-center justify-center font-tech w-full mt-2 gap-8 ">
-              <div className=" flex flex-col md:flex-row gap-12">
-                <div className="flex flex-col justify-center items-center ">
+            <div className="flex items-center justify-center font-tech w-full mt-8 mb-12">
+              {" "}
+              {/* Adjusted margins */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                {" "}
+                {/* Changed to grid */}
+                <div className="flex flex-col justify-center items-center">
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -137,7 +141,7 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.8 }}
-                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                    className="text-lg md:text-xl font-medium capitalize text-textColor text-center" // Added text-center
                   >
                     Satisfied Clients
                   </motion.h2>
@@ -169,7 +173,7 @@ const About = () => {
                     transition={{ duration: 1, delay: 2.2 }}
                     className="inline-block text-4xl md:text-6xl text-buttonColor"
                   >
-                    <AnimatedNumbers value={3} />+
+                    <AnimatedNumbers value={4} />+
                   </motion.span>
                   <motion.h2
                     initial={{ opacity: 0 }}

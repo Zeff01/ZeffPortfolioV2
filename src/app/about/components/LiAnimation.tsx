@@ -20,17 +20,27 @@ const LiAnimation = ({
   work,
 }: LiAnimationProps) => {
   const ref = useRef(null);
+  const circleRef = useRef(null);
+
+  // For the line
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["center end", "center center"],
+    offset: ["start end", "end start"],
   });
+
+  // Specific for the circle fill
+  const { scrollYProgress: circleProgress } = useScroll({
+    target: ref,
+    offset: ["center end", "center center"], // This makes the circle fill as it passes the middle of the screen
+  });
+
   return (
     <motion.li
       ref={ref}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 2.8 }}
-      className=" my-8 first:mt-0  w-[60%] mx-auto flex flex-col items-center justify-between "
+      className="my-8 first:mt-0 w-[60%] mx-auto flex flex-col items-center justify-between"
     >
       <figure className="absolute left-0 stroke-white">
         <svg
@@ -46,12 +56,13 @@ const LiAnimation = ({
             className="stroke-yellow-500 stroke-4 fill-none"
           />
           <motion.circle
+            ref={circleRef}
             cx="75"
             cy="50"
             r="20"
             className="stroke-[5px] fill-[#0a0a0ae5]"
             style={{
-              pathLength: scrollYProgress,
+              pathLength: circleProgress, // Using the circle-specific progress
             }}
           />
           <circle

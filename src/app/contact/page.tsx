@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import TransitionEffect from "@/hooks/TransitionEffect";
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -16,7 +15,6 @@ import {
 
 const Contact = () => {
   const [isSending, setIsSending] = useState(false);
-
   const form = useRef<HTMLFormElement>(null);
 
   const successEmail = () =>
@@ -64,8 +62,6 @@ const Contact = () => {
             console.log(error.text);
           }
         );
-    } else {
-      console.error("Form reference is null");
     }
   };
 
@@ -90,190 +86,167 @@ const Contact = () => {
   };
 
   return (
-    <div className="h-full min-h-screen  bg-[#0c0a0a] overflow-hidden  relative ">
+    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-24 overflow-hidden">
       <TransitionEffect />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <ToastContainer />
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="  h-full  flex flex-col gap-2 md:p-8 mt-16 md:mt-0 "
-      >
-        <motion.h2
-          variants={itemVariants}
-          className="text-textColor text-2xl md:text-4xl p-2 "
-        >
-          Let's Connect
-        </motion.h2>
+
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          variants={itemVariants}
-          className=" flex md:flex-row flex-col-reverse w-full bg-[#0f0d0d] p-4  "
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          <div className=" w-full  ">
-            <div className="flex flex-col justify-center w-full h-full p-4  ">
-              <div className="flex flex-col items-center w-full ">
-                <div className="flex md:flex-col lg:grid  gap-4 w-full  ">
-                  <div className="w-full rounded-md p-2 md:p-4 lg:p-8 flex flex-col md:flex-row justify-center md:justify-start items-center border my-1 md:my-4 md:mx-2 lg:mx-0">
-                    <AiOutlineMail className="w-[40px] h-[40px] mr-4 text-[#bb001b]" />
-
-                    {/* Hide on small screens */}
-                    <div className="hidden md:flex flex-col text-textColor">
-                      <h2>Email</h2>
-                      <span>Jzeffsomera@gmail.com</span>
-                    </div>
-
-                    {/* Visible on all screen sizes */}
-                    <a
-                      href="mailto:jzeffsomera@gmail.com"
-                      target="_blank"
-                      className="font-bold text-[#ddd5d5] hover:text-[#fff] mt-4 md:mt-0 md:ml-4"
-                    >
-                      Send a Message
-                    </a>
-                  </div>
-
-                  <div className="w-full rounded-md p-2 flex flex-col justify-center md:justify-start items-center border my-1 md:flex-row md:my-4 md:mx-2 lg:mx-0 lg:p-8">
-                    <AiOutlineLinkedin className="w-[40px] h-[40px] mr-4 text-[#0077b5]" />
-
-                    {/* Hide on small screens */}
-                    <div className="hidden md:flex flex-col text-textColor">
-                      <h2>LinkedIn</h2>
-                      <span>Jzeff Somera</span>
-                    </div>
-
-                    {/* Visible on all screen sizes */}
-                    <a
-                      href="https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/"
-                      target="_blank"
-                      className="font-bold text-[#ddd5d5] hover:text-[#fff] mt-4 md:mt-0 md:ml-4"
-                    >
-                      Send a Message
-                    </a>
-                  </div>
-
-                  <div className="w-full rounded-md p-2 flex flex-col justify-center md:justify-start items-center border my-1 md:flex-row md:my-4 md:mx-2 lg:mx-0 lg:p-8">
-                    <AiOutlineFacebook className="w-[40px] h-[40px] mr-4 text-[#1877f2]" />
-
-                    {/* Hide on small screens */}
-                    <div className="hidden md:flex flex-col justify-center text-textColor">
-                      <h2>Facebook</h2>
-                      <span>Zeff Somers</span>
-                    </div>
-
-                    {/* Visible on all screen sizes */}
-                    <a
-                      href="https://m.me/Jzironman"
-                      target="_blank"
-                      className="font-bold text-[#ddd5d5] hover:text-[#fff] mt-4 md:mt-0 md:ml-4"
-                    >
-                      Send a Message
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className=" w-full flex items-center ">
-            <div className="  w-full  flex items-center">
-              <form
-                ref={form}
-                onSubmit={sendEmail}
-                className="w-full md:p-4 mt-2 md:mt-0"
-              >
-                <fieldset disabled={isSending} className="flex flex-col">
-                  <h1 className="text-white text-2xl mb-8">Send me an email</h1>
-
-                  {/* Name */}
-                  <label htmlFor="name" className="text-white font-medium mb-2">
-                    Name
-                  </label>
-                  <motion.input
-                    initial={{ x: -100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 100, delay: 3.3 }}
-                    className="bg-[#0f0d0d] p-4 rounded-sm outline-[#cfcc07]"
-                    type="text"
-                    placeholder="Zeff"
-                    name="name"
-                    id="name" // Corresponds to the label's htmlFor
-                    required
-                  />
-
-                  {/* Email */}
-                  <label
-                    htmlFor="email"
-                    className="text-white font-medium mb-2 mt-4"
-                  >
-                    Email
-                  </label>
-                  <motion.input
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 100, delay: 3.3 }}
-                    className="p-4 bg-[#0f0d0d] rounded-sm outline-[#cfcc07]"
-                    type="email"
-                    placeholder="JzeffSomera@gmail.com"
-                    name="email"
-                    id="email" // Corresponds to the label's htmlFor
-                    required
-                  />
-
-                  {/* Message */}
-                  <label
-                    htmlFor="message"
-                    className="text-white font-medium mb-2 mt-4"
-                  >
-                    Message
-                  </label>
-                  <motion.textarea
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 10,
-                      delay: 3.3,
-                    }}
-                    className="bg-[#0f0d0d] p-4 rounded-sm outline-[#cfcc07]"
-                    name="message"
-                    id="message" // Corresponds to the label's htmlFor
-                    rows={5}
-                    placeholder="Your message here"
-                    required
-                  ></motion.textarea>
-
-                  <div className="flex">
-                    <motion.button
-                      className="text-white font-bold rounded-lg hover:text-[#cb0d0d] hover:rounded-md hover:border p-4 my-8 bg-buttonColor"
-                      whileHover={{ scale: 1.1, backgroundColor: "#f1ee24" }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {!isSending && "Let's Collaborate"}
-                      {isSending && (
-                        <>
-                          Sending...
-                          <PuffLoader color="#e10707" size={24} />
-                        </>
-                      )}
-                    </motion.button>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Let's{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
+              Connect
+            </span>
+          </h1>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Have a project in mind? Let's create something amazing together.
+          </p>
         </motion.div>
-      </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Contact Methods */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
+          >
+            <motion.div
+              variants={itemVariants}
+              className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-red-900/10 rounded-lg group-hover:bg-red-900/20 transition-colors">
+                  <AiOutlineMail className="w-6 h-6 text-red-500" />
+                </div>
+                <div className="ml-4 flex-grow">
+                  <h3 className="text-lg font-semibold">Email</h3>
+                  <p className="text-gray-400">Jzeffsomera@gmail.com</p>
+                </div>
+                <a
+                  href="mailto:jzeffsomera@gmail.com"
+                  className="px-4 py-2 bg-yellow-300/10 text-yellow-300 rounded-lg hover:bg-yellow-300/20 transition-colors whitespace-nowrap"
+                >
+                  Send Email
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-blue-900/10 rounded-lg group-hover:bg-blue-900/20 transition-colors">
+                  <AiOutlineLinkedin className="w-6 h-6 text-blue-500" />
+                </div>
+                <div className="ml-4 flex-grow">
+                  <h3 className="text-lg font-semibold">LinkedIn</h3>
+                  <p className="text-gray-400">Jzeff Somera</p>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/"
+                  target="_blank"
+                  className="px-4 py-2 bg-yellow-300/10 text-yellow-300 rounded-lg hover:bg-yellow-300/20 transition-colors whitespace-nowrap"
+                >
+                  Connect
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-blue-900/10 rounded-lg group-hover:bg-blue-900/20 transition-colors">
+                  <AiOutlineFacebook className="w-6 h-6 text-blue-500" />
+                </div>
+                <div className="ml-4 flex-grow">
+                  <h3 className="text-lg font-semibold">Facebook</h3>
+                  <p className="text-gray-400">Zeff Somers</p>
+                </div>
+                <a
+                  href="https://m.me/Jzironman"
+                  target="_blank"
+                  className="px-4 py-2 bg-yellow-300/10 text-yellow-300 rounded-lg hover:bg-yellow-300/20 transition-colors whitespace-nowrap"
+                >
+                  Message
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-zinc-900 p-8 rounded-xl"
+          >
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-yellow-300 transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-yellow-300 transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={5}
+                  required
+                  className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-yellow-300 transition-colors"
+                  placeholder="Your message"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSending}
+                className="w-full px-6 py-3 bg-yellow-300 text-black rounded-lg font-medium hover:bg-yellow-400 transition-colors flex items-center justify-center space-x-2"
+              >
+                {isSending ? (
+                  <>
+                    <PuffLoader color="#000000" size={24} />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  "Let's Collaborate"
+                )}
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 };

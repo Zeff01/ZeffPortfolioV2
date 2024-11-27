@@ -1,46 +1,70 @@
 "use client";
 
-import { useInView, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import CountUp from "react-countup";
 
-import React from "react";
-
-const AnimatedNumbers = ({
-  value,
-  duration,
-  delayTimer,
-}: {
+interface AnimatedNumberProps {
   value: number;
   duration?: number;
-  delayTimer?: number;
+  delay?: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}
+
+const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
+  value,
+  duration = 2,
+  delay = 0,
+  prefix = "",
+  suffix = "",
+  decimals = 0,
 }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, {
-    duration: duration ? duration : 3000,
-  });
-  const isInView = useInView(ref);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-  }, [isInView, value, motionValue]);
-
-  useEffect(() => {
-    const delay = delayTimer ? delayTimer : 3000; // Delay in milliseconds
-
-    springValue.on("change", (latest) => {
-      if (ref.current && latest.toFixed(0) <= value) {
-        setTimeout(() => {
-          ref.current!.textContent = latest.toFixed(0);
-        }, delay);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
       }
-    });
-  }, [springValue, value]);
+    );
 
-  return <span ref={ref}></span>;
+    const element = document.getElementById(`counter-${value}`);
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [value]);
+
+  return (
+    <span id={`counter-${value}`}>
+      {isVisible && (
+        <CountUp
+          start={0}
+          end={value}
+          duration={duration}
+          delay={delay}
+          prefix={prefix}
+          suffix={suffix}
+          decimals={decimals}
+          separator=""
+          enableScrollSpy
+          scrollSpyDelay={delay}
+        >
+          {({ countUpRef }) => <span ref={countUpRef} />}
+        </CountUp>
+      )}
+    </span>
+  );
 };
 
-export default AnimatedNumbers;
+export default AnimatedNumber;

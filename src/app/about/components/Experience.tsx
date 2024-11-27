@@ -7,13 +7,13 @@ const Experience = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end center"],
+    offset: ["start start", "end end"], // Changed to cover full scroll range
   });
 
   return (
-    <div className="font-tech text-white  overflow-y-hidden">
+    <div className="font-tech text-white overflow-y-hidden">
       <motion.h2
-        className="font-bold text-6xl  text-center text-textColor"
+        className="font-bold text-6xl text-center text-textColor"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 2 }}
@@ -21,19 +21,22 @@ const Experience = () => {
         <span className="text-buttonColor">E</span>xperience
       </motion.h2>
 
-      <div ref={ref} className="  relative h-full mt-12">
+      <div ref={ref} className="relative h-full mt-12 pb-32 min-h-[60vh]">
+        {" "}
+        {/* Added min-height */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2 }}
-          className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top shadow-xl "
+          className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top shadow-xl"
           style={{
             scaleY: scrollYProgress,
-            boxShadow: "0px 8px 20px 2px rgb(10,252,252)", // Add shadow effect
+            boxShadow: "0px 8px 20px 2px rgb(10,252,252)",
           }}
         />
-
-        <ul>
+        <ul className="relative">
+          {" "}
+          {/* Added relative positioning */}
           {experienceData.map((exp) => (
             <LiAnimation
               key={exp.company}
@@ -45,9 +48,8 @@ const Experience = () => {
               work={exp.work}
             />
           ))}
-
           <motion.h2
-            className="font-bold text-6xl my-8  text-center  mx-auto "
+            className="font-bold text-6xl my-8 text-center mx-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0 }}

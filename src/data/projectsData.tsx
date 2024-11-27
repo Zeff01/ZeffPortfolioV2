@@ -196,8 +196,20 @@ export const mobileProjects = [
     url: "/mobileprojects/7.png",
   },
   {
-    id: "m8",
-    url: "/mobileprojects/8.png",
+    id: "m9",
+    url: "/mobileprojects/9.png",
+  },
+  {
+    id: "m10",
+    url: "/mobileprojects/10.png",
+  },
+  {
+    id: "m11",
+    url: "/mobileprojects/11.png",
+  },
+  {
+    id: "m12",
+    url: "/mobileprojects/12.png",
   },
 ];
 export const otherProjects = [
@@ -258,8 +270,18 @@ export const otherProjects = [
   },
   {
     id: "op12",
-    url: "/otherprojects/9.png",
+    url: "/otherprojects/12.png",
     link: "https://dappstore.me/",
+  },
+  {
+    id: "op13",
+    url: "/otherprojects/13.png",
+    link: "https://app.federalplans.org/",
+  },
+  {
+    id: "op14",
+    url: "/otherprojects/14.png",
+    link: "https://volatility.com.au/",
   },
 ];
 

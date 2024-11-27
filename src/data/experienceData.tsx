@@ -1,6 +1,31 @@
 export const experienceData = [
   {
-    position: "Full Stack Developer | Mobile Developer",
+    position: "FullStack Mobile Developer",
+    company: "Compound",
+    companyLink: "",
+    time: "2024",
+    address: "United Kingdom",
+    work: "Worked as a FullStack Mobile Developer on the Compound app, a UK-based pension platform designed to simplify pension management for users. Leveraged AWS for scalable cloud services, ensuring secure and reliable backend infrastructure. Built and maintained mobile applications using React Native, delivering a seamless user experience across both iOS and Android platforms. Collaborated with cross-functional teams to develop intuitive user interfaces, implement API integrations, and optimize performance. Focused on ensuring data security and compliance with UK pension regulations. Played a key role in deploying new features and enhancing the app’s functionality to meet evolving user needs.",
+  },
+  {
+    position: "FullStack Developer",
+    company: "Volatility",
+    companyLink: "https://volatility.com.au/",
+    time: "2024",
+    address: "Australia",
+    work: "Worked as a FullStack Developer on a cutting-edge trading platform, delivering seamless functionality and user experience for financial market applications. Utilized modern web technologies, including React.js, Next.js, and Node.js, to develop responsive front-end interfaces and robust back-end services. Designed and implemented secure API integrations for real-time data updates and transaction processing. Collaborated closely with stakeholders to ensure compliance with financial regulations and to tailor solutions to user requirements. Focused on optimizing application performance, maintaining code quality, and deploying scalable solutions to support high user traffic. Played a critical role in delivering timely updates and new features for the platform.",
+  },
+  {
+    position: "FullStack Mobile Developer",
+    company: "Long View Labs",
+    companyLink:
+      "https://play.google.com/store/apps/details?id=app.pocketparty.twa&hl=en",
+    time: "2024",
+    address: "US",
+    work: "Worked as a FullStack Mobile Developer, focusing on building and deploying scalable mobile applications using Next.js and React Native. Integrated Firebase for real-time database functionality, authentication, and cloud storage, ensuring seamless performance and user experience. Collaborated on end-to-end development processes, including UI/UX design implementation, API integrations, and testing. Successfully deployed applications to both Google Play Store and Apple App Store, adhering to platform-specific guidelines and ensuring cross-platform compatibility. Played a key role in improving app performance and maintaining a clean, reusable codebase while ensuring timely updates and feature enhancements.",
+  },
+  {
+    position: "FullStack Developer | Mobile Developer",
     company: "Decenternet",
     companyLink: "https://decenternet.com/",
     time: "2023",
@@ -8,7 +33,7 @@ export const experienceData = [
     work: "In 2023, as a Full Stack Developer | Mobile Developer at Decenternet in Korea, I led the integration of AI and blockchain technologies into our web and mobile platforms. I designed applications utilizing OpenAI's APIs and developed secure blockchain solutions, employing React for front-end and Node.js with Express for the backend. My responsibilities extended to deploying applications using Nginx, ensuring scalability and security across environments. Through agile methodologies, I managed project deliverables, fostering innovation and positioning Decenternet as a leader in cutting-edge technology integration.",
   },
   {
-    position: "Full Stack Developer | Mobile Developer",
+    position: "FullStack Developer | Mobile Developer",
     company: "autopilot",
     companyLink: "https://www.autopilotapp.io/",
     time: "2023",
