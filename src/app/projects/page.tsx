@@ -37,6 +37,7 @@ interface ProjectCardProps {
 
 interface SectionTitleProps {
   title: string;
+  subTitle: string;
 }
 
 const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
@@ -158,15 +159,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => (
+const SectionTitle: React.FC<SectionTitleProps> = ({ title, subTitle }) => (
   <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
     className="relative mb-12"
   >
-    <h2 className="text-2xl font-bold text-white inline-block">
-      {title}
+    <div>
+      <h2 className="text-2xl font-bold text-white inline-block">{title}</h2>
+      <p className="text-gray-400 text-sm">{subTitle}</p>
       <motion.div
         className="absolute -bottom-2 left-0 h-1 bg-yellow-300"
         initial={{ width: 0 }}
@@ -174,7 +176,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => (
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.8 }}
       />
-    </h2>
+    </div>
   </motion.div>
 );
 
@@ -206,21 +208,13 @@ const Projects: React.FC = () => {
             applications, and collaborative ventures.
           </p>
         </motion.div>
-
-        {selfMadeProjects.length > 0 && (
-          <section className="mb-32">
-            <SectionTitle title="SELF-MADE PROJECTS" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {selfMadeProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </div>
-          </section>
-        )}
-
         {collaborativeProjs.length > 0 && (
           <section className="mb-32">
-            <SectionTitle title="WORK PROJECTS" />
+            <SectionTitle
+              title="WORK PROJECTS"
+              subTitle="Projects I've contributed to professionally."
+            />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {collaborativeProjs.map((project, index) => (
                 <ProjectCard
@@ -234,9 +228,26 @@ const Projects: React.FC = () => {
           </section>
         )}
 
+        {selfMadeProjects.length > 0 && (
+          <section className="mb-32">
+            <SectionTitle
+              title="SELF-MADE FUN PROJECTS"
+              subTitle="Personal projects created for learning or experimentation."
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {selfMadeProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {mobileProjs.length > 0 && (
           <section className="mb-32">
-            <SectionTitle title="MOBILE PROJECTS" />
+            <SectionTitle
+              title="MOBILE PROJECTS"
+              subTitle="Projects designed specifically for mobile platforms."
+            />
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {mobileProjs.map((project, index) => (
                 <ProjectCard
@@ -252,7 +263,10 @@ const Projects: React.FC = () => {
 
         {groupProjs.length > 0 && (
           <section>
-            <SectionTitle title="GROUP PROJECTS" />
+            <SectionTitle
+              title="GROUP PROJECTS"
+              subTitle="Collaborative projects created with my community."
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {groupProjs.map((project, index) => (
                 <ProjectCard
