@@ -22,6 +22,17 @@ import php from "../../public/techicons/php.png";
 import wp from "../../public/techicons/wordpress.png";
 import supabase from "../../public/techicons/supabase.png";
 import nginx from "../../public/techicons/nginx.png";
+import openai from "../../public/techicons/openai.png";
+import stripe from "../../public/techicons/stripe.png";
+import xendit from "../../public/techicons/xendit.png";
+import express from "../../public/techicons/express.png";
+import symfony from "../../public/techicons/symfony.png";
+import aws from "../../public/techicons/aws.png";
+import docker from "../../public/techicons/docker.png";
+import vercel from "../../public/techicons/vercel.png";
+import solana from "../../public/techicons/solana.png";
+import eth from "../../public/techicons/eth.png";
+import matic from "../../public/techicons/matic.png";
 
 export const skillsData = [
   { image: angular, title: "Angular", link: "https://angular.io/" },
@@ -68,4 +79,19 @@ export const skillsData = [
   { image: ror, title: "Ruby on Rails", link: "https://rubyonrails.org/" },
   { image: php, title: "PHP", link: "https://www.php.net/" },
   { image: wp, title: "Wordpress", link: "https://wordpress.org/" },
+  { image: openai, title: "OpenAI", link: "https://openai.com/" },
+  { image: stripe, title: "Stripe", link: "https://stripe.com/" },
+  { image: xendit, title: "Xendit", link: "https://www.xendit.co/en/" },
+  { image: express, title: "Express", link: "https://expressjs.com/" },
+  { image: symfony, title: "Symfony", link: "https://symfony.com/" },
+  { image: aws, title: "AWS", link: "https://aws.amazon.com/" },
+  { image: docker, title: "Docker", link: "https://www.docker.com/" },
+  { image: vercel, title: "Vercel", link: "https://vercel.com/" },
+  { image: solana, title: "Solana", link: "https://solana.com/" },
+  { image: eth, title: "Ethereum", link: "https://ethereum.org/" },
+  {
+    image: matic,
+    title: "Polygon",
+    link: "https://polygon.technology/",
+  },
 ];

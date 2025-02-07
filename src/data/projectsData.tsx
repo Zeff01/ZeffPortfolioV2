@@ -48,8 +48,35 @@ export const projects = [
       "/projectimages/pokemon4.png",
     ],
   },
+
   {
     id: 3,
+    title: "Codebility Bootcamp",
+    description: `Codebility Bootcamp is a modern, scalable Learning Management System (LMS) designed to streamline the educational process for both teachers and students. Built with Next.js for a fast, responsive front-end and DynamoDB for flexible, high-performance data management, the platform enables teachers to effortlessly create, manage, and deliver lessons. Students can easily browse available courses, enroll in lessons, and track their learning progress.
+
+To ensure secure and seamless user authentication, the platform integrates Clerk for identity management. Payment processing is handled through Stripe, allowing for smooth transactions and subscription management. The entire application is Dockerized for efficient deployment and scalability, while AWS services power the backend infrastructure for reliability and performance.
+    `,
+    imageUrl: "/projectimages/codebilitybootcamp.png",
+    alt: "codebilitybootcamp",
+    ratings: 5,
+    techIcons: [
+      "/techicons/html.png",
+      "/techicons/css.png",
+      "/techicons/ts.png",
+      "/techicons/next.png",
+      "/techicons/node.png",
+      "/techicons/tailwind.png",
+    ],
+    projectUrl: "https://codebility-bootcamp.vercel.app/",
+    previewUrl: [
+      "/projectimages/codebilitybootcamp2.png",
+      "/projectimages/codebilitybootcamp3.png",
+      "/projectimages/codebilitybootcamp4.png",
+      "/projectimages/codebilitybootcamp5.png",
+    ],
+  },
+  {
+    id: 4,
     title: "Z-MAP",
     description: `Z-MAP is a user-oriented web app that combines the MERN stack, Mapbox UI API, and tailwind CSS. It uses MongoDB for a flexible database, Express.js for efficient server operations, React.js for dynamic UI components, and Node.js for a powerful runtime environment. With Mapbox UI API and tailwind CSS, Z-MAP offers geolocation features and aesthetically pleasing, responsive design. Users can create accounts, place pins on the map, rate and review locations, and engage in location-based discussions. It's a vibrant platform that merges modern technologies with user engagement.
     `,
@@ -74,7 +101,7 @@ export const projects = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Cryptoverse",
     description: `The app is built with ReactJS, Redux Toolkit, and query, utilizing the power of RapidAPI to retrieve and manipulate diverse sets of data. With its built-in query functionalities, the app allows efficient data retrieval, enabling users to access and work with a wide range of information. The integration of RapidAPI ensures smooth and reliable data fetching, while the implementation of Ant Design enhances the user interface with visually appealing and modern components. This powerful combination provides a seamless and feature-rich experience, empowering users to efficiently retrieve, manipulate, and analyze data, creating dynamic and data-driven experiences.`,
     imageUrl: "/projectimages/cryptoverse.png",
@@ -97,7 +124,7 @@ export const projects = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: "Zeff Portfoliov1",
     description: `
     Crafted my first portfolio showcases my skills, creativity, and commitment as a developer. It is a comprehensive representation of my expertise and growth. Powered by ReactJS, a dynamic JavaScript library for building user interfaces, the portfolio delivers an engaging and interactive experience to visitors. The utilization of Tailwind CSS enables a modern, clean, and responsive design, with flexible utility classes providing customization options. The portfolio emphasizes my projects, offering detailed descriptions, functionalities, and the technologies employed. Notably, the integration of animations guides visitors through an engaging user experience, making navigation informative, delightful, and memorable. Through thoughtful design choices and comprehensive project presentations, this portfolio reflects my passion for creating exceptional user experiences and showcases my growth as a developer.`,
@@ -276,7 +303,7 @@ export const otherProjects = [
   {
     id: "op13",
     url: "/otherprojects/13.png",
-    link: "https://app.federalplans.org/",
+    link: "https://agentsly.bot/",
   },
   {
     id: "op14",

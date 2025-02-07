@@ -13,7 +13,7 @@ const SkillCard = ({ image, title, link }: SkillCardType) => {
   const item = {
     hidden: {
       opacity: 0,
-      x: "-100vw",
+      x: "-50",
     },
     show: {
       opacity: 1,
@@ -21,8 +21,8 @@ const SkillCard = ({ image, title, link }: SkillCardType) => {
       transition: {
         type: "spring",
         mass: 1,
-        damping: 30,
-        stiffness: 100,
+        damping: 20,
+        stiffness: 120,
         velocity: 1000,
       },
     },
@@ -32,9 +32,9 @@ const SkillCard = ({ image, title, link }: SkillCardType) => {
     <div>
       <a href={link} target="_blank">
         <motion.div
-          className="border-t border-[#a38332c7] rounded-xl shadow-md shadow-[#ffd56cc3] 
+          className="border border-[#a38332c7] rounded-2xl shadow-lg shadow-[#ffd56cc3] 
    p-1 md:px-4 md:py-2 whitespace-nowrap flex flex-col justify-center items-center bg-[#480101]"
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
           variants={item}
         >
           <Image
