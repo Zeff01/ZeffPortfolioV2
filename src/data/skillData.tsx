@@ -34,64 +34,248 @@ import solana from "../../public/techicons/solana.png";
 import eth from "../../public/techicons/eth.png";
 import matic from "../../public/techicons/matic.png";
 
-export const skillsData = [
-  { image: angular, title: "Angular", link: "https://angular.io/" },
-  { image: bootstrap, title: "Bootstrap", link: "https://getbootstrap.com/" },
-  { image: css, title: "CSS", link: "https://www.w3.org/TR/CSS/#css" },
-  { image: firebase, title: "Firebase", link: "https://firebase.google.com/" },
-  { image: github, title: "GitHub", link: "https://github.com/" },
+// Define skill interface with category
+interface SkillType {
+  image: any;
+  title: string;
+  link: string;
+  category: string;
+}
+
+export const skillsData: SkillType[] = [
+  // Frontend Technologies
   {
     image: html,
     title: "HTML",
     link: "https://developer.mozilla.org/en-US/docs/Glossary/HTML5",
+    category: "frontend",
+  },
+  {
+    image: css,
+    title: "CSS",
+    link: "https://www.w3.org/TR/CSS/#css",
+    category: "frontend",
   },
   {
     image: javascript,
     title: "JavaScript",
     link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    category: "frontend",
   },
-  { image: materialui, title: "Material UI", link: "https://mui.com/" },
-  { image: mongo, title: "MongoDB", link: "https://www.mongodb.com/" },
-  { image: nextjs, title: "Next", link: "https://nextjs.org/" },
-  { image: node, title: "Node", link: "https://nodejs.org/en/" },
-  { image: nginx, title: "Nginx", link: "https://www.nginx.com/" },
   {
-    image: postgresSQL,
-    title: "PostgreSQL",
-    link: "https://www.postgresql.org/",
+    image: ts,
+    title: "TypeScript",
+    link: "https://www.typescriptlang.org/",
+    category: "frontend",
   },
-  { image: react, title: "React", link: "https://reactjs.org/" },
+  {
+    image: react,
+    title: "React",
+    link: "https://reactjs.org/",
+    category: "frontend",
+  },
+  {
+    image: nextjs,
+    title: "Next.js",
+    link: "https://nextjs.org/",
+    category: "frontend",
+  },
+  {
+    image: angular,
+    title: "Angular",
+    link: "https://angular.io/",
+    category: "frontend",
+  },
+  {
+    image: tailwind,
+    title: "Tailwind",
+    link: "https://tailwindcss.com/",
+    category: "frontend",
+  },
+  {
+    image: bootstrap,
+    title: "Bootstrap",
+    link: "https://getbootstrap.com/",
+    category: "frontend",
+  },
+  {
+    image: sass,
+    title: "Sass",
+    link: "https://sass-lang.com/",
+    category: "frontend",
+  },
+  {
+    image: materialui,
+    title: "Material UI",
+    link: "https://mui.com/",
+    category: "frontend",
+  },
+  {
+    image: shadcn,
+    title: "ShadCN",
+    link: "https://ui.shadcn.com/",
+    category: "frontend",
+  },
+
+  // Backend Technologies
+  {
+    image: node,
+    title: "Node",
+    link: "https://nodejs.org/en/",
+    category: "backend",
+  },
+  {
+    image: express,
+    title: "Express",
+    link: "https://expressjs.com/",
+    category: "backend",
+  },
+  {
+    image: php,
+    title: "PHP",
+    link: "https://www.php.net/",
+    category: "backend",
+  },
+  {
+    image: ror,
+    title: "Ruby on Rails",
+    link: "https://rubyonrails.org/",
+    category: "backend",
+  },
+  {
+    image: symfony,
+    title: "Symfony",
+    link: "https://symfony.com/",
+    category: "backend",
+  },
+  {
+    image: wp,
+    title: "WordPress",
+    link: "https://wordpress.org/",
+    category: "backend",
+  },
+  {
+    image: nginx,
+    title: "Nginx",
+    link: "https://www.nginx.com/",
+    category: "backend",
+  },
+
+  // Mobile Technologies
   {
     image: reactnative,
     title: "React Native",
     link: "https://reactnative.dev/",
+    category: "mobile",
   },
-  { image: sass, title: "Sass", link: "https://sass-lang.com/" },
+
+  // Database Technologies
+  {
+    image: mongo,
+    title: "MongoDB",
+    link: "https://www.mongodb.com/",
+    category: "database",
+  },
+  {
+    image: postgresSQL,
+    title: "PostgreSQL",
+    link: "https://www.postgresql.org/",
+    category: "database",
+  },
+  {
+    image: supabase,
+    title: "Supabase",
+    link: "https://supabase.com/",
+    category: "database",
+  },
+  {
+    image: firebase,
+    title: "Firebase",
+    link: "https://firebase.google.com/",
+    category: "database",
+  },
+
+  // Blockchain & Web3
   {
     image: solidity,
     title: "Solidity",
     link: "https://docs.soliditylang.org/en/v0.8.17/",
+    category: "blockchain",
   },
-  { image: supabase, title: "Supabase", link: "https://supabase.com/" },
-  { image: tailwind, title: "Tailwind", link: "https://tailwindcss.com/" },
-  { image: ts, title: "TypeScript", link: "https://www.typescriptlang.org/" },
-  { image: shadcn, title: "ShadCN", link: "https://ui.shadcn.com/" },
-  { image: ror, title: "Ruby on Rails", link: "https://rubyonrails.org/" },
-  { image: php, title: "PHP", link: "https://www.php.net/" },
-  { image: wp, title: "Wordpress", link: "https://wordpress.org/" },
-  { image: openai, title: "OpenAI", link: "https://openai.com/" },
-  { image: stripe, title: "Stripe", link: "https://stripe.com/" },
-  { image: xendit, title: "Xendit", link: "https://www.xendit.co/en/" },
-  { image: express, title: "Express", link: "https://expressjs.com/" },
-  { image: symfony, title: "Symfony", link: "https://symfony.com/" },
-  { image: aws, title: "AWS", link: "https://aws.amazon.com/" },
-  { image: docker, title: "Docker", link: "https://www.docker.com/" },
-  { image: vercel, title: "Vercel", link: "https://vercel.com/" },
-  { image: solana, title: "Solana", link: "https://solana.com/" },
-  { image: eth, title: "Ethereum", link: "https://ethereum.org/" },
+  {
+    image: eth,
+    title: "Ethereum",
+    link: "https://ethereum.org/",
+    category: "blockchain",
+  },
+  {
+    image: solana,
+    title: "Solana",
+    link: "https://solana.com/",
+    category: "blockchain",
+  },
   {
     image: matic,
     title: "Polygon",
     link: "https://polygon.technology/",
+    category: "blockchain",
   },
+
+  // DevOps & Cloud
+  {
+    image: github,
+    title: "GitHub",
+    link: "https://github.com/",
+    category: "devops",
+  },
+  {
+    image: aws,
+    title: "AWS",
+    link: "https://aws.amazon.com/",
+    category: "devops",
+  },
+  {
+    image: docker,
+    title: "Docker",
+    link: "https://www.docker.com/",
+    category: "devops",
+  },
+  {
+    image: vercel,
+    title: "Vercel",
+    link: "https://vercel.com/",
+    category: "devops",
+  },
+
+  // API & Services
+  {
+    image: openai,
+    title: "OpenAI",
+    link: "https://openai.com/",
+    category: "services",
+  },
+  {
+    image: stripe,
+    title: "Stripe",
+    link: "https://stripe.com/",
+    category: "services",
+  },
+  {
+    image: xendit,
+    title: "Xendit",
+    link: "https://www.xendit.co/en/",
+    category: "services",
+  },
+];
+
+// Categories for tabs
+export const skillCategories = [
+  { id: "all", name: "All" },
+  { id: "frontend", name: "Frontend" },
+  { id: "backend", name: "Backend" },
+  { id: "mobile", name: "Mobile" },
+  { id: "database", name: "Database" },
+  { id: "blockchain", name: "Blockchain" },
+  { id: "devops", name: "DevOps" },
+  { id: "services", name: "Services" },
 ];

@@ -17,39 +17,39 @@ const About = () => {
   return (
     <div className="h-full bg-[#0c0a0a] overflow-x-hidden relative">
       <TransitionEffect />
-      <div className="max-w-8xl mx-auto flex flex-col md:flex-row justify-center p-4 md:p-8 mt-16 md:mt-0">
-        <div className="flex-col ">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between p-4 md:p-8 mt-16 md:mt-8 gap-6">
+        {/* LEFT COLUMN */}
+        <div className="flex-1 flex flex-col">
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2.8 }}
-            className="font-tech text-buttonColor  text-6xl "
+            className="font-tech text-buttonColor text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
           >
             "Dream Big,{" "}
             <span className="text-textColor">Achieve Greatness!</span>"
           </motion.p>
-          <div className="px-2 gap-4 w-full flex flex-col ">
+          <div className="w-full flex flex-col">
             {/* BIOGRAPHY */}
-            <div className="col-span-2 lg:col-span-3 p-2 text-white font-medium font-tech text-lg ml-2 text-justify  mt-6">
+            <div className="text-white font-medium font-tech text-base md:text-lg mt-6">
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 3 }}
-                className="text-4xl "
+                className="text-2xl sm:text-3xl md:text-4xl block mb-4"
               >
                 Greetings! My name is
                 <span className="text-yellow-300"> Zeff</span>,
               </motion.span>
-              <div className="text-gray-500">
+              <div className="text-gray-500 space-y-6">
                 <motion.p
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 2.5 }}
-                  className="mt-6"
                 >
-                  Hello! I’m the person behind the keyboard who loves to bring
+                  Hello! I'm the person behind the keyboard who loves to bring
                   ideas to life through code. With a knack for both the logic of
-                  backend development and the finesse of frontend design, I’ve
+                  backend development and the finesse of frontend design, I've
                   spent my career as a{" "}
                   <span className="text-buttonColor">
                     Full Stack Developer{" "}
@@ -65,38 +65,36 @@ const About = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 2.5 }}
-                  className="mt-6"
                 >
-                  My approach to technology is simple: it’s about making things
-                  that work beautifully, both inside and out. Whether I’m
+                  My approach to technology is simple: it's about making things
+                  that work beautifully, both inside and out. Whether I'm
                   debugging a back-end system or polishing a user interface, my
-                  goal is to create something that’s not just functional, but
+                  goal is to create something that's not just functional, but
                   also a joy to use. This passion extends beyond my work. I
                   founded{" "}
                   <Link
-                    href="Codebility.tech"
+                    href="https://Codebility.tech"
                     target="_blank"
                     className="text-cyan-500 hover:text-cyan-200 cursor-pointer"
                   >
                     Codebility
                   </Link>
                   , a community where I share my love for coding by teaching
-                  others for free. It’s my way of giving back, hoping to light
+                  others for free. It's my way of giving back, hoping to light
                   the same spark in others that coding ignited in me.
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 2.5 }}
-                  className="mt-6"
                 >
-                  At the heart of it all, I’m a problem solver, a creative
+                  At the heart of it all, I'm a problem solver, a creative
                   thinker, and a team player who believes in the power of
                   collaboration. Each new project is an adventure—an opportunity
                   to challenge myself, learn new things, and contribute to
-                  making the digital world a bit more user-friendly. I’m excited
+                  making the digital world a bit more user-friendly. I'm excited
                   about the possibility of bringing my blend of skills,
-                  experience, and passion to your team. Let’s create something
+                  experience, and passion to your team. Let's create something
                   great together!
                 </motion.p>
               </div>
@@ -104,10 +102,10 @@ const About = () => {
 
             {/* PICTURE */}
             <motion.div
-              className="col-span-3 flex justify-center rounded-lg  object-contain cursor-pointer "
+              className="flex justify-center my-8"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               onMouseEnter={handleFlip}
               onMouseLeave={handleFlip}
               transition={{ duration: 1, delay: 2.5 }}
@@ -115,25 +113,21 @@ const About = () => {
               <Image
                 src={"/ironmanassets/ironmanpolydp.png"}
                 alt="MyProfile"
-                width={800}
-                height={800}
-                className=" object-contain"
+                width={600}
+                height={600}
+                className="object-contain max-w-full h-auto"
               />
             </motion.div>
 
             {/* NUMBERS */}
-            <div className="flex items-center justify-center font-tech w-full mt-8 mb-12">
-              {" "}
-              {/* Adjusted margins */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                {" "}
-                {/* Changed to grid */}
+            <div className="font-tech w-full mt-4 mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <div className="flex flex-col justify-center items-center">
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.8 }}
-                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
                   >
                     <AnimatedNumbers value={20} />+
                   </motion.span>
@@ -141,17 +135,17 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.8 }}
-                    className="text-lg md:text-xl font-medium capitalize text-textColor text-center" // Added text-center
+                    className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
                   >
                     Satisfied Clients
                   </motion.h2>
                 </div>
-                <div className="flex flex-col justify-center items-center ">
+                <div className="flex flex-col justify-center items-center">
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.8 }}
-                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
                   >
                     <AnimatedNumbers value={40} />+
                   </motion.span>
@@ -159,19 +153,17 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.4 }}
-                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                    className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
                   >
                     Projects Completed
                   </motion.h2>
                 </div>
-              </div>
-              <div className=" flex flex-col md:flex-row gap-12">
-                <div className="flex flex-col justify-center items-center ">
+                <div className="flex flex-col justify-center items-center">
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.2 }}
-                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
                   >
                     <AnimatedNumbers value={4} />+
                   </motion.span>
@@ -179,7 +171,7 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2 }}
-                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                    className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
                   >
                     Years of Experience
                   </motion.h2>
@@ -189,7 +181,7 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2.2 }}
-                    className="inline-block text-4xl md:text-6xl text-buttonColor"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
                   >
                     <AnimatedNumbers value={50} />+
                   </motion.span>
@@ -197,17 +189,19 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 2 }}
-                    className="text-lg md:text-xl font-medium capitalize text-textColor"
+                    className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
                   >
                     Interns Mentored
                   </motion.h2>
                 </div>
               </div>
             </div>
+            <Skills />
           </div>
-          <Skills />
         </div>
-        <div className="flex-col ">
+
+        {/* RIGHT COLUMN */}
+        <div className="flex-1">
           <Experience />
         </div>
       </div>
