@@ -194,7 +194,7 @@ const Projects: React.FC = () => {
   const groupProjs = Array.isArray(groupProjects) ? groupProjects : [];
 
   return (
-    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-16 sm:py-24 overflow-hidden">
+    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-16 sm:py-24 overflow-x-hidden">
       <TransitionEffect />
 
       <div className="max-w-7xl mx-auto">

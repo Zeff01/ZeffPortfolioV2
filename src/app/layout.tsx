@@ -23,7 +23,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [showSimplifiedPortfolio, setShowSimplifiedPortfolio] = useState(true);
+  const [showSimplifiedPortfolio, setShowSimplifiedPortfolio] = useState(false);
 
   const handleTogglePortfolio = () => {
     setShowSimplifiedPortfolio(!showSimplifiedPortfolio);

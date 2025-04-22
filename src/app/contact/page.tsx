@@ -86,7 +86,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-24 overflow-hidden">
+    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-24 overflow-x-hidden">
       <TransitionEffect />
       <ToastContainer />
 
