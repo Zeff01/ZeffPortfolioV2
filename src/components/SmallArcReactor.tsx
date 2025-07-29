@@ -14,7 +14,7 @@ const SmallArcReactor = ({
   return (
     <div className="relative group">
       <div
-        className="bottom-4 fixed left-4 z-10 cursor-pointer"
+        className="bottom-4 fixed left-4 z-10 cursor-pointer md:bottom-4 md:left-4 sm:bottom-2 sm:left-2"
         onClick={onClick}
       >
         <div className="arc_reactor_small">
@@ -40,7 +40,7 @@ const SmallArcReactor = ({
 
       {/* Animated arrow pointing to the reactor */}
       <motion.div
-        className="fixed bottom-6 left-16 z-20 pointer-events-none opacity-0 group-hover:opacity-80"
+        className="fixed bottom-6 left-16 z-20 pointer-events-none opacity-0 group-hover:opacity-80 hidden md:block"
         initial={{ opacity: 0, x: 10 }}
         animate={{
           opacity: [0, 0.8, 0],
@@ -97,7 +97,7 @@ const SmallArcReactor = ({
 
       {/* Add a subtle glow effect on hover */}
       <motion.div
-        className="fixed bottom-4 left-4 w-16 h-16 rounded-full group-hover:opacity-50 z-5 pointer-events-none"
+        className="fixed bottom-4 left-4 w-16 h-16 rounded-full group-hover:opacity-50 z-5 pointer-events-none md:bottom-4 md:left-4 sm:bottom-2 sm:left-2 sm:w-14 sm:h-14"
         animate={{
           boxShadow: [
             "0 0 15px 5px rgba(246, 174, 42, 0.3)",

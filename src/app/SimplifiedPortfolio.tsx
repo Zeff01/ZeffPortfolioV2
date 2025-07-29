@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -8,75 +8,26 @@ import { skillsData, skillCategories } from "@/data/skillData";
 import { projects, otherProjects } from "@/data/projectsData";
 import { experienceData } from "@/data/experienceData";
 import SmallArcReactor from "@/components/SmallArcReactor";
-import emailjs from "@emailjs/browser";
 import PuffLoader from "react-spinners/PuffLoader";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   AiOutlineMail,
   AiOutlineLinkedin,
   AiOutlineFacebook,
 } from "react-icons/ai";
+import { useEmailJS } from "@/hooks/useEmailJS";
+import { TypeAnimation } from "react-type-animation";
 
 const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
   const [activeSkillCategory, setActiveSkillCategory] = useState("all");
-  const [isSending, setIsSending] = useState(false);
-  const form = useRef<HTMLFormElement>(null);
+  const { form, isSending, sendEmail } = useEmailJS();
 
   // Filter skills based on active category
   const filteredSkills =
     activeSkillCategory === "all"
       ? skillsData
       : skillsData.filter((skill) => skill.category === activeSkillCategory);
-
-  // Email functionality
-  const successEmail = () =>
-    toast.success("Your message was sent. Thank you for reaching out.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const errorEmail = () =>
-    toast.error("An error occurred while sending your message.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSending(true);
-
-    if (form.current) {
-      emailjs
-        .sendForm(
-          "service_z1dd26g",
-          "template_21yh8jj",
-          form.current,
-          "y42g9nykusHell-eu"
-        )
-        .then(
-          (result) => {
-            setIsSending(false);
-            successEmail();
-            (e.target as HTMLFormElement).reset();
-          },
-          (error) => {
-            errorEmail();
-            console.log(error.text);
-          }
-        );
-    }
-  };
 
   return (
     <motion.div
@@ -206,14 +157,27 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
             >
               Zeff
             </motion.h1>
-            <motion.p
+            <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="text-xl text-gray-300 mb-4"
             >
-              FullStack & Solidity Developer
-            </motion.p>
+              <TypeAnimation
+                sequence={[
+                  "AI Engineer",
+                  1000,
+                  "Fullstack Developer",
+                  1000,
+                  "Blockchain Developer",
+                  1000,
+                ]}
+                wrapper="span"
+                cursor={true}
+                speed={60}
+                repeat={Infinity}
+              />
+            </motion.div>
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}

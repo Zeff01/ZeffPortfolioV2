@@ -1,69 +1,20 @@
 "use client";
 
 import TransitionEffect from "@/hooks/TransitionEffect";
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   AiOutlineMail,
   AiOutlineLinkedin,
   AiOutlineFacebook,
 } from "react-icons/ai";
+import { useEmailJS } from "@/hooks/useEmailJS";
 
 const Contact = () => {
-  const [isSending, setIsSending] = useState(false);
-  const form = useRef<HTMLFormElement>(null);
-
-  const successEmail = () =>
-    toast.success("Your message was sent. Thank you for reaching out.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const errorEmail = () =>
-    toast.error("An error occurred while sending your message.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSending(true);
-
-    if (form.current) {
-      emailjs
-        .sendForm(
-          "service_z1dd26g",
-          "template_21yh8jj",
-          form.current,
-          "y42g9nykusHell-eu"
-        )
-        .then(
-          (result) => {
-            setIsSending(false);
-            successEmail();
-            (e.target as HTMLFormElement).reset();
-          },
-          (error) => {
-            errorEmail();
-            console.log(error.text);
-          }
-        );
-    }
-  };
+  const { form, isSending, sendEmail } = useEmailJS();
 
   const containerVariants = {
     hidden: { opacity: 0 },

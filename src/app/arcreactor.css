@@ -25,7 +25,7 @@
 .arc_reactor_small {
   position: relative;
   top: 50%;
-  margin-top: -60px;
+  margin-top: -30px;
   margin-left: auto;
   margin-right: auto;
   width: 60px;
@@ -33,6 +33,16 @@
   border-radius: 50%;
   box-shadow: 0px 0px 30px 8px rgba(2, 255, 255, 0.3),
     inset 0px 0px 30px 8px rgba(2, 255, 255, 0.3);
+}
+
+@media (max-width: 640px) {
+  .arc_reactor_small {
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    box-shadow: 0px 0px 20px 5px rgba(2, 255, 255, 0.3),
+      inset 0px 0px 20px 5px rgba(2, 255, 255, 0.3);
+  }
 }
 
 .case_container {
@@ -50,6 +60,15 @@
   position: absolute;
   margin-left: 8px;
   margin-top: 7px;
+}
+
+@media (max-width: 640px) {
+  .case_container_small {
+    width: 36px;
+    height: 36px;
+    margin-left: 6px;
+    margin-top: 6px;
+  }
 }
 
 .e7 {

@@ -203,9 +203,11 @@ export default function Home() {
           </h1>
           <TypeAnimation
             sequence={[
-              "FullStack Developer",
+              "AI Engineer",
               1000,
-              " Solidity Developer",
+              "Fullstack Developer",
+              1000,
+              "Blockchain Developer",
               1000,
             ]}
             className="text-titleColor text-sm md:text-2xl lg:text-4xl text-textColor"
