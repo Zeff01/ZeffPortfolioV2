@@ -5,8 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { skillsData, skillCategories } from "@/data/skillData";
-import { projects, otherProjects } from "@/data/projectsData";
+import { projects, workProjects, groupProjects } from "@/data/projectsData";
 import { experienceData } from "@/data/experienceData";
+import { getTechNameFromPath } from "@/utils/techIconMap";
 import SmallArcReactor from "@/components/SmallArcReactor";
 import PuffLoader from "react-spinners/PuffLoader";
 import { ToastContainer } from "react-toastify";
@@ -18,8 +19,12 @@ import {
 } from "react-icons/ai";
 import { useEmailJS } from "@/hooks/useEmailJS";
 import { TypeAnimation } from "react-type-animation";
+import AnimatedNumbers from "@/hooks/AnimatedNumbers";
 
 const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
+  // Sort projects by year (newest first)
+  const sortedWorkProjects = [...workProjects].sort((a, b) => (b.year || 0) - (a.year || 0));
+  const sortedGroupProjects = [...groupProjects].sort((a, b) => (b.year || 0) - (a.year || 0));
   const [activeSkillCategory, setActiveSkillCategory] = useState("all");
   const { form, isSending, sendEmail } = useEmailJS();
 
@@ -182,7 +187,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex justify-center gap-4"
+              className="flex justify-center gap-4 mb-8"
             >
               <a
                 href="https://github.com/Zeff01"
@@ -203,6 +208,37 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
             </motion.div>
           </div>
         </header>
+
+        {/* Stats Section */}
+        <motion.section
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.55 }}
+          className="mb-16 bg-zinc-900/50 rounded-2xl p-6 shadow-lg shadow-buttonColor/10"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={20} />+</div>
+              <div className="text-sm text-gray-400">Satisfied Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={40} />+</div>
+              <div className="text-sm text-gray-400">Projects Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={4} />+</div>
+              <div className="text-sm text-gray-400">Years of Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={100} />+</div>
+              <div className="text-sm text-gray-400">Interns Mentored</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={86} /></div>
+              <div className="text-sm text-gray-400">GitHub Repos</div>
+            </div>
+          </div>
+        </motion.section>
 
         {/* About Section */}
         <motion.section
@@ -242,23 +278,63 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
             Work Projects
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {otherProjects.map((project, index) => (
+            {sortedWorkProjects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.05 * Math.min(index, 10) }}
-                className="bg-zinc-800 rounded-xl overflow-hidden hover:shadow-md hover:shadow-buttonColor/20 transition-all group h-full"
+                className="bg-zinc-800 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-buttonColor/30 transition-all group"
               >
-                <div className="relative aspect-video">
+                <div className="relative aspect-[2/1]">
                   <Image
                     src={project.url}
-                    alt={`Project ${index + 1}`}
+                    alt={project.alt || `Project ${index + 1}`}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-4">
+                  {project.title && (
+                    <h4 className="text-lg font-bold text-white mb-2">
+                      {project.title}
+                    </h4>
+                  )}
+                  <div className="flex items-center gap-2 flex-wrap mb-3">
+                    {project.year && (
+                      <span className="inline-block px-3 py-1 text-xs font-bold bg-yellow-300 text-black rounded-full">
+                        {project.year}
+                      </span>
+                    )}
+                    {project.role && (
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-zinc-700 text-gray-200 rounded-full">
+                        {project.role}
+                      </span>
+                    )}
+                  </div>
+                  {project.description && (
+                    <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                      {project.description}
+                    </p>
+                  )}
+                  {project.techIcons && (
+                    <div className="flex gap-2 mb-3 flex-wrap">
+                      {project.techIcons.map((tech, idx) => (
+                        <div
+                          key={idx}
+                          className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
+                          title={getTechNameFromPath(tech)}
+                        >
+                          <Image
+                            src={tech}
+                            alt={getTechNameFromPath(tech)}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {project.link ? (
                     <a
                       href={project.link}
@@ -266,7 +342,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                       rel="noopener noreferrer"
                       className="bg-textColor text-buttonColor px-3 py-1.5 rounded-lg text-sm font-medium inline-block hover:bg-opacity-80 transition-all"
                     >
-                      Visit Project
+                      View Project
                     </a>
                   ) : (
                     <span className="text-gray-400 text-sm">
@@ -277,6 +353,117 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               </motion.div>
             ))}
           </div>
+
+          <h3 className="text-xl font-bold text-textColor mb-4">
+            Group Projects
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            {sortedGroupProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.05 * Math.min(index, 10) }}
+                className="bg-zinc-800 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-buttonColor/30 transition-all group"
+              >
+                <div className="relative aspect-[2/1]">
+                  <Image
+                    src={project.url}
+                    alt={project.alt || `Project ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  {project.title && (
+                    <h4 className="text-lg font-bold text-white mb-2">
+                      {project.title}
+                    </h4>
+                  )}
+                  <div className="flex items-center gap-2 flex-wrap mb-3">
+                    {project.year && (
+                      <span className="inline-block px-3 py-1 text-xs font-bold bg-yellow-300 text-black rounded-full">
+                        {project.year}
+                      </span>
+                    )}
+                    {project.role && (
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-zinc-700 text-gray-200 rounded-full">
+                        {project.role}
+                      </span>
+                    )}
+                  </div>
+                  {project.description && (
+                    <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                      {project.description}
+                    </p>
+                  )}
+                  {project.techIcons && (
+                    <div className="flex gap-2 mb-3 flex-wrap">
+                      {project.techIcons.map((tech, idx) => (
+                        <div
+                          key={idx}
+                          className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
+                          title={getTechNameFromPath(tech)}
+                        >
+                          <Image
+                            src={tech}
+                            alt={getTechNameFromPath(tech)}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-textColor text-buttonColor px-3 py-1.5 rounded-lg text-sm font-medium inline-block hover:bg-opacity-80 transition-all"
+                    >
+                      View Project
+                    </a>
+                  ) : (
+                    <span className="text-gray-400 text-sm">
+                      Not publicly available
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-center mb-10"
+          >
+            <p className="text-gray-300 mb-4">
+              Want to see more of our work?
+            </p>
+            <Link
+              href="https://www.codebility.tech/services"
+              target="_blank"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-300 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
+            >
+              Visit Codebility - My Tech Company
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </Link>
+          </motion.div>
 
           <h3 className="text-xl font-bold text-textColor mb-4">
             Self Made Projects
@@ -353,7 +540,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                   </a>
                   <span>• {exp.time}</span>
                 </div>
-                <p className="text-gray-300 text-sm line-clamp-3 hover:line-clamp-none transition-all duration-300">
+                <p className="text-gray-300 text-sm">
                   {exp.work}
                 </p>
               </motion.div>
@@ -437,7 +624,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
                 className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
               >
                 <div className="flex items-center">
@@ -460,7 +647,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
                 className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
               >
                 <div className="flex items-center">
@@ -486,7 +673,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
                 className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800 transition-colors group"
               >
                 <div className="flex items-center">
@@ -514,12 +701,12 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
               className="bg-zinc-900 p-8 rounded-xl"
             >
               <form ref={form} onSubmit={sendEmail} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label className="block text-sm font-medium text-gray-400 mb-2">
                     Name
                   </label>
                   <input
@@ -532,7 +719,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label className="block text-sm font-medium text-gray-400 mb-2">
                     Email
                   </label>
                   <input
@@ -545,7 +732,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label className="block text-sm font-medium text-gray-400 mb-2">
                     Message
                   </label>
                   <textarea

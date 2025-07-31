@@ -5,17 +5,19 @@ import { motion } from "framer-motion";
 import TransitionEffect from "@/hooks/TransitionEffect";
 import {
   projects,
-  otherProjects,
+  workProjects,
   mobileProjects,
   groupProjects,
 } from "@/data/projectsData";
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
+import { getTechNameFromPath } from "@/utils/techIconMap";
 
 interface Project {
   id: string | number;
   title?: string;
+  year?: number;
+  role?: string;
   description?: string;
   imageUrl?: string;
   url?: string;
@@ -40,21 +42,6 @@ interface SectionTitleProps {
   subTitle: string;
 }
 
-const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
-  <div className="flex items-center gap-1 mb-3 sm:mb-5">
-    {[...Array(5)].map((_, idx) => (
-      <Star
-        key={idx}
-        size={18}
-        className={`${
-          idx < rating
-            ? "fill-yellow-300 text-yellow-300"
-            : "fill-gray-600 text-gray-600"
-        } sm:size-20`}
-      />
-    ))}
-  </div>
-);
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
@@ -63,10 +50,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   isGroup = false,
   isWork = false,
 }) => {
-  const getTechName = (path: string) => {
-    const filename = path.split("/").pop();
-    return filename?.split(".")[0] || "";
-  };
 
   const projectLink = project.projectUrl || project.link || project.url || "#";
   const imageUrl = project.imageUrl || project.url || "";
@@ -119,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       viewport={{ once: true }}
       className="group relative bg-zinc-900 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 shadow-xl shadow-black/40 hover:shadow-yellow-500/20"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+      <div className="relative aspect-[2/1] w-full overflow-hidden">
         <Image
           src={imageUrl}
           alt={project.alt || "project image"}
@@ -130,27 +113,45 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <div className="p-4 sm:p-6">
-        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-          {project.title}
-        </h3>
+        <div className="mb-2">
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+            {project.title}
+          </h3>
+          <div className="flex items-center gap-2 flex-wrap">
+            {project.year && (
+              <span className="inline-block px-3 py-1 text-sm font-bold bg-yellow-300 text-black rounded-full">
+                {project.year}
+              </span>
+            )}
+            {project.role && (
+              <span className="inline-block px-3 py-1 text-sm font-medium bg-zinc-700 text-gray-200 rounded-full">
+                {project.role}
+              </span>
+            )}
+          </div>
+        </div>
         <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
           {project.description}
         </p>
 
         {project.techIcons && (
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-5">
+          <div className="flex gap-2 mb-3 sm:mb-5 flex-wrap">
             {project.techIcons.map((tech, idx) => (
-              <span
+              <div
                 key={idx}
-                className="px-2.5 sm:px-3.5 py-1 text-xs bg-yellow-300/10 text-yellow-300 rounded-full capitalize font-medium"
+                className="relative w-8 h-8 sm:w-10 sm:h-10 opacity-80 hover:opacity-100 transition-opacity"
+                title={getTechNameFromPath(tech)}
               >
-                {getTechName(tech)}
-              </span>
+                <Image
+                  src={tech}
+                  alt={getTechNameFromPath(tech)}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             ))}
           </div>
         )}
-
-        {project.ratings && <StarRating rating={project.ratings} />}
 
         <Link
           href={projectLink}
@@ -188,10 +189,16 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title, subTitle }) => (
 );
 
 const Projects: React.FC = () => {
-  const selfMadeProjects = Array.isArray(projects) ? projects : [];
-  const collaborativeProjs = Array.isArray(otherProjects) ? otherProjects : [];
+  const selfMadeProjects = Array.isArray(projects) 
+    ? [...projects].sort((a, b) => (b.year || 0) - (a.year || 0))
+    : [];
+  const collaborativeProjs = Array.isArray(workProjects) 
+    ? [...workProjects].sort((a, b) => (b.year || 0) - (a.year || 0))
+    : [];
   const mobileProjs = Array.isArray(mobileProjects) ? mobileProjects : [];
-  const groupProjs = Array.isArray(groupProjects) ? groupProjects : [];
+  const groupProjs = Array.isArray(groupProjects) 
+    ? [...groupProjects].sort((a, b) => (b.year || 0) - (a.year || 0))
+    : [];
 
   return (
     <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-16 sm:py-24 overflow-x-hidden">
@@ -274,7 +281,7 @@ const Projects: React.FC = () => {
               title="GROUP PROJECTS"
               subTitle="Collaborative projects created with my community."
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {groupProjs.map((project, index) => (
                 <ProjectCard
                   key={project.id}
@@ -284,6 +291,38 @@ const Projects: React.FC = () => {
                 />
               ))}
             </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mt-12 text-center"
+            >
+              <p className="text-gray-300 mb-4">
+                Want to see more of our work?
+              </p>
+              <Link
+                href="https://www.codebility.tech/services"
+                target="_blank"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-300 text-black rounded-lg hover:bg-yellow-400 transition-colors font-bold"
+              >
+                Visit Codebility - My Tech Company
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </Link>
+            </motion.div>
           </section>
         )}
       </div>

@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   keywords: ["Full Stack Developer", "Solidity Developer", "React", "Next.js", "Blockchain", "Web Development"],
   authors: [{ name: "Zeff Somera" }],
   creator: "Zeff Somera",
+  icons: {
+    icon: "/ironmanlogo.jpg",
+    apple: "/ironmanlogo.jpg",
+  },
   openGraph: {
     title: "Zeff Somera - Full Stack & Solidity Developer",
     description: "Portfolio of Zeff Somera, a passionate Full Stack and Solidity Developer",

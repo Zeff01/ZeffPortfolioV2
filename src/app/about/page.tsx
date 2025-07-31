@@ -121,7 +121,7 @@ const About = () => {
 
             {/* NUMBERS */}
             <div className="font-tech w-full mt-4 mb-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
                 <div className="flex flex-col justify-center items-center">
                   <motion.span
                     initial={{ opacity: 0 }}
@@ -183,7 +183,7 @@ const About = () => {
                     transition={{ duration: 1, delay: 2.2 }}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
                   >
-                    <AnimatedNumbers value={50} />+
+                    <AnimatedNumbers value={100} />+
                   </motion.span>
                   <motion.h2
                     initial={{ opacity: 0 }}
@@ -192,6 +192,24 @@ const About = () => {
                     className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
                   >
                     Interns Mentored
+                  </motion.h2>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2.2 }}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-buttonColor"
+                  >
+                    <AnimatedNumbers value={86} />
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 2 }}
+                    className="text-base md:text-lg lg:text-xl font-medium text-textColor text-center"
+                  >
+                    GitHub Repos
                   </motion.h2>
                 </div>
               </div>

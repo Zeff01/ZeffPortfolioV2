@@ -10,7 +10,7 @@ import {
   projects,
   thumbnailData,
   mobileProjects,
-  otherProjects,
+  workProjects,
 } from "@/data/projectsData";
 import Image from "next/image";
 import CarouselButton from "./CarouselButton";
@@ -100,7 +100,7 @@ const Carousel = () => {
     ],
   };
 
-  const otherProjectsSettings = {
+  const workProjectsSettings = {
     dots: true,
     dotsClass: "slick-dots slick-thumb",
     infinite: true,
@@ -319,8 +319,8 @@ const Carousel = () => {
         </motion.p>
       </div>
 
-      <Slider {...otherProjectsSettings}>
-        {otherProjects.map((item, index) => (
+      <Slider {...workProjectsSettings}>
+        {workProjects.map((item, index) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, x: 30 }}
