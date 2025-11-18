@@ -12,8 +12,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Zeff Somera" }],
   creator: "Zeff Somera",
   icons: {
-    icon: "/ironmanlogo.jpg",
-    apple: "/ironmanlogo.jpg",
+    icon: [
+      { url: "/ironmanlogo.jpg" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/ironmanlogo.jpg",
   },
   openGraph: {
     title: "Zeff Somera - Full Stack & Solidity Developer",

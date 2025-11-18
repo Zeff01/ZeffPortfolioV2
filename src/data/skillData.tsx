@@ -34,9 +34,11 @@ import solana from "../../public/techicons/solana.png";
 import eth from "../../public/techicons/eth.png";
 import matic from "../../public/techicons/matic.png";
 
+import { StaticImageData } from "next/image";
+
 // Define skill interface with category
 interface SkillType {
-  image: any;
+  image: StaticImageData;
   title: string;
   link: string;
   category: string;

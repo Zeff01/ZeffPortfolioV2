@@ -63,6 +63,7 @@ export default function Home() {
               width={1000}
               height={200}
               className="z-40"
+              priority
             />
           </motion.div>
         </div>
@@ -167,6 +168,7 @@ export default function Home() {
             alt="Ironman Hover"
             width={80}
             height={80}
+            priority
           />
         </motion.div>
         <motion.div
@@ -266,6 +268,7 @@ export default function Home() {
               alt="Third Image"
               width={200}
               height={200}
+              priority
             />
           ) : showSecondImage ? (
             <Image
@@ -273,6 +276,7 @@ export default function Home() {
               alt="Second Image"
               width={200}
               height={200}
+              priority
             />
           ) : (
             <Image
@@ -280,6 +284,7 @@ export default function Home() {
               alt="Ironman Flying"
               width={200}
               height={200}
+              priority
             />
           )}
         </motion.div>

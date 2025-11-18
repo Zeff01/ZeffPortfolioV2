@@ -23,8 +23,18 @@ interface MenuToggleProps {
 }
 
 export const MenuToggle: React.FC<MenuToggleProps> = ({ toggle }) => (
-  <button className="buttonToggle" onClick={toggle}>
-    <svg width="30" height="30" viewBox="0 0 23 25">
+  <button
+    className="buttonToggle"
+    onClick={toggle}
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+  >
+    <svg
+      width="30"
+      height="30"
+      viewBox="0 0 23 25"
+      aria-hidden="true"
+    >
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },

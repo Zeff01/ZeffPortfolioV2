@@ -129,14 +129,16 @@ const Navbar = () => {
           animate={isOpen ? "open" : "closed"}
           custom={height}
           ref={containerRef}
+          aria-label="Mobile navigation"
         >
           <motion.div className="background z-90" variants={sidebar} />
-          <motion.ul variants={ulVariants} className="ulToggle">
+          <motion.ul variants={ulVariants} className="ulToggle" role="menu">
             <motion.li
               variants={liVariants}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="liToggle hover-underline-animation"
+              role="menuitem"
             >
               <Link href="/" onClick={() => toggleOpen()}>
                 Home
@@ -147,6 +149,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="liToggle hover-underline-animation"
+              role="menuitem"
             >
               <Link href="/about" onClick={() => toggleOpen()}>
                 About
@@ -158,6 +161,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="liToggle hover-underline-animation"
+              role="menuitem"
             >
               <Link href="/projects" onClick={() => toggleOpen()}>
                 Projects
@@ -168,6 +172,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="liToggle hover-underline-animation"
+              role="menuitem"
             >
               <Link href="/contact" onClick={() => toggleOpen()}>
                 Contact Me

@@ -1,13 +1,20 @@
 "use client";
 
-import Experience from "./components/Experience";
-import Skills from "./components/Skills";
+import dynamic from "next/dynamic";
 import TransitionEffect from "@/hooks/TransitionEffect";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React, { useState } from "react";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
 import Link from "next/link";
+
+// Lazy load heavy components
+const Experience = dynamic(() => import("./components/Experience"), {
+  loading: () => <div className="text-center text-gray-400">Loading experience...</div>,
+});
+const Skills = dynamic(() => import("./components/Skills"), {
+  loading: () => <div className="text-center text-gray-400">Loading skills...</div>,
+});
 
 const About = () => {
   const [isFlipped, setIsFlipped] = useState(false);
