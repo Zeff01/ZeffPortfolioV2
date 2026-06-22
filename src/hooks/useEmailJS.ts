@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 
 interface UseEmailJSReturn {
-  form: React.RefObject<HTMLFormElement>;
+  form: React.RefObject<HTMLFormElement | null>;
   isSending: boolean;
   sendEmail: (e: React.FormEvent<HTMLFormElement>) => void;
 }

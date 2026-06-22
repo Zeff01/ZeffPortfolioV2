@@ -5,7 +5,7 @@ interface Dimensions {
   height: number;
 }
 
-export const useDimensions = (ref: RefObject<HTMLElement>): Dimensions => {
+export const useDimensions = (ref: RefObject<HTMLElement | null>): Dimensions => {
   const dimensions = useRef<Dimensions>({ width: 0, height: 0 });
 
   useEffect(() => {

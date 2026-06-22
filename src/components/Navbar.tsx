@@ -9,7 +9,7 @@ import { MenuToggle } from "./MenuToggle";
 const Navbar = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLElement>(null);
   const { height } = useDimensions(containerRef);
 
   const sidebar = {
@@ -66,8 +66,8 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-blackBackground ">
-      <div className="text-white gap-12 font-tech text-lg  md:flex py-8 ml-40 hidden items-center ">
+    <nav className="md:absolute md:top-0 md:left-0 md:right-0 md:z-50">
+      <div className="text-white gap-12 font-tech text-lg md:flex py-8 ml-40 hidden items-center">
         <Link href="/">
           <motion.span
             className={`text-white   hover:text-textColor ${
