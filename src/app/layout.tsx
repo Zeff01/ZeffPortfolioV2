@@ -71,6 +71,7 @@ export default function RootLayout({
     <html lang="en" className="overflow-x-hidden">
       <body
         className={`${inter.className} ${techFont.variable} overflow-x-hidden w-full flex flex-col min-h-screen bg-blackBackground`}
+        suppressHydrationWarning
       >
         <PortfolioWrapper>{children}</PortfolioWrapper>
       </body>

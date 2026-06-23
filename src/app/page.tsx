@@ -61,7 +61,7 @@ export default function Home() {
               src="/ironmanassets/ironmanlandingspraysplat.png"
               alt="Ironman landing"
               width={1000}
-              height={200}
+              height={1000}
               className="z-40"
               priority
             />
@@ -77,8 +77,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/tech5.png"
               alt="tech5"
-              width={150}
-              height={1}
+              width={530}
+              height={461}
+              className="w-[150px] h-auto"
             />
           </motion.div>
         </div>
@@ -94,8 +95,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/techlines2.png"
               alt="techlines2"
-              width={150}
-              height={1}
+              width={534}
+              height={29}
+              className="w-[150px] h-auto"
             />
           </motion.div>
           <motion.div
@@ -107,8 +109,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/techlines2.png"
               alt="techlines2"
-              width={150}
-              height={1}
+              width={534}
+              height={29}
+              className="w-[150px] h-auto"
             />
           </motion.div>
           <motion.div
@@ -120,8 +123,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/techlines2.png"
               alt="techlines2"
-              width={150}
-              height={1}
+              width={534}
+              height={29}
+              className="w-[150px] h-auto"
             />
           </motion.div>
           <motion.div
@@ -133,8 +137,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/techlines2.png"
               alt="techlines2"
-              width={150}
-              height={1}
+              width={534}
+              height={29}
+              className="w-[150px] h-auto"
             />
           </motion.div>
           <motion.div
@@ -146,8 +151,9 @@ export default function Home() {
             <Image
               src="/ironmanassets/techlines2.png"
               alt="techlines2"
-              width={150}
-              height={1}
+              width={534}
+              height={29}
+              className="w-[150px] h-auto"
             />
           </motion.div>
         </div>
@@ -166,8 +172,9 @@ export default function Home() {
           <Image
             src="/ironmanassets/Ironmanhover.png"
             alt="Ironman Hover"
-            width={80}
-            height={80}
+            width={861}
+            height={2246}
+            className="w-full h-auto"
             priority
           />
         </motion.div>

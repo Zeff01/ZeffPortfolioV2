@@ -64,9 +64,9 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
           <Image
             src="/ironmanassets/Ironmanhover.png"
             alt="Ironman Hover"
-            width={90}
-            height={90}
-            className="relative z-20"
+            width={861}
+            height={2246}
+            className="relative z-20 w-[90px] h-auto"
           />
         </motion.div>
 
