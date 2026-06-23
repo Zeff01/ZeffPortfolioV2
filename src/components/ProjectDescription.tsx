@@ -1,24 +1,28 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import ReadMore from "./ReadMore";
+import ReadMore, { CaseStudy } from "./ReadMore";
 
 interface ProjectDescriptionProps {
   title?: string;
   description?: string;
   fullDescription?: string;
+  role?: string;
+  caseStudy?: CaseStudy;
 }
 
 /**
- * Renders a project's description clamped to 3 lines, and shows a "Read more"
- * (opening a details modal) whenever the text is actually truncated OR a
- * richer fullDescription is available. Truncation is measured from the DOM so
- * it works regardless of character count / wrapping.
+ * Renders a project's description clamped to 3 lines, and shows a "Read more" /
+ * "View case study" (opening a details modal) whenever the text is actually
+ * truncated, a richer fullDescription exists, or a case study is provided.
+ * Truncation is measured from the DOM so it works regardless of length.
  */
 const ProjectDescription: React.FC<ProjectDescriptionProps> = ({
   title,
   description,
   fullDescription,
+  role,
+  caseStudy,
 }) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [truncated, setTruncated] = useState(false);
@@ -33,7 +37,7 @@ const ProjectDescription: React.FC<ProjectDescriptionProps> = ({
     return () => window.removeEventListener("resize", check);
   }, [description]);
 
-  const showMore = !!fullDescription || truncated;
+  const showMore = !!caseStudy || !!fullDescription || truncated;
 
   return (
     <>
@@ -44,7 +48,12 @@ const ProjectDescription: React.FC<ProjectDescriptionProps> = ({
         {description}
       </p>
       {showMore && (
-        <ReadMore title={title} text={fullDescription || description || ""} />
+        <ReadMore
+          title={title}
+          role={role}
+          caseStudy={caseStudy}
+          text={fullDescription || description || ""}
+        />
       )}
     </>
   );

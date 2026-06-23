@@ -7,6 +7,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
 import Link from "next/link";
+import Testimonials from "@/components/Testimonials";
 
 // Lazy load heavy components
 const Experience = dynamic(() => import("./components/Experience"), {
@@ -219,6 +220,11 @@ const About = () => {
         <div className="flex-1">
           <Experience />
         </div>
+      </div>
+
+      {/* TESTIMONIALS */}
+      <div className="relative">
+        <Testimonials />
       </div>
     </div>
   );

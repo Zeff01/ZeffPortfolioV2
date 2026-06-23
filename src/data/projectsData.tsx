@@ -84,6 +84,19 @@ To ensure secure and seamless user authentication, the platform integrates Clerk
     `,
     imageUrl: "/projectimages/codebilitybootcamp.png",
     alt: "codebilitybootcamp",
+    caseStudy: {
+      problem:
+        "Running an online coding bootcamp required a scalable LMS where instructors could create and deliver lessons and students could enroll and track progress — with secure authentication and reliable payments.",
+      approach:
+        "I led development of a Next.js LMS backed by DynamoDB, integrating Clerk for identity management and Stripe for payments and subscriptions. The app was Dockerized and powered by AWS for scalable, reliable infrastructure.",
+      result:
+        "Delivered a production LMS that streamlined lesson delivery and enrollment, supporting Codebility's mission of teaching developers — part of a community where I've mentored 100+ interns for free. [Add your hard metric here: e.g. students enrolled or courses delivered.]",
+      metrics: [
+        { value: "100+", label: "Interns mentored" },
+        { value: "Stripe + Clerk", label: "Payments & auth" },
+        { value: "AWS + Docker", label: "Infrastructure" },
+      ],
+    },
     ratings: 5,
     techIcons: [
       "/techicons/html.png",
@@ -281,6 +294,19 @@ export const workProjects = [
       "Blockchain and AI-powered rewards platform for US repair businesses, with token payments, an AI shop dashboard, admin tools, and a React Native mobile app.",
     fullDescription:
       "FixFlow (RepairCoin) is a blockchain-and-AI rewards ecosystem built for repair businesses across the US. Customers earn rewards, make payments, and redeem tokens, while a feature-rich shop experience lets businesses run AI-assisted marketing and campaigns, manage and reward customers, sell their services, and surface nearby shops via maps. An admin layer oversees shops and customers across the network, and a companion React Native mobile app brings the experience to iOS and Android. Built on Next.js with integrated AI and blockchain token infrastructure.",
+    caseStudy: {
+      problem:
+        "Repair businesses struggle to retain customers and run modern marketing, while traditional loyalty programs are fragmented and hard to trust. RepairCoin set out to give shops a blockchain-backed rewards and payments ecosystem paired with AI-driven growth tools.",
+      approach:
+        "I helped build the full platform on Next.js: a customer experience for earning rewards, paying, and redeeming tokens; a shop dashboard with AI-assisted campaigns, customer management, service listings, and maps; and an admin layer overseeing shops and customers network-wide. Token logic and payments were integrated on-chain, and a companion React Native app brought it to iOS and Android.",
+      result:
+        "Delivered a production rewards ecosystem unifying AI marketing, blockchain token payments, and mobile — giving repair shops a single platform to acquire, reward, and retain customers across the US. [Add your hard metric here: e.g. number of shops onboarded or tokens redeemed.]",
+      metrics: [
+        { value: "AI + Chain", label: "Integrated" },
+        { value: "iOS + Android", label: "RN app" },
+        { value: "Multi-shop", label: "Admin network" },
+      ],
+    },
     year: 2026,
     role: "Full Stack Developer",
     alt: "FixFlow RepairCoin rewards platform",
@@ -324,6 +350,19 @@ export const workProjects = [
       "Clinic engagement platform for a 2025 Australian healthcare challenge, with member and admin portals integrated with GoHighLevel.",
     fullDescription:
       "AskLuci is a clinic engagement platform built for a 2025 Australian healthcare challenge that rallied clinics toward a collective one-million milestone event. It pairs a polished member-facing experience with a full administrative back office, both deeply integrated with GoHighLevel to automate CRM workflows, campaign delivery, and lead nurturing. Built as a Next.js full-stack application with Tailwind CSS, it delivers real-time progress tracking, automated communications, and a streamlined onboarding flow that keeps participating clinics engaged throughout the campaign.",
+    caseStudy: {
+      problem:
+        "An Australian healthcare initiative needed to rally clinics toward a collective one-million milestone event in 2025 — requiring tight CRM automation, multi-channel campaign delivery, and real-time progress tracking across many participating clinics.",
+      approach:
+        "I built a Next.js full-stack platform with a polished member experience and a full admin back office, deeply integrated with GoHighLevel to automate CRM workflows, campaign delivery, and lead nurturing — plus real-time progress tracking and a streamlined onboarding flow.",
+      result:
+        "Shipped a campaign platform that kept clinics engaged throughout the challenge, automating communications and surfacing live progress toward the one-million goal. [Add your hard metric here: e.g. clinics onboarded or campaigns automated.]",
+      metrics: [
+        { value: "1M", label: "Campaign goal" },
+        { value: "GoHighLevel", label: "CRM integration" },
+        { value: "User + Admin", label: "Dual portals" },
+      ],
+    },
     year: 2025,
     role: "Full Stack Developer",
     alt: "AskLuci clinic engagement platform",
