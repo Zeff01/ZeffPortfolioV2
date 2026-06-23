@@ -28,9 +28,20 @@ const stats = [
   { value: 86, suffix: "", label: "GitHub Repos" },
 ];
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: smoothEase },
+  },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const About = () => {
@@ -50,14 +61,14 @@ const About = () => {
         <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-textColor/10 blur-[130px]" />
       </div>
 
-      <div className="relative mx-auto mt-16 flex max-w-7xl flex-col justify-between gap-6 p-4 md:mt-8 md:p-8 lg:flex-row">
+      <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 py-20 sm:px-8 sm:py-24 md:px-12 lg:flex-row">
         {/* LEFT COLUMN */}
         <div className="flex flex-1 flex-col">
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.9, ease: smoothEase }}
             className="font-tech text-3xl text-buttonColor sm:text-4xl md:text-5xl lg:text-6xl"
           >
             "Dream Big,{" "}
@@ -71,20 +82,20 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.8, ease: smoothEase, delay: 0.1 }}
                 className="mb-4 block text-2xl sm:text-3xl md:text-4xl"
               >
                 Greetings! My name is
                 <span className="text-yellow-300"> Zeff</span>,
               </motion.span>
-              <div className="space-y-6 text-gray-400">
-                <motion.p
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
-                >
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-6 text-gray-400"
+              >
+                <motion.p variants={fadeUp}>
                   Hello! I'm the person behind the keyboard who loves to bring
                   ideas to life through code. With a knack for both the logic of
                   backend development and the finesse of frontend design, I've
@@ -99,13 +110,7 @@ const About = () => {
                   also taught me the importance of clear communication and
                   understanding diverse perspectives.
                 </motion.p>
-                <motion.p
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
+                <motion.p variants={fadeUp}>
                   My approach to technology is simple: it's about making things
                   that work beautifully, both inside and out. Whether I'm
                   debugging a back-end system or polishing a user interface, my
@@ -123,13 +128,7 @@ const About = () => {
                   others for free. It's my way of giving back, hoping to light
                   the same spark in others that coding ignited in me.
                 </motion.p>
-                <motion.p
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.25 }}
-                >
+                <motion.p variants={fadeUp}>
                   At the heart of it all, I'm a problem solver, a creative
                   thinker, and a team player who believes in the power of
                   collaboration. Each new project is an adventure—an opportunity
@@ -139,16 +138,16 @@ const About = () => {
                   experience, and passion to your team. Let's create something
                   great together!
                 </motion.p>
-              </div>
+              </motion.div>
             </div>
 
             {/* PICTURE */}
             <motion.div
               className="relative my-10 flex justify-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.92, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: smoothEase }}
             >
               {/* glow + rotating ring behind the portrait */}
               <div className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-buttonColor/20 blur-[80px]" />
@@ -187,10 +186,10 @@ const About = () => {
 
             {/* NUMBERS */}
             <motion.div
+              variants={stagger}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={{ staggerChildren: 0.12 }}
               className="mb-12 mt-4 w-full font-tech"
             >
               <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
