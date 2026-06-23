@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmallArcReactor from "@/components/SmallArcReactor";
+import CursorReticle from "@/components/CursorReticle";
 import SimplifiedPortfolio from "@/app/SimplifiedPortfolio";
 
 interface PortfolioWrapperProps {
@@ -26,6 +27,7 @@ export default function PortfolioWrapper({ children }: PortfolioWrapperProps) {
         </AnimatePresence>
       ) : (
         <>
+          <CursorReticle />
           <Navbar />
           <main className="flex-grow overflow-x-hidden w-full">
             {children}

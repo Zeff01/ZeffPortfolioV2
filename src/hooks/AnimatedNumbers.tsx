@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 
 interface AnimatedNumberProps {
@@ -14,15 +14,19 @@ interface AnimatedNumberProps {
 
 const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   value,
-  duration = 2,
+  duration = 2.5,
   delay = 0,
   prefix = "",
   suffix = "",
   decimals = 0,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,24 +34,17 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.1,
-      }
+      { threshold: 0.3 }
     );
 
-    const element = document.getElementById(`counter-${value}`);
-    if (element) {
-      observer.observe(element);
-    }
+    observer.observe(element);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [value]);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <span id={`counter-${value}`}>
-      {isVisible && (
+    <span ref={ref}>
+      {isVisible ? (
         <CountUp
           start={0}
           end={value}
@@ -57,11 +54,13 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
           suffix={suffix}
           decimals={decimals}
           separator=""
-          enableScrollSpy
-          scrollSpyDelay={delay}
-        >
-          {({ countUpRef }) => <span ref={countUpRef} />}
-        </CountUp>
+        />
+      ) : (
+        <span>
+          {prefix}
+          {(0).toFixed(decimals)}
+          {suffix}
+        </span>
       )}
     </span>
   );

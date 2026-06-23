@@ -279,6 +279,8 @@ export const workProjects = [
     title: "FixFlow — RepairCoin",
     description:
       "Blockchain and AI-powered rewards platform for US repair businesses, with token payments, an AI shop dashboard, admin tools, and a React Native mobile app.",
+    fullDescription:
+      "FixFlow (RepairCoin) is a blockchain-and-AI rewards ecosystem built for repair businesses across the US. Customers earn rewards, make payments, and redeem tokens, while a feature-rich shop experience lets businesses run AI-assisted marketing and campaigns, manage and reward customers, sell their services, and surface nearby shops via maps. An admin layer oversees shops and customers across the network, and a companion React Native mobile app brings the experience to iOS and Android. Built on Next.js with integrated AI and blockchain token infrastructure.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "FixFlow RepairCoin rewards platform",
@@ -295,10 +297,12 @@ export const workProjects = [
   {
     id: "wp20",
     url: "/projectimages/Halrcall.png",
-    link: "",
+    link: "https://halr.ai",
     title: "Halrcall",
     description:
       "AI marketing automation platform that autonomously creates and runs ad, sales, and follow-up campaigns with automated email outreach.",
+    fullDescription:
+      "Halrcall is an AI-driven marketing automation platform built for a UK client that autonomously creates and runs campaigns across ads, marketing, sales, and follow-up. It generates campaign content, schedules outreach, and sends emails automatically, letting teams launch and nurture multi-channel campaigns with minimal manual effort. Built as a Next.js full-stack application with Tailwind CSS and OpenAI-powered automation.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "Halrcall AI marketing automation platform",
@@ -318,6 +322,8 @@ export const workProjects = [
     title: "AskLuci",
     description:
       "Clinic engagement platform for a 2025 Australian healthcare challenge, with member and admin portals integrated with GoHighLevel.",
+    fullDescription:
+      "AskLuci is a clinic engagement platform built for a 2025 Australian healthcare challenge that rallied clinics toward a collective one-million milestone event. It pairs a polished member-facing experience with a full administrative back office, both deeply integrated with GoHighLevel to automate CRM workflows, campaign delivery, and lead nurturing. Built as a Next.js full-stack application with Tailwind CSS, it delivers real-time progress tracking, automated communications, and a streamlined onboarding flow that keeps participating clinics engaged throughout the campaign.",
     year: 2025,
     role: "Full Stack Developer",
     alt: "AskLuci clinic engagement platform",
@@ -336,6 +342,8 @@ export const workProjects = [
     title: "Stanton Construction",
     description:
       "Internal platform for managing construction projects and building operations, integrated with AppFolio and RingCentral.",
+    fullDescription:
+      "Part of Stanton's suite of internal operations platforms, the Construction module streamlines project and building management for a US real-estate firm that buys, sells, and leases properties. It centralizes construction workflows, vendor coordination, and job tracking, and integrates with AppFolio, RingCentral, and other business tools to keep property and financial data in sync. Built as a Next.js full-stack application with TypeScript, Tailwind CSS, and a Supabase/PostgreSQL backend.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "Stanton Construction management platform",
@@ -354,6 +362,8 @@ export const workProjects = [
     title: "Stanton Maintenance",
     description:
       "Maintenance and work-order management platform for property upkeep, integrated with AppFolio and RingCentral.",
+    fullDescription:
+      "A dedicated maintenance management platform within Stanton's operations suite, built to track work orders, service requests, and property upkeep across the firm's real-estate portfolio. It connects with AppFolio for property and tenant data and RingCentral for communications, giving staff a single place to schedule, assign, and resolve maintenance tasks. Built with Next.js, TypeScript, Tailwind CSS, and a Supabase/PostgreSQL backend.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "Stanton Maintenance management platform",
@@ -372,6 +382,8 @@ export const workProjects = [
     title: "Stanton Payroll",
     description:
       "Payroll platform automating compensation, time tracking, and payments, integrated with AppFolio.",
+    fullDescription:
+      "Stanton's payroll platform automates compensation, time tracking, and payment workflows for the company's staff and contractors. Integrated with AppFolio and the firm's other business systems, it consolidates payroll data, reduces manual reconciliation, and provides clear reporting for finance teams. Built as a Next.js full-stack application with TypeScript, Tailwind CSS, and a Supabase/PostgreSQL backend.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "Stanton Payroll management platform",
@@ -390,6 +402,8 @@ export const workProjects = [
     title: "Stanton Utility",
     description:
       "Utility billing, bill-back, and reconciliation platform synced with AppFolio across Stanton's property portfolio.",
+    fullDescription:
+      "The Utility Management platform handles utility billing, bill-back, reconciliation, and supplier contracts across Stanton's property portfolio. It ingests and matches utility bills against AppFolio records, automates tenant bill-back and period-close workflows, and surfaces anomalies and vacant-unit tracking. Built with Next.js, TypeScript, Tailwind CSS, and a Supabase/PostgreSQL backend.",
     year: 2026,
     role: "Full Stack Developer",
     alt: "Stanton Utility management platform",
@@ -801,7 +815,7 @@ export const groupProjects = [
     url: "/myGroupProjects/Applete.png",
     link: "https://play.google.com/store/apps/details?id=com.applete.app&hl=en&pli=1",
     title: "Applete",
-    description: "No-code app builder platform enabling businesses to create custom mobile applications without programming",
+    description: "Social booking app for sports — connecting players, teams, and organizers across all kinds of sports to schedule games, find venues, and join events.",
     year: 2025,
     role: "Technical Lead",
     alt: "Applete app builder",

@@ -39,7 +39,7 @@ const Experience = () => {
           {/* Added relative positioning */}
           {experienceData.map((exp) => (
             <LiAnimation
-              key={exp.company}
+              key={`${exp.company}-${exp.position}-${exp.time}`}
               position={exp.position}
               company={exp.company}
               companyLink={exp.companyLink}

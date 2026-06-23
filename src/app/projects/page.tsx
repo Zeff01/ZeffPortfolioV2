@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { getTechNameFromPath } from "@/utils/techIconMap";
+import ProjectDescription from "@/components/ProjectDescription";
 
 interface Project {
   id: string | number;
@@ -19,6 +20,7 @@ interface Project {
   year?: number;
   role?: string;
   description?: string;
+  fullDescription?: string;
   imageUrl?: string;
   url?: string;
   link?: string;
@@ -62,7 +64,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className={`relative group rounded-xl overflow-hidden shadow-lg shadow-black/30 hover:shadow-yellow-500/30 ${
+        className={`relative group rounded-xl overflow-hidden border border-white/5 shadow-lg shadow-black/30 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.18)] ${
           isWork || isGroup
             ? "aspect-[21/13]"
             : isMobile
@@ -100,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative flex h-full flex-col bg-zinc-900 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 shadow-xl shadow-black/40 hover:shadow-yellow-500/20"
+      className="group relative flex h-full flex-col bg-zinc-900/80 backdrop-blur border border-white/5 rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-black/40 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.18)]"
     >
       <div className="relative aspect-[2/1] w-full overflow-hidden">
         <Image
@@ -130,9 +132,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
         </div>
-        <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4">
-          {project.description}
-        </p>
+        <ProjectDescription
+          title={project.title}
+          description={project.description}
+          fullDescription={project.fullDescription}
+        />
 
         {project.techIcons && (
           <div className="flex gap-2 mb-3 sm:mb-5 flex-wrap">
@@ -201,16 +205,26 @@ const Projects: React.FC = () => {
     : [];
 
   return (
-    <div className="min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-16 sm:py-24 overflow-x-hidden">
+    <div className="relative min-h-screen bg-blackBackground text-white px-4 sm:px-8 md:px-12 py-16 sm:py-24 overflow-x-hidden">
       <TransitionEffect />
 
-      <div className="max-w-7xl mx-auto">
+      {/* Ambient background glows */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-buttonColor/15 blur-[130px]" />
+        <div className="absolute -right-32 top-1/2 h-96 w-96 rounded-full bg-cyan-500/10 blur-[130px]" />
+        <div className="absolute bottom-10 left-1/3 h-96 w-96 rounded-full bg-textColor/10 blur-[130px]" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16 sm:mb-24"
         >
+          <span className="mb-4 inline-block rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1 text-xs uppercase tracking-[0.3em] text-cyan-300">
+            Portfolio
+          </span>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 font-tech">
             My{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
