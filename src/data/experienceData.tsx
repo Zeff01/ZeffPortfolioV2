@@ -1,5 +1,37 @@
 export const experienceData = [
   {
+    position: "FullStack Developer",
+    company: "Halrtech",
+    companyLink: "https://halr.ai",
+    time: "2026",
+    address: "United Kingdom",
+    work: "As a Full Stack Developer at Halrtech in the UK, I built Halrcall, an AI-driven marketing automation platform that autonomously creates and runs campaigns across ads, marketing, sales, and follow-up. Built with Next.js and Tailwind CSS, the platform generates campaign content, schedules outreach, and sends emails automatically, leveraging OpenAI to let teams launch and nurture multi-channel campaigns with minimal manual effort.",
+  },
+  {
+    position: "FullStack Developer | Mobile Developer",
+    company: "FixFlow",
+    companyLink: "https://repaircoin.ai",
+    time: "2025 - 2026",
+    address: "US",
+    work: "As a Full Stack and Mobile Developer at FixFlow in the US, I built RepairCoin, a blockchain-and-AI rewards ecosystem for repair businesses. Customers earn rewards, make payments, and redeem tokens, while shops run AI-assisted marketing campaigns, manage customers, and sell services. I developed the Next.js web platform with integrated AI and on-chain token infrastructure, an admin layer for managing shops and customers network-wide, and a companion React Native mobile app for iOS and Android.",
+  },
+  {
+    position: "FullStack Developer",
+    company: "Physiocall",
+    companyLink: "",
+    time: "2025",
+    address: "Australia",
+    work: "As a Full Stack Developer at Physiocall in Australia, I built AskLuci, a clinic engagement platform for a 2025 healthcare challenge that rallied clinics toward a collective one-million milestone event. I developed both the member-facing experience and the administrative back office using Next.js and Tailwind CSS, with deep GoHighLevel integration to automate CRM workflows, campaign delivery, and lead nurturing. I implemented real-time progress tracking, automated communications, and a streamlined onboarding flow that kept participating clinics engaged throughout the campaign.",
+  },
+  {
+    position: "FullStack Developer",
+    company: "Stanton",
+    companyLink: "",
+    time: "2025",
+    address: "US",
+    work: "As a Full Stack Developer at Stanton in the US, I built a suite of internal operations platforms for a real-estate firm that buys, sells, and leases properties — spanning construction, maintenance, payroll, and utility management. Using Next.js, TypeScript, Tailwind CSS, and a Supabase/PostgreSQL backend, I integrated the apps with AppFolio, RingCentral, and other business tools to keep property and financial data in sync, automating workflows like utility bill-back, reconciliation, and period close.",
+  },
+  {
     position: "FullStack Mobile Developer",
     company: "Compound",
     companyLink: "",
