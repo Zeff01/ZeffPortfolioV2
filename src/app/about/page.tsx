@@ -24,7 +24,7 @@ const Skills = dynamic(() => import("./components/Skills"), {
 const stats = [
   { value: 20, suffix: "+", label: "Satisfied Clients" },
   { value: 40, suffix: "+", label: "Projects Completed" },
-  { value: 4, suffix: "+", label: "Years of Experience" },
+  { value: 5, suffix: "+", label: "Years of Experience" },
   { value: 100, suffix: "+", label: "Interns Mentored" },
   { value: 86, suffix: "", label: "GitHub Repos" },
 ];

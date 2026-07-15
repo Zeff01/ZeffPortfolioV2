@@ -226,7 +226,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
               <div className="text-sm text-gray-400">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={4} />+</div>
+              <div className="text-3xl font-bold text-buttonColor"><AnimatedNumbers value={5} />+</div>
               <div className="text-sm text-gray-400">Years of Experience</div>
             </div>
             <div className="text-center">
