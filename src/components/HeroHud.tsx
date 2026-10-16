@@ -6,7 +6,6 @@ import { motion, useReducedMotion } from "framer-motion";
 /**
  * JARVIS-style HUD overlay for the hero section:
  * - panning tech grid + scanlines + one-time boot sweep
- * - holographic rotating reactor rings behind the content
  * - drifting particle field
  * - refined SVG corner targeting brackets that draw in on load
  * - a cursor-following targeting reticle that "locks on" over interactive
@@ -68,33 +67,6 @@ export default function HeroHud() {
 
   return (
     <>
-      {/* Holographic reactor rings behind the content */}
-      <div className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center overflow-hidden">
-        <svg
-          viewBox="0 0 400 400"
-          className="h-[120vh] w-[120vh] max-w-none opacity-[0.18]"
-        >
-          <g
-            className="hud-spin"
-            style={{ transformOrigin: "200px 200px" }}
-            stroke="#01d5e0"
-            fill="none"
-          >
-            <circle cx="200" cy="200" r="190" strokeWidth="0.6" strokeDasharray="2 10" />
-            <circle cx="200" cy="200" r="150" strokeWidth="0.5" strokeDasharray="40 14" />
-          </g>
-          <g
-            className="hud-spin-rev"
-            style={{ transformOrigin: "200px 200px" }}
-            stroke="#01d5e0"
-            fill="none"
-          >
-            <circle cx="200" cy="200" r="120" strokeWidth="0.6" strokeDasharray="1 8" />
-            <circle cx="200" cy="200" r="90" strokeWidth="0.5" strokeDasharray="20 10" />
-          </g>
-        </svg>
-      </div>
-
       {/* Grid + scanlines */}
       <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
         <div className="hud-grid absolute inset-0 opacity-70" />

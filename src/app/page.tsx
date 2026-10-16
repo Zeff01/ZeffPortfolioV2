@@ -11,8 +11,19 @@ import {
 } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import HeroHud from "@/components/HeroHud";
 import DecryptText from "@/components/DecryptText";
+
+import JarvisProvider from "@/components/jarvis/JarvisProvider";
+import JarvisComms from "@/components/jarvis/JarvisComms";
+import JarvisVitals from "@/components/jarvis/JarvisVitals";
+import JarvisWave from "@/components/jarvis/JarvisWave";
+
+// WebGL — client only, and keeps three.js out of the initial hero bundle.
+const JarvisHeroOrb = dynamic(() => import("@/components/jarvis/JarvisHeroOrb"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [showSecondImage, setShowSecondImage] = useState(false);
@@ -56,8 +67,6 @@ export default function Home() {
   const splatY = useTransform(sy, (v) => v * 18);
   const tech5X = useTransform(sx, (v) => v * -28);
   const tech5Y = useTransform(sy, (v) => v * -28);
-  const linesX = useTransform(sx, (v) => v * 36);
-  const linesY = useTransform(sy, (v) => v * 36);
   const heroX = useTransform(sx, (v) => v * 55);
   const heroY = useTransform(sy, (v) => v * 55);
   const nameX = useTransform(sx, (v) => v * -22);
@@ -82,11 +91,12 @@ export default function Home() {
         };
 
   return (
-    <main className="h-full bg-blackBackground overflow-x-hidden font-tech">
+    <main className="h-full bg-blackBackground overflow-hidden font-tech">
       <div className="hidden font-tech h-1 bg-backgroundColor2 overflow-hidden w-screen"></div>
 
+      <JarvisProvider className="h-full">
       <div
-        className="h-screen overflow-hidden font-tech"
+        className="h-full overflow-hidden font-tech"
         onMouseMove={handlePointerMove}
       >
         <motion.div
@@ -98,6 +108,21 @@ export default function Home() {
 
         {/* JARVIS-style HUD overlay */}
         <HeroHud />
+
+        {/* J.A.R.V.I.S. REACTOR ORB — centred on Iron Man's chest reactor, shares the splat's parallax */}
+        <motion.div
+          style={{ x: splatX, y: splatY }}
+          className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-center md:mr-16 mt-20 pl-[26vw] pb-[4vh] md:pl-[9vw] md:pb-[12vh]"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 3.2, ease: "easeOut" }}
+            className="h-[min(115vw,560px)] w-[130vw] shrink-0 md:h-[100vh] md:w-[min(125vh,100vw)]"
+          >
+            <JarvisHeroOrb className="relative h-full w-full" />
+          </motion.div>
+        </motion.div>
 
         {/* IRONMAN LANDINGPAGE LOGO ANIMATION */}
         <motion.div
@@ -146,40 +171,6 @@ export default function Home() {
               />
             </motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* IRONMAN TECHLINES ANIMATION */}
-        <motion.div
-          style={{ x: linesX, y: linesY }}
-          className="absolute bottom-2 md:bottom-10 right-2 z-20"
-        >
-          <div className="flex flex-col gap-6 md:gap-12 items-center justify-center transform scale-x-[-1] w-[100px] md:w-[150px]">
-            {[3.8, 3.9, 4.0, 4.1, 4.2].map((delay, i) => (
-              <motion.div
-                key={delay}
-                initial="hidden"
-                animate="visible"
-                variants={imageVariants}
-                transition={{ delay }}
-              >
-                {/* idle: shimmering drift, staggered per line */}
-                <motion.div
-                  {...idle(
-                    { opacity: [1, 0.55, 1], x: [0, 6, 0] },
-                    { duration: 2.6 + i * 0.35, delay: 4.6 }
-                  )}
-                >
-                  <Image
-                    src="/ironmanassets/techlines2.png"
-                    alt="techlines2"
-                    width={534}
-                    height={29}
-                    className="w-[150px] h-auto"
-                  />
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
 
         {/* IRONMAN HOVER ANIMATION */}
@@ -326,6 +317,36 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
+        {/* J.A.R.V.I.S. COMMS — docked under the intro on desktop, bottom dock on mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 4 }}
+          className="absolute z-30 bottom-3 left-[88px] right-3 h-[min(170px,22vh)] sm:left-[10%] sm:right-auto sm:w-[80%] md:bottom-16 md:w-[400px] md:h-[max(220px,calc(77vh-335px))] lg:w-[440px] xl:w-[480px]"
+        >
+          <JarvisComms className="h-full" />
+        </motion.div>
+
+        {/* J.A.R.V.I.S. VITALS — readout on the right */}
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 4.2 }}
+          className="absolute right-6 top-[225px] z-30 hidden w-[250px] lg:block xl:w-[290px]"
+        >
+          <JarvisVitals />
+        </motion.div>
+
+        {/* J.A.R.V.I.S. VOICE WAVEFORM — under Iron Man */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 4 }}
+          className="pointer-events-none absolute bottom-5 left-[55%] z-20 hidden h-10 w-[min(380px,30vw)] -translate-x-1/2 md:block"
+        >
+          <JarvisWave className="h-full" />
+        </motion.div>
+
         {/* IRONMAN FLYING ANIMATION */}
         <motion.div
           initial={{ x: "20vw" }}
@@ -360,6 +381,7 @@ export default function Home() {
           )}
         </motion.div>
       </div>
+      </JarvisProvider>
     </main>
   );
 }

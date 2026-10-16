@@ -375,3 +375,126 @@ body {
 }
 
 
+
+/* ------------------------------------------------------------------ */
+/* J.A.R.V.I.S. console — every accent derives from --jv-hue so a     */
+/* theme switch is a single hue rotation (see components/jarvis).     */
+/* ------------------------------------------------------------------ */
+.jv-root {
+  --jv-hue: 2;
+  --jv-accent: hsl(var(--jv-hue) 95% 60%);
+  --jv-accent-soft: hsl(var(--jv-hue) 95% 60% / 0.14);
+  --jv-line: hsl(var(--jv-hue) 90% 60% / 0.28);
+  --jv-text: hsl(var(--jv-hue) 30% 88%);
+  --jv-dim: hsl(var(--jv-hue) 15% 62%);
+}
+.jv-root.jv-power-save .jv-anim {
+  animation: none !important;
+}
+.jv-accent {
+  color: var(--jv-accent);
+}
+.jv-dim {
+  color: var(--jv-dim);
+}
+.jv-glow-text {
+  color: var(--jv-accent);
+  text-shadow: 0 0 10px hsl(var(--jv-hue) 100% 60% / 0.7);
+}
+.jv-panel {
+  position: relative;
+  color: var(--jv-text);
+  border: 1px solid var(--jv-line);
+  background: linear-gradient(
+      180deg,
+      hsl(var(--jv-hue) 60% 12% / 0.55),
+      rgba(8, 6, 6, 0.75)
+    );
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 24px hsl(var(--jv-hue) 90% 50% / 0.08);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 14px) 0,
+    100% 14px,
+    100% 100%,
+    14px 100%,
+    0 calc(100% - 14px)
+  );
+}
+.jv-panel::before,
+.jv-panel::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.jv-panel::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid var(--jv-accent);
+  border-left: 2px solid var(--jv-accent);
+}
+.jv-panel::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid var(--jv-accent);
+  border-right: 2px solid var(--jv-accent);
+}
+.jv-bar-track {
+  background: var(--jv-accent-soft);
+}
+.jv-bar-fill {
+  background: var(--jv-accent);
+  box-shadow: 0 0 8px var(--jv-accent);
+  transition: width 0.6s ease;
+}
+.jv-chip {
+  border: 1px solid var(--jv-line);
+  color: var(--jv-text);
+  transition: background 0.2s, border-color 0.2s;
+}
+.jv-chip:hover,
+.jv-chip[aria-pressed="true"] {
+  background: var(--jv-accent-soft);
+  border-color: var(--jv-accent);
+}
+.jv-bubble-ai {
+  border-left: 2px solid var(--jv-accent);
+  background: var(--jv-accent-soft);
+}
+.jv-bubble-user {
+  border-right: 2px solid #f6ae2a;
+  background: rgba(246, 174, 42, 0.08);
+}
+.jv-input {
+  border: 1px solid var(--jv-line);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--jv-text);
+}
+.jv-input:focus {
+  outline: none;
+  border-color: var(--jv-accent);
+  box-shadow: 0 0 0 1px var(--jv-accent), 0 0 14px var(--jv-accent-soft);
+}
+.jv-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.jv-scroll::-webkit-scrollbar-thumb {
+  background: var(--jv-accent);
+  box-shadow: none;
+}
+@keyframes jvBlink {
+  50% {
+    opacity: 0.2;
+  }
+}
+.jv-blink {
+  animation: jvBlink 1.2s steps(2) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .jv-blink,
+  .jv-anim {
+    animation: none;
+  }
+}

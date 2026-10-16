@@ -18,7 +18,8 @@ I wanted a portfolio that demonstrates my engineering *and* product sensibility 
 
 ## 🚀 Features
 
-- **JARVIS hero HUD** — animated tech grid, holographic reactor rings, drifting particles, and targeting corner brackets
+- **Talk to J.A.R.V.I.S.** — a hands-free voice assistant on the home page: speak (or type) a question about my skills, experience or projects and it answers out loud in a neural British voice, with captions synced to the speech and a Three.js reactor orb that pulses with the voice. See [docs/JARVIS.md](docs/JARVIS.md)
+- **JARVIS hero HUD** — animated tech grid, drifting particles, targeting corner brackets and a live system-vitals readout; the home page fits one screen with no scrolling
 - **Global cursor reticle** — a custom cursor that springs after your mouse and "locks on" (grows + turns gold) over interactive elements
 - **Cinematic hero** — choreographed intro, mouse-driven parallax depth, idle motion, and a "decrypting" name reveal
 - **Case-study modals** — flagship projects open a structured *Challenge → Approach → Outcome* breakdown with metrics
@@ -34,7 +35,8 @@ I wanted a portfolio that demonstrates my engineering *and* product sensibility 
 | Framework | Next.js 16 (App Router), React 19 |
 | Language | TypeScript |
 | Styling | Tailwind CSS |
-| Animation | Framer Motion |
+| Animation | Framer Motion, Three.js |
+| Voice | ElevenLabs / OpenAI TTS (server route), Web Speech API, Web Audio |
 | Email | EmailJS |
 | Deploy | Vercel |
 
@@ -54,13 +56,16 @@ npm run lint     # eslint
 ```
 
 > Requires **Node.js 24.x** (see `.nvmrc`). EmailJS needs `NEXT_PUBLIC_EMAILJS_*` env vars for the contact form.
+> For J.A.R.V.I.S.'s neural voice set `ELEVENLABS_API_KEY` (or `OPENAI_API_KEY`) in `.env.local` — see `.env.example` and [docs/JARVIS.md](docs/JARVIS.md). Without a key it falls back to the browser voice.
 
 ## 📁 Structure
 
 ```
 src/
 ├── app/            # App Router pages (home, about, projects, contact)
+│   └── api/jarvis/voice/   # server-side text-to-speech proxy
 ├── components/     # HeroHud, CursorReticle, ReadMore, Footer, Testimonials, …
+│   └── jarvis/     # J.A.R.V.I.S. orb, comms, voice + listening hooks, local brain
 ├── data/           # projects, skills, experience data
 └── hooks/          # AnimatedNumbers, useEmailJS, transitions
 public/             # Iron Man assets + project imagery
