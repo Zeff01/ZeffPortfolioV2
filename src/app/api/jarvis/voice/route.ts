@@ -18,6 +18,11 @@ const LIMITS = {
   rateWindowMs: 60_000,
   ratePerWindow: 24,
   maxTrackedIps: 5000,
+  /** ElevenLabs plans cap parallel requests (2 on Starter); queue beyond this. */
+  maxConcurrentUpstream: Number(process.env.JARVIS_TTS_CONCURRENCY) || 2,
+  /** Retries when the provider still answers 429 (concurrency / rate limit). */
+  busyRetries: 3,
+  busyRetryBaseMs: 600,
 } as const;
 
 const CACHE_CONTROL = {
@@ -56,6 +61,8 @@ const OPENAI = {
 type Provider = "elevenlabs" | "openai";
 
 const audioCache = new Map<string, Spoken>();
+/** Same line requested twice at once (e.g. prefetch + speak) shares one upstream call. */
+const inFlight = new Map<string, Promise<Spoken | null>>();
 const hits = new Map<string, number[]>();
 let preferredRejectedAt = 0;
 
@@ -80,6 +87,44 @@ const remember = (key: string, spoken: Spoken) => {
     if (oldest !== undefined) audioCache.delete(oldest);
   }
   audioCache.set(key, spoken);
+};
+
+// ── Upstream concurrency gate ────────────────────────────────────────────────
+let active = 0;
+const waiting: Array<() => void> = [];
+
+const acquire = (): Promise<void> => {
+  if (active < LIMITS.maxConcurrentUpstream) {
+    active++;
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => waiting.push(resolve));
+};
+
+const release = () => {
+  const next = waiting.shift();
+  if (next) next(); // hand the slot straight over
+  else active--;
+};
+
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** One gated provider call, retrying with backoff while the provider says it's busy. */
+const synthesizeGated = async (provider: Provider, text: string, voiceId?: string): Promise<Response> => {
+  for (let attempt = 0; ; attempt++) {
+    await acquire();
+    let res: Response;
+    try {
+      res = await synthesize(provider, text, voiceId);
+      // Read the body while holding the slot, so the upstream request has truly finished.
+      if (res.ok) res = new Response(await res.arrayBuffer(), { status: res.status, headers: res.headers });
+    } finally {
+      release();
+    }
+    if (res.status !== 429 || attempt >= LIMITS.busyRetries) return res;
+    await res.body?.cancel();
+    await delay(LIMITS.busyRetryBaseMs * 2 ** attempt + Math.random() * LIMITS.busyRetryBaseMs);
+  }
 };
 
 const synthesize = async (provider: Provider, text: string, voiceId?: string): Promise<Response> => {
@@ -135,7 +180,7 @@ const speak = async (provider: Provider, text: string): Promise<Spoken | null> =
   const requested = provider === "elevenlabs" ? process.env.ELEVENLABS_VOICE_ID : undefined;
   const recentlyRejected = Date.now() - preferredRejectedAt < ELEVENLABS.rejectionMemoryMs;
   const preferred = recentlyRejected ? undefined : requested;
-  const first = await synthesize(provider, text, preferred);
+  const first = await synthesizeGated(provider, text, preferred);
   if (first.ok) return { audio: await first.arrayBuffer(), fallback: recentlyRejected && !!requested };
   await logUpstream(provider, first);
 
@@ -146,7 +191,7 @@ const speak = async (provider: Provider, text: string): Promise<Spoken | null> =
   if (!canFallBack) return null;
   preferredRejectedAt = Date.now();
 
-  const second = await synthesize(provider, text);
+  const second = await synthesizeGated(provider, text);
   if (second.ok) return { audio: await second.arrayBuffer(), fallback: true };
   await logUpstream(provider, second);
   return null;
@@ -169,7 +214,12 @@ export async function GET(req: NextRequest) {
   if (rateLimited(ip)) return NextResponse.json({ error: "slow down" }, { status: 429 });
 
   try {
-    const spoken = await speak(provider, text);
+    let job = inFlight.get(key);
+    if (!job) {
+      job = speak(provider, text).finally(() => inFlight.delete(key));
+      inFlight.set(key, job);
+    }
+    const spoken = await job;
     if (!spoken) return NextResponse.json({ error: "voice provider error" }, { status: 502 });
     remember(key, spoken);
     return audioResponse(spoken);

@@ -47,6 +47,18 @@ const LISTEN = {
   minChars: 2,
 } as const;
 
+/** Saying one of these while Jarvis talks just silences him (it isn't sent as a question). */
+const INTERRUPT_PHRASE = /^(ok(ay)? )?(stop|wait|hold on|hang on|pause|enough|quiet|shush|jarvis stop|stop jarvis)[.!]?$/i;
+const INTERRUPT_MAX_WORDS = 4;
+
+/** Words of real speech needed before we treat it as the visitor talking over Jarvis. */
+const BARGE_MIN_WORDS = 2;
+
+const isInterrupt = (text: string) => {
+  const t = text.trim();
+  return t.split(/\s+/).length <= INTERRUPT_MAX_WORDS && INTERRUPT_PHRASE.test(t);
+};
+
 /** Errors meaning the mic is off-limits — stop asking. */
 const FATAL_ERRORS = new Set(["not-allowed", "service-not-allowed", "audio-capture"]);
 
@@ -70,12 +82,20 @@ export type ListenStatus = "unsupported" | "off" | "denied" | "paused" | "listen
 interface UseJarvisListenOptions {
   /** Mic switched on by the visitor (default on). */
   enabled: boolean;
-  /** Jarvis is thinking/talking — keep the mic closed so he doesn't hear himself. */
+  /** Keep the mic closed entirely. */
   paused: boolean;
   /** A finished spoken question. */
   onFinal: (text: string) => void;
   /** Live words while the visitor is still talking ("" when cleared). */
   onInterim?: (text: string) => void;
+  /**
+   * Jarvis is speaking. Anything the visitor says cuts him off (barge-in) and
+   * becomes their next question — except what `isEcho` recognises as Jarvis's
+   * own voice coming back through the mic. "Stop" / "wait" just silence him.
+   */
+  interruptOnly?: boolean;
+  onInterrupt?: () => void;
+  isEcho?: (heard: string) => boolean;
 }
 
 /**
@@ -83,7 +103,15 @@ interface UseJarvisListenOptions {
  * Jarvis is idle, so visitors can just talk. The browser asks for mic
  * permission once; after that it reconnects on its own.
  */
-export function useJarvisListen({ enabled, paused, onFinal, onInterim }: UseJarvisListenOptions) {
+export function useJarvisListen({
+  enabled,
+  paused,
+  onFinal,
+  onInterim,
+  interruptOnly = false,
+  onInterrupt,
+  isEcho,
+}: UseJarvisListenOptions) {
   // Server render says "unsupported"; the client re-checks after hydration.
   const supported = useSyncExternalStore(
     noopSubscribe,
@@ -94,11 +122,28 @@ export function useJarvisListen({ enabled, paused, onFinal, onInterim }: UseJarv
   const [denied, setDenied] = useState(false);
   const onFinalRef = useRef(onFinal);
   const onInterimRef = useRef(onInterim);
+  const onInterruptRef = useRef(onInterrupt);
+  const isEchoRef = useRef(isEcho);
+  const interruptRef = useRef(interruptOnly);
+  const recRef = useRef<Recognition | null>(null);
 
   useEffect(() => {
     onFinalRef.current = onFinal;
     onInterimRef.current = onInterim;
-  }, [onFinal, onInterim]);
+    onInterruptRef.current = onInterrupt;
+    isEchoRef.current = isEcho;
+  }, [onFinal, onInterim, onInterrupt, isEcho]);
+
+  // Leaving interrupt mode: restart recognition so the tail of Jarvis's own
+  // sentence (still buffered in the recogniser) is never taken as a question.
+  useEffect(() => {
+    const wasInterrupt = interruptRef.current;
+    interruptRef.current = interruptOnly;
+    if (wasInterrupt && !interruptOnly) {
+      onInterimRef.current?.("");
+      recRef.current?.abort();
+    }
+  }, [interruptOnly]);
 
   const shouldRun = supported && enabled && !paused && !denied;
 
@@ -110,6 +155,7 @@ export function useJarvisListen({ enabled, paused, onFinal, onInterim }: UseJarv
     let networkErrors = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const rec = new Ctor();
+    recRef.current = rec;
     rec.lang = LISTEN.lang;
     rec.continuous = true;
     rec.interimResults = true;
@@ -129,6 +175,24 @@ export function useJarvisListen({ enabled, paused, onFinal, onInterim }: UseJarv
     rec.onstart = () => setActive(true);
     rec.onresult = (e) => {
       networkErrors = 0;
+      if (interruptRef.current) {
+        let barge = false;
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const heard = (e.results[i][0]?.transcript ?? "").trim();
+          if (isInterrupt(heard)) {
+            onInterruptRef.current?.();
+            rec.abort(); // "stop" means stop — don't send it as a question
+            return;
+          }
+          const words = heard.split(/\s+/).filter(Boolean).length;
+          if (words >= BARGE_MIN_WORDS && !isEchoRef.current?.(heard)) barge = true;
+        }
+        if (!barge) return; // just Jarvis's own voice
+        // The visitor is talking over him: hand them the floor and keep this
+        // utterance — it carries on below as their question.
+        interruptRef.current = false;
+        onInterruptRef.current?.();
+      }
       let interim = "";
       for (let i = e.resultIndex; i < e.results.length; i++) {
         const result = e.results[i];
@@ -163,6 +227,7 @@ export function useJarvisListen({ enabled, paused, onFinal, onInterim }: UseJarv
       clearTimeout(timer);
       rec.onend = null;
       rec.abort();
+      if (recRef.current === rec) recRef.current = null;
       setActive(false);
       onInterimRef.current?.("");
     };

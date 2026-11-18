@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
+import { aboutStats } from "@/data/aboutStats";
 
 // Lazy load heavy components
 const Experience = dynamic(() => import("./components/Experience"), {
@@ -21,13 +22,7 @@ const Skills = dynamic(() => import("./components/Skills"), {
   ),
 });
 
-const stats = [
-  { value: 20, suffix: "+", label: "Satisfied Clients" },
-  { value: 40, suffix: "+", label: "Projects Completed" },
-  { value: 5, suffix: "+", label: "Years of Experience" },
-  { value: 100, suffix: "+", label: "Interns Mentored" },
-  { value: 86, suffix: "", label: "GitHub Repos" },
-];
+const stats = aboutStats;
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
@@ -191,6 +186,7 @@ const About = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              data-jarvis-tour="stats"
               className="mb-12 mt-4 w-full font-tech"
             >
               <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
@@ -212,12 +208,14 @@ const About = () => {
               </div>
             </motion.div>
 
-            <Skills />
+            <div data-jarvis-tour="skills">
+              <Skills />
+            </div>
           </div>
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="flex-1">
+        <div className="flex-1" data-jarvis-tour="experience">
           <Experience />
         </div>
       </div>

@@ -8,6 +8,9 @@ import Footer from "@/components/Footer";
 import SmallArcReactor from "@/components/SmallArcReactor";
 import CursorReticle from "@/components/CursorReticle";
 import SimplifiedPortfolio from "@/app/SimplifiedPortfolio";
+import JarvisProvider from "@/components/jarvis/JarvisProvider";
+import JarvisTour from "@/components/jarvis/JarvisTour";
+import JarvisDock from "@/components/jarvis/JarvisDock";
 
 interface PortfolioWrapperProps {
   children: React.ReactNode;
@@ -22,8 +25,9 @@ export default function PortfolioWrapper({ children }: PortfolioWrapperProps) {
     setShowSimplifiedPortfolio(!showSimplifiedPortfolio);
   };
 
+  // Jarvis lives above the pages so his voice and the guided tour survive navigation.
   return (
-    <>
+    <JarvisProvider>
       {showSimplifiedPortfolio ? (
         <AnimatePresence>
           <SimplifiedPortfolio onClose={handleTogglePortfolio} />
@@ -50,8 +54,10 @@ export default function PortfolioWrapper({ children }: PortfolioWrapperProps) {
             />
           </div>
           {!isHome && <Footer />}
+          <JarvisTour />
+          <JarvisDock />
         </>
       )}
-    </>
+    </JarvisProvider>
   );
 }

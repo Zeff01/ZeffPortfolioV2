@@ -15,7 +15,8 @@ import dynamic from "next/dynamic";
 import HeroHud from "@/components/HeroHud";
 import DecryptText from "@/components/DecryptText";
 
-import JarvisProvider from "@/components/jarvis/JarvisProvider";
+import { JarvisRoot } from "@/components/jarvis/JarvisProvider";
+import JarvisHoloCard from "@/components/jarvis/JarvisHoloCard";
 import JarvisComms from "@/components/jarvis/JarvisComms";
 import JarvisVitals from "@/components/jarvis/JarvisVitals";
 import JarvisWave from "@/components/jarvis/JarvisWave";
@@ -94,7 +95,7 @@ export default function Home() {
     <main className="h-full bg-blackBackground overflow-hidden font-tech">
       <div className="hidden font-tech h-1 bg-backgroundColor2 overflow-hidden w-screen"></div>
 
-      <JarvisProvider className="h-full">
+      <JarvisRoot className="h-full">
       <div
         className="h-full overflow-hidden font-tech"
         onMouseMove={handlePointerMove}
@@ -238,6 +239,7 @@ export default function Home() {
 
         {/* NAME ANIMATION */}
         <motion.div
+          data-jarvis-tour="hero"
           style={{ x: nameX, y: nameY }}
           className="absolute left-[5%] sm:left-[10%] top-[20%] sm:top-[23%] z-20 w-[85%] sm:w-[80%] md:w-96 max-w-lg"
         >
@@ -301,8 +303,8 @@ export default function Home() {
                 Github
               </motion.a>
               <motion.a
-                href="/JzeffResume.pdf"
-                download
+                href="/resume/pdf?download=1"
+                download="Zeff-Somera-Resume.pdf"
                 target="_blank"
                 className="button-primary bg-buttonColor font-bold text-textColor border-buttonColor hover:border-2 hover:bg-textColor hover:text-buttonColor hover:scale-105 transform transition-all duration-300 py-1 md:py-2 px-3 flex-1 min-w-[120px] md:min-w-[140px] text-center"
                 variants={imageVariants}
@@ -326,6 +328,9 @@ export default function Home() {
         >
           <JarvisComms className="h-full" />
         </motion.div>
+
+        {/* J.A.R.V.I.S. HOLO CARD — the project he's talking about, front and centre */}
+        <JarvisHoloCard />
 
         {/* J.A.R.V.I.S. VITALS — readout on the right */}
         <motion.div
@@ -381,7 +386,7 @@ export default function Home() {
           )}
         </motion.div>
       </div>
-      </JarvisProvider>
+      </JarvisRoot>
     </main>
   );
 }

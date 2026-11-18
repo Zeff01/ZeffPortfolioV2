@@ -5,15 +5,23 @@ Iron Man, a voice-driven comms panel, a system-vitals readout and a voice wavefo
 Visitors can **talk to it** (hands-free speech recognition) or type, and it answers
 out loud with a neural British voice.
 
+Questions go to an **AI brain** (Claude, grounded only in the portfolio data) that
+can drive the site while it talks: it projects holographic project cards, opens
+pages, puts link buttons on screen, changes its armour finish and runs a narrated
+**guided tour** across the site. Visitors can cut it off mid-sentence, and the
+`</>` toggle shows what's happening under the hood. With no API key, a local
+keyword brain answers instead.
+
 The home page never scrolls — everything lives inside one fixed viewport.
 
 ---
 
 ## Quick start
 
-1. Copy the voice settings from `.env.example` into `.env.local`:
+1. Copy the settings from `.env.example` into `.env.local`:
 
    ```bash
+   ANTHROPIC_API_KEY=your_key             # console.anthropic.com → API Keys (AI brain)
    ELEVENLABS_API_KEY=your_key            # elevenlabs.io → Profile → API Keys
    # ELEVENLABS_VOICE_ID=wDsJlOXPqcvIUKdLXjDs   # "Jarvis" voice — Creator plan only
    ```
@@ -22,7 +30,8 @@ The home page never scrolls — everything lives inside one fixed viewport.
 3. Allow the microphone when asked, click anywhere once (browsers mute sites until
    the first interaction), then just speak: _"Hey Jarvis, who is Zeff?"_
 
-No key? Everything still works — Jarvis falls back to the browser's built-in voice.
+No keys? Everything still works — the local brain answers and the browser's
+built-in voice speaks.
 
 ---
 
@@ -53,15 +62,112 @@ voice loudness while audio is playing.
 
 ---
 
+## AI brain (`/api/jarvis/chat`)
+
+- **Model:** `JARVIS_MODEL` (default `claude-opus-5-5`) at `JARVIS_EFFORT` (default
+  `low`), with server-side refusal fallbacks enabled (`fallbacks: "default"`).
+- **Grounding:** the system prompt is the persona plus a knowledge base generated
+  from `src/data/*` by `portfolio.ts` (experience, projects with case studies,
+  skills, headline stats). It's deterministic and prompt-cached, so repeat
+  questions mostly hit the cache. Template placeholders like `[Add your … here]`
+  are stripped so Jarvis never repeats them.
+- **Tools → UI:** `show_project`, `navigate`, `share_link`, `set_theme`,
+  `start_tour`. Inputs are enums (project titles, pages, themes), validated on the
+  server, acknowledged immediately and streamed to the browser as actions.
+  Navigation and the tour wait until Jarvis has finished speaking.
+- **Wire format:** NDJSON events (`text`, `tool`, `action`, `done`, `error`) —
+  see `chatProtocol.ts`.
+- **Guard rails:** 10 messages/min and 120/day per IP, last 12 turns only,
+  600 chars per message, `max_tokens` 4096. `GET` reports whether the AI is on.
+- **Fallback:** no key (503) or an error before any text → the local brain answers.
+
+## Voice pipeline
+
+The AI's reply is split at sentence ends as it streams; each sentence's audio is
+fetched immediately and played back to back (`enqueue`), so Jarvis starts talking
+after the first sentence instead of the whole answer. The TTS route allows only
+`JARVIS_TTS_CONCURRENCY` (default 2) upstream requests at once, retries 429s with
+backoff, and shares in-flight requests for the same line.
+
+**Interrupting:** the STOP button, `Esc`, starting to type, or saying "stop" /
+"wait" / "hold on" cuts Jarvis off. While he talks, the mic listens *only* for
+those phrases (so his own voice can't trigger a question), and restarts when he's
+done so the tail of his sentence is never taken as input.
+
+## On every page (`JarvisDock.tsx`)
+
+Every page except home has a floating arc-reactor button (bottom-right) that
+opens a compact console. The conversation carries over between pages (it lives
+in `JarvisProvider`), the AI is told which page the visitor is on ("which one
+*here* is best?" works on /projects), and quick prompts change per page. Cards
+and the tech arsenal project over the current page and clear when you leave it.
+
+## Question log
+
+Every question is logged anonymously — no IP, user agent or cookies; emails and
+phone numbers are scrubbed. AI answers are logged by `/api/jarvis/chat`, local
+ones via `/api/jarvis/log`. Lines appear in server logs as `[jarvis-question]`;
+set `JARVIS_LOG_WEBHOOK` (Discord/Slack webhook or any JSON endpoint, e.g. a
+Google Apps Script appending to a Sheet) to collect them somewhere you'll read.
+
+## "Email me his profile"
+
+Jarvis offers it when someone asks or is clearly hiring (`offer_profile` tool;
+local brain: "email me…"). The visitor types their email into a box in the
+chat — never into the conversation itself. `/api/jarvis/brief` writes a
+summary tailored to what they asked, then EmailJS sends:
+
+1. the visitor: summary + résumé link — needs `NEXT_PUBLIC_EMAILJS_PROFILE_TEMPLATE_ID`
+   (template "To Email" = `{{to_email}}`; body uses `{{summary}}`, `{{resume_url}}`,
+   `{{portfolio_url}}`, `{{contact_email}}`);
+2. you: a lead notification through the existing contact template, with their
+   email, their questions and the summary they got.
+
+Without the profile template only (2) is sent and the visitor is told you'll be
+in touch personally.
+
+## AI résumé (`src/lib/resumeAI.ts`)
+
+`/resume` and `/resume/pdf` are built from `src/data` (via `src/lib/resume.ts`) and
+then rewritten by Claude: a recruiter-grade summary, 2–3 achievement bullets per
+recent role, the strongest projects picked and phrased in one line, and a "Core"
+skills line. It only rephrases facts already in the data, and every output is
+checked against the source (companies, project titles and skills must exist);
+anything that doesn't check out falls back to the plain version. No API key →
+the plain data-built CV.
+
+- The general version is cached by content (it only changes when your data
+  does). A download never waits more than 8 s: if the AI version isn't ready,
+  the plain CV is served and the AI one is used from the next request.
+- **Tailoring:** paste a job description on `/resume` (or describe the role to
+  Jarvis — `tailor_resume` tool puts a button in the chat) and `POST /resume/pdf`
+  returns the CV re-angled toward that role.
+- Your brand headline stays fixed on the general CV; tailored versions may adapt it.
+
+## Guided tour
+
+`tourSteps.ts` lists the stops: page, element (`data-jarvis-tour="…"`) and line.
+`JarvisTour` (mounted site-wide) navigates, scrolls each section into view,
+spotlights it and narrates; `→` skips, `Esc` ends. Lines are fixed text, so their
+audio is cached after the first visitor. To add a stop, tag an element with
+`data-jarvis-tour` and add an entry.
+
+---
+
 ## Files
 
 | File | Role |
 | --- | --- |
 | `src/app/page.tsx` | Hero layout: orb behind Iron Man, comms (bottom-left), vitals (right), waveform |
-| `src/components/PortfolioWrapper.tsx` | Locks `/` to a fixed, non-scrolling viewport; hides the footer there |
-| `src/components/jarvis/JarvisProvider.tsx` | Shared context: orb state, theme, voice/mic prefs, `say`, `prefetch`, `level` |
-| `src/components/jarvis/JarvisComms.tsx` | Chat panel: greeting, streaming captions, quick prompts, mic + speaker toggles |
-| `src/components/jarvis/jarvisBrain.ts` | Local Q&A over `src/data/*` (skills, experience, projects, contact) + site actions |
+| `src/components/PortfolioWrapper.tsx` | Locks `/` to a fixed viewport; mounts `JarvisProvider` + `JarvisTour` site-wide |
+| `src/components/jarvis/JarvisProvider.tsx` | Shared context: orb state, theme, prefs, voice (`say`/`enqueue`/`stop`), card, tour |
+| `src/components/jarvis/JarvisComms.tsx` | Chat panel: AI streaming, interrupt, link buttons, quick prompts, under-the-hood trace |
+| `src/app/api/jarvis/chat/route.ts` | AI brain: Claude + UI tools, streamed NDJSON, rate limits |
+| `src/components/jarvis/portfolio.ts` | Normalised portfolio data + the AI's knowledge base |
+| `src/components/jarvis/chatProtocol.ts` | Shared event / action types for the chat stream |
+| `src/components/jarvis/JarvisHoloCard.tsx` | Holographic project card over the hero |
+| `src/components/jarvis/JarvisTour.tsx`, `tourSteps.ts` | Guided tour runner + its stops |
+| `src/components/jarvis/jarvisBrain.ts` | Local fallback brain over `src/data/*` + site actions |
 | `src/components/jarvis/useJarvisVoice.ts` | Neural voice playback, prefetch cache, autoplay handling, browser-speech fallback |
 | `src/components/jarvis/useJarvisListen.ts` | Hands-free speech recognition with auto-restart and wake-word stripping |
 | `src/app/api/jarvis/voice/route.ts` | Server TTS proxy (ElevenLabs / OpenAI), caching, rate limiting |
@@ -131,9 +237,9 @@ _"Click or tap anywhere to let me speak"_.
 
 ---
 
-## What Jarvis knows (`jarvisBrain.ts`)
+## Local fallback brain (`jarvisBrain.ts`)
 
-Runs entirely in the browser — no LLM call. Intents include: greetings, who is Zeff,
+Used when no `ANTHROPIC_API_KEY` is set. Runs entirely in the browser — no LLM call. Intents include: greetings, who is Zeff,
 skills (and per category), experience / company names, projects / project names,
 blockchain, AI, resume, GitHub, LinkedIn, contact / hire, and Jarvis itself.
 
@@ -142,7 +248,9 @@ Commands it can execute:
 | Say / type | Action |
 | --- | --- |
 | "go to projects", "take me to about" | navigates (after the reply) |
-| "github", "linkedin", "resume" | opens the link in a new tab |
+| "github", "linkedin", "resume" | puts a link button in the reply |
+| "give me the tour" | starts the guided tour |
+| a project name | shows its holographic card |
 | "hulk theme", "stealth color", "gold theme" … | switches armor hue (needs the word "theme"/"color") |
 | "power save on/off" | throttles the orb / waveform to ~15 fps |
 | "mute" / "unmute" | voice on/off |
@@ -178,6 +286,8 @@ All animation respects `prefers-reduced-motion`, and the orb pauses when off-scr
 | Voice starts late on new lines | First-time lines are generated by ElevenLabs (~1–2 s); repeats are cached. |
 | `[jarvis-voice] elevenlabs 400 … creator tier` in server logs | The chosen voice needs a paid plan; Daniel is being used instead (expected). |
 | `[jarvis-voice] … 401` | Invalid/rotated key — update `ELEVENLABS_API_KEY`. |
+| `[jarvis-voice] elevenlabs 429 … concurrent_limit_exceeded` | More parallel TTS requests than the plan allows; lower `JARVIS_TTS_CONCURRENCY` (default 2). |
+| Under-the-hood says LOCAL | No `ANTHROPIC_API_KEY` loaded, or the AI errored — check `[jarvis-chat]` in server logs. |
 
 ---
 

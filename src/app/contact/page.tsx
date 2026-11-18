@@ -30,7 +30,7 @@ const contactMethods = [
     label: "LinkedIn",
     value: "Jzeff Somera",
     action: "Connect",
-    href: "https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/",
+    href: "https://www.linkedin.com/in/jzeffsomera",
     external: true,
     accent: "text-blue-400",
     glow: "hover:border-blue-400/50 hover:shadow-[0_0_25px_rgba(96,165,250,0.22)]",
@@ -153,6 +153,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
+            data-jarvis-tour="contact-form"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}

@@ -12,7 +12,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
     "@emailjs/browser": "^4.4.1",
+    "@react-pdf/renderer": "^4.9.0",
     "@types/node": "^20.17.10",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
@@ -32,7 +34,8 @@
     "sharp": "^0.34.5",
     "slick-carousel": "^1.8.1",
     "three": "^0.180.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.13",

@@ -63,12 +63,18 @@ const makeGlowTexture = (): THREE.CanvasTexture => {
   return new THREE.CanvasTexture(canvas);
 };
 
-/** Cheap layered-sine displacement — smooth, deterministic, no noise library needed. */
-const displace = (x: number, y: number, z: number, t: number): number =>
-  Math.sin(x * 3.1 + t * 1.3) * 0.5 +
-  Math.sin(y * 2.7 - t * 1.7) * 0.35 +
-  Math.sin(z * 3.7 + t * 0.9) * 0.3 +
-  Math.sin((x + y + z) * 5.3 + t * 2.3) * 0.15;
+/**
+ * Layered-sine displacement for the wireframe shell, run on the GPU. The shell
+ * has ~245k vertices; doing this in JavaScript every frame froze phones for
+ * seconds (Lighthouse: 5 s of main-thread work). In the vertex shader it's free.
+ */
+const DISPLACE_GLSL = `
+  float jvDisplace = sin(position.x * 3.1 + uTime * 1.3) * 0.5
+    + sin(position.y * 2.7 - uTime * 1.7) * 0.35
+    + sin(position.z * 3.7 + uTime * 0.9) * 0.3
+    + sin((position.x + position.y + position.z) * 5.3 + uTime * 2.3) * 0.15;
+  transformed *= 1.0 + jvDisplace * uAmp;
+`;
 
 /**
  * Three.js reactor orb, adapted from openclaw-jarvis-ui's orb visualizer:
@@ -121,7 +127,7 @@ export default function JarvisOrb({ state, hue, powerSave, level, className }: J
 
     // --- Wireframe shell ---
     const shellGeo = new THREE.IcosahedronGeometry(ORB.radius, ORB.detail);
-    const base = Float32Array.from(shellGeo.attributes.position.array);
+    const shellUniforms = { uTime: { value: 0 }, uAmp: { value: 0 } };
     const shellMat = new THREE.MeshBasicMaterial({
       wireframe: true,
       transparent: true,
@@ -129,6 +135,14 @@ export default function JarvisOrb({ state, hue, powerSave, level, className }: J
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
+    shellMat.onBeforeCompile = (shader) => {
+      shader.uniforms.uTime = shellUniforms.uTime;
+      shader.uniforms.uAmp = shellUniforms.uAmp;
+      shader.vertexShader = `uniform float uTime;\nuniform float uAmp;\n${shader.vertexShader}`.replace(
+        "#include <begin_vertex>",
+        `#include <begin_vertex>\n${DISPLACE_GLSL}`
+      );
+    };
     const shell = new THREE.Mesh(shellGeo, shellMat);
     group.add(shell);
 
@@ -224,8 +238,6 @@ export default function JarvisOrb({ state, hue, powerSave, level, className }: J
     // --- Loop ---
     const live: StateParams = { ...STATE_PARAMS.idle };
     const color = new THREE.Color();
-    const pos = shellGeo.attributes.position as THREE.BufferAttribute;
-    const arr = pos.array as Float32Array;
     let t = 0;
     let frame = 0;
     let raf = 0;
@@ -261,16 +273,8 @@ export default function JarvisOrb({ state, hue, powerSave, level, className }: J
             : 0.6 + 0.4 * Math.abs(Math.sin(t * 6.1) * Math.sin(t * 2.3));
       const amp = live.amplitude * pulse * motionScale;
 
-      for (let i = 0; i < arr.length; i += 3) {
-        const x = base[i];
-        const y = base[i + 1];
-        const z = base[i + 2];
-        const d = 1 + displace(x, y, z, t) * amp;
-        arr[i] = x * d;
-        arr[i + 1] = y * d;
-        arr[i + 2] = z * d;
-      }
-      pos.needsUpdate = true;
+      shellUniforms.uTime.value = t;
+      shellUniforms.uAmp.value = amp;
 
       const h = hueRef.current / 360;
       color.setHSL(h, 0.95, 0.58);

@@ -492,9 +492,113 @@ body {
 .jv-blink {
   animation: jvBlink 1.2s steps(2) infinite;
 }
+
+/* ── Holographic project card ───────────────────────────────────────── */
+.jv-holo {
+  box-shadow: 0 0 40px hsl(var(--jv-hue) 95% 55% / 0.18), inset 0 0 30px hsl(var(--jv-hue) 90% 50% / 0.12);
+}
+.jv-holo-media {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--jv-line);
+}
+.jv-holo-media img {
+  filter: saturate(0.85) contrast(1.05);
+}
+/* Tinted wash + moving scanlines over the screenshot. */
+.jv-holo-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, hsl(var(--jv-hue) 95% 55% / 0.18), transparent 45%, hsl(var(--jv-hue) 95% 40% / 0.25));
+  mix-blend-mode: screen;
+}
+.jv-holo-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, hsl(var(--jv-hue) 90% 70% / 0.07) 0 1px, transparent 1px 3px);
+  animation: jvScan 6s linear infinite;
+}
+@keyframes jvScan {
+  to {
+    background-position: 0 120px;
+  }
+}
+.jv-holo-sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, hsl(var(--jv-hue) 100% 75% / 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: jvSweep 1.4s ease-out 0.15s forwards;
+}
+@keyframes jvSweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* A skill Jarvis has just named. */
+.jv-skill-lit {
+  border-color: var(--jv-accent);
+  background: var(--jv-accent-soft);
+  box-shadow: 0 0 14px var(--jv-accent), inset 0 0 10px var(--jv-accent-soft);
+  color: var(--jv-accent);
+}
+
+/* ── Guided tour spotlight ──────────────────────────────────────────── */
+.jv-spotlight {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  border: 1.5px solid var(--jv-accent);
+  border-radius: 14px;
+  box-shadow: 0 0 0 9999px rgba(4, 4, 6, 0.62), 0 0 28px var(--jv-accent), inset 0 0 22px var(--jv-accent-soft);
+  transition: top 0.55s cubic-bezier(0.22, 1, 0.36, 1), left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.jv-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 18px;
+  border: 1px solid var(--jv-line);
+  animation: jvBlink 1.6s steps(2) infinite;
+}
+
+/* ── Floating dock orb (every page but home) ───────────────────────── */
+@keyframes jvDockPulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--jv-hue) 95% 60% / 0.55), 0 0 18px var(--jv-accent);
+  }
+  100% {
+    box-shadow: 0 0 0 16px hsl(var(--jv-hue) 95% 60% / 0), 0 0 18px var(--jv-accent);
+  }
+}
+.jv-dock-pulse {
+  animation: jvDockPulse 1.4s ease-out infinite;
+}
+
+/* ── Under-the-hood trace ───────────────────────────────────────────── */
+.jv-trace {
+  background: rgba(3, 3, 5, 0.92);
+  border: 1px solid var(--jv-line);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .jv-blink,
-  .jv-anim {
+  .jv-anim,
+  .jv-holo-media::after,
+  .jv-holo-sweep,
+  .jv-dock-pulse,
+  .jv-spotlight::after {
     animation: none;
   }
 }

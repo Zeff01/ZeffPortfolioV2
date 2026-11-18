@@ -285,7 +285,7 @@ const Projects: React.FC = () => {
         </motion.div>
 
         {collaborativeProjs.length > 0 && (
-          <section className="mb-20 sm:mb-36">
+          <section className="mb-20 sm:mb-36" data-jarvis-tour="work-projects">
             <SectionTitle
               title="WORK PROJECTS"
               subTitle="Projects I've contributed to professionally."
@@ -304,7 +304,7 @@ const Projects: React.FC = () => {
         )}
 
         {selfMadeProjects.length > 0 && (
-          <section className="mb-20 sm:mb-36">
+          <section className="mb-20 sm:mb-36" data-jarvis-tour="own-projects">
             <SectionTitle
               title="SELF-MADE FUN PROJECTS"
               subTitle="Personal projects created for learning or experimentation."

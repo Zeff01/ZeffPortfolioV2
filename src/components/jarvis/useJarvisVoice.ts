@@ -7,7 +7,11 @@ const speakable = (text: string) =>
   text
     .replace(/https?:\/\/\S+/g, "the link")
     .replace(/J\.A\.R\.V\.I\.S\./g, "Jarvis")
-    .replace(/[•|]/g, ",")
+    // A bulleted line becomes its own clause: "Most recent:\n• A\n• B" → "Most recent: A. B."
+    .replace(/:\s*\n\s*[•|]\s*/g, ": ")
+    .replace(/[.,;]?\s*\n\s*[•|]\s*/g, ". ")
+    .replace(/\s*[•|]\s*/g, ", ")
+    .replace(/([^.!?:])\s*\n+\s*/g, "$1. ")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -72,6 +76,14 @@ const UNLOCK_WAIT_MS = 250;
 const MAX_PREFETCHED = 40;
 
 const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+interface QueuedLine {
+  text: string;
+  audio: Promise<Blob | null>;
+  hooks: SayHooks;
+  /** A silent marker: fires `hooks.onDone` once everything before it has been said. */
+  marker?: boolean;
+}
 
 export interface SayHooks {
   /** Fired when the voice actually starts (or right away when it can't play); duration in seconds when known. */
@@ -144,6 +156,15 @@ export function useJarvisVoice(enabled: boolean) {
   const smoothedLevel = useRef(0);
   /** Bumped per line so a slow fetch can't talk over a newer one. */
   const lineId = useRef(0);
+  /** Streamed sentences waiting their turn (their audio is already being fetched). */
+  const queue = useRef<QueuedLine[]>([]);
+  const draining = useRef(false);
+  /**
+   * Ends the queued line that's playing right now. Pausing audio fires no
+   * "ended" event, so without this an interrupted line would hang the queue
+   * and Jarvis would go silent for every answer after it.
+   */
+  const releaseCurrent = useRef<(() => void) | null>(null);
 
   const ensureChain = useCallback((): AudioChain | null => {
     if (!chain.current) chain.current = buildChain();
@@ -199,9 +220,10 @@ export function useJarvisVoice(enabled: boolean) {
     return job;
   }, []);
 
+  /** Warm a line's audio; resolves once it has loaded (or failed), so callers can queue. */
   const prefetch = useCallback(
-    (text: string) => {
-      if (enabledRef.current) void fetchNeural(text);
+    async (text: string): Promise<void> => {
+      if (enabledRef.current) await fetchNeural(text);
     },
     [fetchNeural]
   );
@@ -268,6 +290,8 @@ export function useJarvisVoice(enabled: boolean) {
   const say = useCallback(
     async (text: string, hooks: SayHooks = {}) => {
       const id = ++lineId.current;
+      queue.current = [];
+      releaseCurrent.current?.();
       const finish = () => {
         if (id !== lineId.current) return;
         setSpeaking(false);
@@ -298,6 +322,105 @@ export function useJarvisVoice(enabled: boolean) {
     [block, fetchNeural, playNeural, speakFallback, silence]
   );
 
+  /** Play one queued sentence to the end; false when playback is blocked or interrupted. */
+  const playQueued = useCallback(
+    async (line: QueuedLine, id: number): Promise<boolean> => {
+      if (line.marker) {
+        line.hooks.onDone?.();
+        return true;
+      }
+      const blob = await line.audio;
+      if (id !== lineId.current || !enabledRef.current) return false;
+      return new Promise<boolean>((resolve) => {
+        let settled = false;
+        const settle = (ok: boolean) => {
+          if (settled) return;
+          settled = true;
+          if (releaseCurrent.current === release) releaseCurrent.current = null;
+          resolve(ok);
+        };
+        const release = () => settle(false);
+        releaseCurrent.current = release;
+        const finish = () => {
+          const current = id === lineId.current;
+          if (current) line.hooks.onDone?.();
+          settle(current);
+        };
+        if (!blob) {
+          void speakFallback(line.text, id, line.hooks, finish);
+          return;
+        }
+        void playNeural(blob, line.hooks, finish).then((result) => {
+          if (result === "played") return;
+          if (result === "blocked") {
+            // Keep everything not yet said for the visitor's first tap.
+            block([line.text, ...queue.current.map((q) => q.text)].join(" "));
+            queue.current = [];
+          }
+          line.hooks.onStart?.(null);
+          settle(false);
+        });
+      });
+    },
+    [block, playNeural, speakFallback]
+  );
+
+  const drain = useCallback(async () => {
+    if (draining.current) return;
+    draining.current = true;
+    let id = lineId.current;
+    // Re-reads the id each time: lines queued after an interruption belong to the new answer.
+    while (queue.current.length) {
+      id = lineId.current;
+      const line = queue.current.shift();
+      if (line) await playQueued(line, id);
+    }
+    draining.current = false;
+    if (id === lineId.current) setSpeaking(false);
+  }, [playQueued]);
+
+  /**
+   * Speak streamed text sentence by sentence: each one's audio starts fetching
+   * immediately, and they play back to back. Use `say` for a single line.
+   */
+  const enqueue = useCallback(
+    (text: string, hooks: SayHooks = {}) => {
+      if (!text.trim()) return;
+      if (!enabledRef.current) {
+        hooks.onStart?.(null);
+        return;
+      }
+      if (!draining.current && !queue.current.length) silence();
+      queue.current.push({ text, audio: fetchNeural(text), hooks });
+      void drain();
+    },
+    [drain, fetchNeural, silence]
+  );
+
+  /** Run `cb` once Jarvis has finished everything queued so far (right away if he's quiet). */
+  const whenQuiet = useCallback(
+    (cb: () => void) => {
+      if (!enabledRef.current || (!draining.current && !queue.current.length)) {
+        cb();
+        return;
+      }
+      queue.current.push({ text: "", audio: Promise.resolve(null), hooks: { onDone: cb }, marker: true });
+      void drain();
+    },
+    [drain]
+  );
+
+  /** Barge-in: cut Jarvis off mid-sentence and drop whatever he was about to say. */
+  const stop = useCallback(() => {
+    lineId.current++;
+    queue.current = [];
+    releaseCurrent.current?.();
+    pending.current = null;
+    silence();
+    setSpeaking(false);
+    setAudioBlocked(false);
+  }, [silence]);
+
   const level = useCallback((): number => {
     const c = chain.current;
     const el = audioEl.current;
@@ -317,7 +440,9 @@ export function useJarvisVoice(enabled: boolean) {
     enabledRef.current = enabled;
     if (!enabled) {
       pending.current = null;
+      queue.current = [];
       lineId.current++;
+      releaseCurrent.current?.();
       silence();
     }
   }, [enabled, silence]);
@@ -350,6 +475,9 @@ export function useJarvisVoice(enabled: boolean) {
   // Muting cuts the audio without an "ended" event, so mask the flags instead of resetting them.
   return {
     say,
+    enqueue,
+    whenQuiet,
+    stop,
     prefetch,
     speaking: speaking && enabled,
     audioBlocked: audioBlocked && enabled,
