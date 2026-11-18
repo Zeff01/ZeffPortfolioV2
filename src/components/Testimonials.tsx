@@ -47,6 +47,11 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+/** Template entries still waiting for a real quote — never shown to visitors. */
+const isPlaceholder = (t: Testimonial) => t.name === "Client Name" || /^Add (a|another|the)\b/i.test(t.quote);
+
+const published = testimonials.filter((t) => !isPlaceholder(t));
+
 const initials = (name: string) =>
   name
     .split(" ")
@@ -55,7 +60,12 @@ const initials = (name: string) =>
     .join("")
     .toUpperCase();
 
+/**
+ * Renders only real testimonials. While every entry is still a placeholder the
+ * whole section stays hidden; fill one in above and it appears automatically.
+ */
 export default function Testimonials() {
+  if (!published.length) return null;
   return (
     <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-20 md:px-12">
       <motion.div
@@ -80,7 +90,7 @@ export default function Testimonials() {
       </motion.div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {testimonials.map((t, i) => (
+        {published.map((t, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 30 }}

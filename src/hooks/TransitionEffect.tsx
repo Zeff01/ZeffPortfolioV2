@@ -25,6 +25,8 @@ const TransitionEffect = () => {
 
   const customEasing = [0.42, 0, 0.58, 1];
 
+  // Same take-off sequence as the home page (tail-pipe → mid-flight → full flight),
+  // mirrored because he flies left → right here.
   return (
     <>
       {/* <motion.div
@@ -50,7 +52,7 @@ const TransitionEffect = () => {
       >
         {showThirdImage ? (
           <Image
-            src="/ironmanassets/ironmantailpipe.png" // Replace with your third image path
+            src="/ironmanassets/ironmanflying3.png"
             alt="Third Image"
             width={200}
             height={200}
@@ -58,7 +60,7 @@ const TransitionEffect = () => {
           />
         ) : showSecondImage ? (
           <Image
-            src="/ironmanassets/ironmanflying2.png" // Replace with your second image path
+            src="/ironmanassets/ironmanflying2.png"
             alt="Second Image"
             width={200}
             height={200}
@@ -66,7 +68,7 @@ const TransitionEffect = () => {
           />
         ) : (
           <Image
-            src="/ironmanassets/ironmanflying3.png"
+            src="/ironmanassets/ironmantailpipe.png"
             alt="Ironman Flying"
             width={200}
             height={200}

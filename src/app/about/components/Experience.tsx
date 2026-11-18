@@ -35,8 +35,6 @@ const Experience = () => {
           }}
         />
         <ul className="relative">
-          {" "}
-          {/* Added relative positioning */}
           {experienceData.map((exp) => (
             <LiAnimation
               key={`${exp.company}-${exp.position}-${exp.time}`}
@@ -48,14 +46,17 @@ const Experience = () => {
               work={exp.work}
             />
           ))}
-          <motion.h2
-            className="font-bold text-6xl my-8 text-center mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0 }}
-          >
-            Education
-          </motion.h2>
+          {/* A heading can't sit directly in a list — wrap it in its own item. */}
+          <li className="list-none">
+            <motion.h2
+              className="font-bold text-6xl my-8 text-center mx-auto"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0 }}
+            >
+              Education
+            </motion.h2>
+          </li>
           <LiAnimation
             position="Bachelor of Science In Information
             Technology and Service Management"

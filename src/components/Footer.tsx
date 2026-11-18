@@ -16,7 +16,7 @@ const socialMediaIcons = [
   {
     name: "linkedin",
     icon: FaLinkedin,
-    link: "https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/",
+    link: "https://www.linkedin.com/in/jzeffsomera",
   },
   {
     name: "facebook",
@@ -109,7 +109,7 @@ const Footer = () => {
       </div>
 
       {/* copyright bar */}
-      <div className="border-t border-white/5 px-6 py-4 text-center text-xs text-gray-500">
+      <div className="border-t border-white/5 px-6 py-4 text-center text-xs text-gray-400">
         © 2022 Jzeff Kendrew Somera. All rights reserved.
       </div>
     </footer>

@@ -32,6 +32,9 @@ const Section = ({ label, text }: { label: string; text: string }) => (
  * Renders a structured case study (Challenge / Approach / Outcome + metrics)
  * when `caseStudy` is provided, otherwise the plain `text`.
  */
+/** Drop "[Add your … here]" template notes until real numbers are filled in. */
+const withoutPlaceholders = (text: string) => text.replace(/\s*\[Add[^\]]*\]/g, "").trim();
+
 const ReadMore: React.FC<ReadMoreProps> = ({ title, text, role, caseStudy }) => {
   const [open, setOpen] = useState(false);
 
@@ -123,9 +126,9 @@ const ReadMore: React.FC<ReadMoreProps> = ({ title, text, role, caseStudy }) => 
                           ))}
                         </div>
                       )}
-                      <Section label="The Challenge" text={caseStudy.problem} />
-                      <Section label="My Approach" text={caseStudy.approach} />
-                      <Section label="The Outcome" text={caseStudy.result} />
+                      <Section label="The Challenge" text={withoutPlaceholders(caseStudy.problem)} />
+                      <Section label="My Approach" text={withoutPlaceholders(caseStudy.approach)} />
+                      <Section label="The Outcome" text={withoutPlaceholders(caseStudy.result)} />
                     </div>
                   ) : (
                     <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
