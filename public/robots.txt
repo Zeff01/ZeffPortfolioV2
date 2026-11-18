@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://zeffportfolio.vercel.app/sitemap.xml
