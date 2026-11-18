@@ -198,8 +198,8 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                 GitHub
               </a>
               <a
-                href="/JzeffResume.pdf"
-                download
+                href="/resume/pdf?download=1"
+                download="Zeff-Somera-Resume.pdf"
                 target="_blank"
                 className="bg-buttonColor text-textColor px-4 py-2 rounded-full font-bold hover:bg-opacity-80 transition-all"
               >
@@ -661,7 +661,7 @@ const SimplifiedPortfolio = ({ onClose }: { onClose: () => void }) => {
                     <p className="text-white">Jzeff Somera</p>
                   </div>
                   <a
-                    href="https://www.linkedin.com/in/jzeff-kendrew-somera-88b66120a/"
+                    href="https://www.linkedin.com/in/jzeffsomera"
                     target="_blank"
                     className="px-4 py-2 bg-yellow-300/10 text-yellow-300 rounded-lg hover:bg-yellow-300/20 transition-colors whitespace-nowrap"
                   >
