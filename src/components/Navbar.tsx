@@ -5,6 +5,10 @@ import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { useDimensions } from "@/utils/useDimensions";
 import { MenuToggle } from "./MenuToggle";
+import { HiDocumentText } from "react-icons/hi2";
+
+/** The AI-generated, always-current CV (preview + tailor-to-a-job). */
+const RESUME_PATH = "/resume";
 
 const Navbar = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
@@ -67,7 +71,7 @@ const Navbar = () => {
 
   return (
     <nav className="md:absolute md:top-0 md:left-0 md:right-0 md:z-50">
-      <div className="text-white gap-12 font-tech text-lg md:flex py-8 ml-40 hidden items-center">
+      <div className="text-white gap-12 font-tech text-lg md:flex py-8 pl-40 pr-8 hidden items-center">
         <Link href="/">
           <motion.span
             className={`text-white   hover:text-textColor ${
@@ -121,7 +125,36 @@ const Navbar = () => {
             CONTACT
           </motion.span>
         </Link>
+
+        {/* Résumé — pinned top-right so recruiters can open the CV straight away. */}
+        <motion.div
+          className="ml-auto"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        >
+          <Link
+            href={RESUME_PATH}
+            className={`flex items-center gap-2 rounded-md border px-4 py-1.5 text-base tracking-[0.2em] shadow-[0_0_14px_rgba(34,211,238,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_22px_rgba(34,211,238,0.6)] ${
+              pathname === RESUME_PATH
+                ? "border-cyan-300 bg-cyan-400/20 text-cyan-200"
+                : "border-cyan-400/60 bg-black/50 text-cyan-300 hover:bg-cyan-400/10"
+            }`}
+          >
+            <HiDocumentText className="text-lg" aria-hidden />
+            RÉSUMÉ
+          </Link>
+        </motion.div>
       </div>
+      {/* Mobile: the résumé stays one tap away in the top-right corner. */}
+      <Link
+        href={RESUME_PATH}
+        aria-label="Résumé"
+        className="fixed right-4 top-4 z-[60] flex items-center gap-1.5 rounded-md border border-cyan-400/60 bg-black/70 px-3 py-1.5 font-tech text-xs tracking-[0.2em] text-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.35)] backdrop-blur md:hidden"
+      >
+        <HiDocumentText aria-hidden />
+        CV
+      </Link>
       {/* HAMBURGER MENU*/}
       <div className="flex md:hidden z-90 bg-red-500 w-full ">
         <motion.nav
@@ -176,6 +209,17 @@ const Navbar = () => {
             >
               <Link href="/contact" onClick={() => toggleOpen()}>
                 Contact Me
+              </Link>
+            </motion.li>
+            <motion.li
+              variants={liVariants}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="liToggle hover-underline-animation"
+              role="menuitem"
+            >
+              <Link href={RESUME_PATH} onClick={() => toggleOpen()}>
+                Résumé
               </Link>
             </motion.li>
           </motion.ul>
