@@ -16,6 +16,7 @@ const CarouselButton = ({ previous, next }: CarouselButtonProps) => {
       <motion.button
         className="w-16 md:w-20 h-16 md:h-28 bg-black text-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
         onClick={previous}
+        aria-label="Previous project"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{
@@ -36,6 +37,7 @@ const CarouselButton = ({ previous, next }: CarouselButtonProps) => {
       <motion.button
         className="w-16 md:w-20 h-16 md:h-28 text-black bg-yellow-500 shadow-md shadow-[#ffd56cc3] flex items-center justify-center rounded-md"
         onClick={next}
+        aria-label="Next project"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{

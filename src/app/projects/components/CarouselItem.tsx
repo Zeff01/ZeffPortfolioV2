@@ -191,7 +191,6 @@ const CarouselItem = ({
                 duration: 1,
                 delay: 3.1,
               }}
-              onClick={() => console.log("clicked")}
             >
               <Link href={projectUrl} target="_blank">
                 <div className=" z-10 shadow-md shadow-[#ffd56cc3] border-backgroundColor2 text-textColor hover:bg-textColor hover:text-backgroundColor2 border rounded-full  pt-2 md:py-4 px-2">

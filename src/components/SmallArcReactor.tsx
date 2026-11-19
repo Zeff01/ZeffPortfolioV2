@@ -7,17 +7,16 @@ interface SmallArcReactorProps {
   isSimplifiedView?: boolean;
 }
 
-const SmallArcReactor = ({
-  onClick,
-  isSimplifiedView = false,
-}: SmallArcReactorProps) => {
+const SmallArcReactor = ({ onClick, isSimplifiedView = false }: SmallArcReactorProps) => {
   return (
     <div className="relative group">
-      <div
-        className="bottom-4 fixed left-4 z-10 cursor-pointer md:bottom-4 md:left-4 sm:bottom-2 sm:left-2"
+      <button
+        type="button"
+        aria-label={isSimplifiedView ? "Back to the full portfolio" : "Switch to the simple portfolio"}
+        className="bottom-4 fixed left-4 z-10 cursor-pointer rounded-full border-0 bg-transparent p-0 md:bottom-4 md:left-4 sm:bottom-2 sm:left-2"
         onClick={onClick}
       >
-        <div className="arc_reactor_small">
+        <div className="arc_reactor_small" aria-hidden>
           <div className="case_container_small">
             <div className="e7_small">
               <div className="semi_arc_3_small e5_1">
@@ -36,7 +35,7 @@ const SmallArcReactor = ({
             </ul>
           </div>
         </div>
-      </div>
+      </button>
 
       {/* Animated arrow pointing to the reactor */}
       <motion.div

@@ -30,3 +30,6 @@ export const SITE = {
 
 export const RESUME_PDF_PATH = "/resume/pdf";
 export const RESUME_DOWNLOAD_PATH = `${RESUME_PDF_PATH}?download=1`;
+/** The condensed single-page version (same data, fewer roles and projects). */
+export const RESUME_ONE_PAGE_PATH = `${RESUME_PDF_PATH}?pages=1`;
+export const RESUME_ONE_PAGE_DOWNLOAD_PATH = `${RESUME_ONE_PAGE_PATH}&download=1`;

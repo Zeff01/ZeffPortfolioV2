@@ -48,7 +48,8 @@ const TransitionEffect = () => {
         initial={{ x: "-100vw" }}
         animate={{ x: "100vw" }}
         transition={{ duration: 3, delay: 0, ease: customEasing }}
-        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 "
+        // Pure decoration: hidden for reduced-motion visitors.
+        className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 motion-reduce:hidden"
       >
         {showThirdImage ? (
           <Image

@@ -26,20 +26,34 @@ const JarvisHeroOrb = dynamic(() => import("@/components/jarvis/JarvisHeroOrb"),
   ssr: false,
 });
 
+/**
+ * The intro used to take ~4.5 s before the name and Jarvis appeared. Every cue
+ * now runs at INTRO.speed of its original time (~2 s in total), which also
+ * brings the largest paint forward.
+ */
+const INTRO = {
+  speed: 0.42,
+  flybyDuration: 1.2,
+  /** Tail-pipe → mid-flight → full-flight frame swaps during the fly-by. */
+  flybyFrameMs: [360, 600],
+} as const;
+
 export default function Home() {
   const [showSecondImage, setShowSecondImage] = useState(false);
   const [showThirdImage, setShowThirdImage] = useState(false);
   const reduceMotion = useReducedMotion();
+  /** Intro timeline: original cue (s) → compressed so the hero lands fast; instant under reduced motion. */
+  const at = (seconds: number) => (reduceMotion ? 0 : seconds * INTRO.speed);
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowSecondImage(true);
-    }, 600);
+    }, INTRO.flybyFrameMs[0]);
 
     const timer2 = setTimeout(() => {
       setShowSecondImage(false);
       setShowThirdImage(true);
-    }, 1000);
+    }, INTRO.flybyFrameMs[1]);
 
     return () => {
       clearTimeout(timer1);
@@ -103,7 +117,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 3 }}
+          transition={{ duration: 0.5, delay: at(3) }}
           className="relative bg-backgroundColor2 transform skew-y-[-70deg] h-[1000px] md:h-[1800px] flex justify-center items-center"
         ></motion.div>
 
@@ -118,7 +132,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 3.2, ease: "easeOut" }}
+            transition={{ duration: 1.2, delay: at(3.2), ease: "easeOut" }}
             className="h-[min(115vw,560px)] w-[130vw] shrink-0 md:h-[100vh] md:w-[min(125vh,100vw)]"
           >
             <JarvisHeroOrb className="relative h-full w-full" />
@@ -134,11 +148,11 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            transition={{ duration: 0.5, delay: 3.3 }}
+            transition={{ duration: 0.5, delay: at(3.3) }}
             className="flex items-center justify-center"
           >
             {/* idle: slow breathing */}
-            <motion.div {...idle({ scale: [1, 1.04, 1] }, { duration: 6, delay: 4 })}>
+            <motion.div {...idle({ scale: [1, 1.04, 1] }, { duration: 6, delay: at(4) })}>
               <Image
                 src="/ironmanassets/ironmanlandingspraysplat.png"
                 alt="Ironman landing"
@@ -159,10 +173,10 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={imageVariants}
-            transition={{ delay: 3.5 }}
+            transition={{ delay: at(3.5) }}
           >
             {/* idle: gentle float */}
-            <motion.div {...idle({ y: [0, -8, 0] }, { duration: 4, delay: 4.5 })}>
+            <motion.div {...idle({ y: [0, -8, 0] }, { duration: 4, delay: at(4.5) })}>
               <Image
                 src="/ironmanassets/tech5.png"
                 alt="tech5"
@@ -186,10 +200,10 @@ export default function Home() {
               opacity: 1,
               scale: [1, 1.8, 1.5, 1],
             }}
-            transition={{ type: "spring", duration: 0.8, delay: 2 }}
+            transition={{ type: "spring", duration: 0.8, delay: at(2) }}
           >
             {/* idle: hovering bob */}
-            <motion.div {...idle({ y: [0, -12, 0] }, { duration: 3.5, delay: 4.5 })}>
+            <motion.div {...idle({ y: [0, -12, 0] }, { duration: 3.5, delay: at(4.5) })}>
               <Image
                 src="/ironmanassets/Ironmanhover.png"
                 alt="Ironman Hover"
@@ -206,7 +220,7 @@ export default function Home() {
           className="ml-4 hidden md:flex gap-8 absolute bottom-0 left-12"
           initial={{ height: 0 }}
           animate={{ height: "78%" }}
-          transition={{ duration: 0.4, delay: 2 }}
+          transition={{ duration: 0.4, delay: at(2) }}
         >
           {/* idle: pulsing arc-reactor glow, offset for a wave */}
           <motion.div
@@ -219,7 +233,7 @@ export default function Home() {
                   "0 0 6px rgba(234,179,8,0.5)",
                 ],
               },
-              { duration: 2.2, delay: 2.5 }
+              { duration: 2.2, delay: at(2.5) }
             )}
           ></motion.div>
           <motion.div
@@ -232,7 +246,7 @@ export default function Home() {
                   "0 0 6px rgba(234,179,8,0.5)",
                 ],
               },
-              { duration: 2.2, delay: 3.1 }
+              { duration: 2.2, delay: at(3.1) }
             )}
           ></motion.div>
         </motion.div>
@@ -253,7 +267,7 @@ export default function Home() {
                 type: "spring",
                 stiffness: 200,
                 damping: 20,
-                delay: 3.5,
+                delay: at(3.5),
               },
             }}
             className="text-cyan-500 flex flex-col gap-3 md:gap-4"
@@ -262,7 +276,7 @@ export default function Home() {
               <span className="text-white font-light text-lg md:text-4xl">
                 Hi! I'm
               </span>{" "}
-              <DecryptText text="Zeff" startDelay={3700} />
+              <DecryptText text="Zeff" startDelay={at(3.7) * 1000} />
             </h1>
             <TypeAnimation
               sequence={[
@@ -297,7 +311,7 @@ export default function Home() {
                 variants={imageVariants}
                 initial="hidden"
                 animate="visible"
-                transition={{ duration: 0.3, delay: 3.6 }}
+                transition={{ duration: 0.3, delay: at(3.6) }}
                 whileHover={{ scale: 1.05 }}
               >
                 Github
@@ -310,7 +324,7 @@ export default function Home() {
                 variants={imageVariants}
                 initial="hidden"
                 animate="visible"
-                transition={{ duration: 0.3, delay: 3.8 }}
+                transition={{ duration: 0.3, delay: at(3.8) }}
                 whileHover={{ scale: 1.05 }}
               >
                 Download CV
@@ -323,7 +337,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 4 }}
+          transition={{ duration: 0.5, delay: at(4) }}
           className="absolute z-30 bottom-3 left-[88px] right-3 h-[min(170px,22vh)] sm:left-[10%] sm:right-auto sm:w-[80%] md:bottom-16 md:w-[400px] md:h-[max(220px,calc(77vh-335px))] lg:w-[440px] xl:w-[480px]"
         >
           <JarvisComms className="h-full" />
@@ -336,7 +350,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 4.2 }}
+          transition={{ duration: 0.5, delay: at(4.2) }}
           className="absolute right-6 top-[225px] z-30 hidden w-[250px] lg:block xl:w-[290px]"
         >
           <JarvisVitals />
@@ -346,18 +360,18 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 4 }}
+          transition={{ duration: 0.6, delay: at(4) }}
           className="pointer-events-none absolute bottom-5 left-[55%] z-20 hidden h-10 w-[min(380px,30vw)] -translate-x-1/2 md:block"
         >
           <JarvisWave className="h-full" />
         </motion.div>
 
-        {/* IRONMAN FLYING ANIMATION */}
+        {/* IRONMAN FLYING ANIMATION — hidden under reduced motion (CSS, so SSR markup matches) */}
         <motion.div
           initial={{ x: "20vw" }}
           animate={{ x: "-100vw" }}
-          transition={{ duration: 2, delay: 0, ease: customEasing }}
-          className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 z-40"
+          transition={{ duration: INTRO.flybyDuration, delay: 0, ease: customEasing }}
+          className="absolute top-10 right-0 w-28 h-28 md:w-40 md:h-40 z-40 motion-reduce:hidden"
         >
           {showThirdImage ? (
             <Image

@@ -16,11 +16,7 @@ interface GroupProjectsProps {
   aspectRatio?: number;
 }
 
-const GroupProjects: React.FC<GroupProjectsProps> = ({
-  item,
-  index,
-  aspectRatio = 16 / 9,
-}) => {
+const GroupProjects: React.FC<GroupProjectsProps> = ({ item, index, aspectRatio = 16 / 9 }) => {
   const [spotlightUrl, setSpotlightUrl] = useState(item.url);
   const [defaultUrl] = useState(item.url);
 
@@ -39,8 +35,7 @@ const GroupProjects: React.FC<GroupProjectsProps> = ({
       transition={{ duration: 0.5, delay: 2.9 + 0.2 * index }}
       className="w-full mx-auto flex flex-col gap-4 items-center justify-center p-6 rounded-lg" // Increased padding and gap for overall larger layout
     >
-      <div className="text-3xl text-white">{item.title}</div>{" "}
-      {/* Increased font size */}
+      <div className="text-3xl text-white">{item.title}</div> {/* Increased font size */}
       <div className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-20 lg:aspect-w-16 lg:aspect-h-9 relative w-full max-w-4xl">
         <div
           className="relative w-full max-w-4xl" // Set a maximum width for better control over size
@@ -59,7 +54,9 @@ const GroupProjects: React.FC<GroupProjectsProps> = ({
           {" "}
           {/* Increased gap and margin */}
           {item.otherUrl.map((preview, previewIndex) => (
-            <motion.div
+            <motion.button
+              type="button"
+              aria-label={`Show screenshot ${previewIndex + 1} of ${item.title}`}
               key={preview}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -74,10 +71,10 @@ const GroupProjects: React.FC<GroupProjectsProps> = ({
               <Image
                 src={preview}
                 layout="fill" // Changed to fill to ensure the defined size is used
-                alt={preview}
+                alt=""
                 className="transition-opacity duration-[2s]"
               />
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>

@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { buildResume, projectCandidates } from "@/lib/resume";
 import { smartResume } from "@/lib/resumeAI";
-import { RESUME_DOWNLOAD_PATH, RESUME_PDF_PATH, SITE } from "@/lib/site";
+import {
+  RESUME_DOWNLOAD_PATH,
+  RESUME_ONE_PAGE_DOWNLOAD_PATH,
+  RESUME_ONE_PAGE_PATH,
+  RESUME_PDF_PATH,
+  SITE,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
@@ -58,21 +64,41 @@ export default async function ResumePage() {
             </p>
           </div>
         </div>
-        <div className="flex shrink-0 gap-3">
-          <a
-            href={RESUME_DOWNLOAD_PATH}
-            className="rounded-lg bg-yellow-300 px-5 py-2.5 font-bold text-black transition-colors hover:bg-yellow-400"
-          >
-            Download PDF
-          </a>
-          <a
-            href={RESUME_PDF_PATH}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg border border-white/15 px-5 py-2.5 text-white transition-colors hover:border-cyan-400/60"
-          >
-            View
-          </a>
+        <div className="flex shrink-0 flex-col gap-2 sm:items-end">
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={RESUME_DOWNLOAD_PATH}
+              className="rounded-lg bg-yellow-300 px-5 py-2.5 font-bold text-black transition-colors hover:bg-yellow-400"
+            >
+              Download PDF
+            </a>
+            <a
+              href={RESUME_ONE_PAGE_DOWNLOAD_PATH}
+              className="rounded-lg border border-yellow-300/60 px-5 py-2.5 font-bold text-yellow-300 transition-colors hover:bg-yellow-300/10"
+            >
+              One-page PDF
+            </a>
+          </div>
+          <p className="text-xs text-gray-500">
+            Preview:{" "}
+            <a
+              href={RESUME_PDF_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:underline"
+            >
+              full
+            </a>{" "}
+            ·{" "}
+            <a
+              href={RESUME_ONE_PAGE_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:underline"
+            >
+              one page
+            </a>
+          </p>
         </div>
       </header>
 

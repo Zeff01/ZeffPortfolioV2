@@ -602,3 +602,42 @@ body {
     animation: none;
   }
 }
+
+/* ── Accessibility: motion and keyboard ─────────────────────────────────────
+   Visitors who ask their OS for less motion get a still site: CSS animations
+   and transitions collapse to an instant change (framer-motion is handled by
+   <MotionConfig reducedMotion="user"> in PortfolioWrapper). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* A clear focus ring for keyboard users only (mouse clicks don't show it). */
+:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* "Skip to content" — hidden until a keyboard user tabs onto it. */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: #fde047;
+  color: #000;
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}

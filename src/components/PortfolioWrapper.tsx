@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,37 +27,38 @@ export default function PortfolioWrapper({ children }: PortfolioWrapperProps) {
 
   // Jarvis lives above the pages so his voice and the guided tour survive navigation.
   return (
-    <JarvisProvider>
-      {showSimplifiedPortfolio ? (
-        <AnimatePresence>
-          <SimplifiedPortfolio onClose={handleTogglePortfolio} />
-        </AnimatePresence>
-      ) : (
-        <>
-          <CursorReticle />
-          <div className={isHome ? "fixed inset-0 flex flex-col overflow-hidden" : "contents"}>
-            <Navbar />
-            <main
-              className={
-                isHome
-                  ? "min-h-0 flex-1 overflow-hidden w-full"
-                  : "flex-grow overflow-x-hidden w-full"
-              }
-            >
-              {children}
-            </main>
-          </div>
-          <div className="fixed bottom-0 left-0 z-50">
-            <SmallArcReactor
-              onClick={handleTogglePortfolio}
-              isSimplifiedView={showSimplifiedPortfolio}
-            />
-          </div>
-          {!isHome && <Footer />}
-          <JarvisTour />
-          <JarvisDock />
-        </>
-      )}
-    </JarvisProvider>
+    // reducedMotion="user": framer-motion drops transform/layout animations for visitors who ask their OS for less motion.
+    <MotionConfig reducedMotion="user">
+      <JarvisProvider>
+        {showSimplifiedPortfolio ? (
+          <AnimatePresence>
+            <SimplifiedPortfolio onClose={handleTogglePortfolio} />
+          </AnimatePresence>
+        ) : (
+          <>
+            <a href="#main-content" className="skip-link">
+              Skip to content
+            </a>
+            <CursorReticle />
+            <div className={isHome ? "fixed inset-0 flex flex-col overflow-hidden" : "contents"}>
+              <Navbar />
+              <main
+                id="main-content"
+                tabIndex={-1}
+                className={isHome ? "min-h-0 flex-1 overflow-hidden w-full" : "flex-grow overflow-x-hidden w-full"}
+              >
+                {children}
+              </main>
+            </div>
+            <div className="fixed bottom-0 left-0 z-50">
+              <SmallArcReactor onClick={handleTogglePortfolio} isSimplifiedView={showSimplifiedPortfolio} />
+            </div>
+            {!isHome && <Footer />}
+            <JarvisTour />
+            <JarvisDock />
+          </>
+        )}
+      </JarvisProvider>
+    </MotionConfig>
   );
 }

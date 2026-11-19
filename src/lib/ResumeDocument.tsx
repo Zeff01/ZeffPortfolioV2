@@ -81,6 +81,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  qrBox: { alignItems: "center", marginLeft: 14 },
+  qrFrame: { backgroundColor: COLORS.white, borderRadius: 4, padding: 3 },
+  qr: { width: 58, height: 58 },
+  qrCaption: { fontSize: SIZES.tiny, color: COLORS.onNight, marginTop: 4 },
+  // One-page version: tighter vertical rhythm.
+  compactSection: { marginBottom: 9 },
+  compactRoleBody: { paddingBottom: 6 },
+  skillInline: { fontSize: SIZES.small, color: COLORS.body, lineHeight: 1.35 },
+  skillInlineName: { fontFamily: "Helvetica-Bold", color: COLORS.ink },
+  compactSkillGroup: { marginBottom: 4 },
+  projectRow: { borderLeftWidth: 2, borderLeftColor: COLORS.accent, paddingLeft: 7, marginBottom: 6 },
+  earlierInline: { fontSize: SIZES.small, color: COLORS.body },
   headerAccent: {
     position: "absolute",
     left: 0,
@@ -314,9 +326,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, compact }: { title: string; children: React.ReactNode; compact?: boolean }) {
   return (
-    <View style={styles.section}>
+    <View style={compact ? [styles.section, styles.compactSection] : styles.section}>
       <View style={styles.sectionHead} wrap={false}>
         <View style={styles.sectionBar} />
         <Text style={styles.sectionTitle}>{title}</Text>
@@ -341,14 +353,24 @@ const CONTACT_LABELS: [RegExp, string][] = [
 ];
 const contactLabel = (href: string) => CONTACT_LABELS.find(([re]) => re.test(href))?.[1] ?? "Link";
 
-function Role({ role, current, last }: { role: ResumeRole; current: boolean; last: boolean }) {
+function Role({
+  role,
+  current,
+  last,
+  compact,
+}: {
+  role: ResumeRole;
+  current: boolean;
+  last: boolean;
+  compact: boolean;
+}) {
   return (
     <View style={styles.role} wrap={false}>
       <View style={styles.rail}>
         <View style={current ? [styles.dot, styles.dotCurrent] : styles.dot} />
         {!last && <View style={styles.line} />}
       </View>
-      <View style={styles.roleBody}>
+      <View style={compact ? [styles.roleBody, styles.compactRoleBody] : styles.roleBody}>
         <View style={styles.roleHead}>
           <Text style={styles.roleTitle}>{role.position}</Text>
           <Text style={styles.period}>{role.period}</Text>
@@ -378,9 +400,13 @@ export interface ResumeDocumentProps {
   source: string;
   /** Headshot (JPEG bytes); the header drops the photo when absent. */
   photo?: Buffer;
+  /** QR code PNG linking to the live portfolio. */
+  qr?: Buffer;
+  /** The condensed single-page layout. */
+  compact?: boolean;
 }
 
-export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
+export function ResumeDocument({ resume, source, photo, qr, compact = false }: ResumeDocumentProps) {
   return (
     <Document title={`${resume.name} — Résumé`} author={resume.name} subject={resume.headline}>
       <Page size="A4" style={styles.page}>
@@ -399,6 +425,15 @@ export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
             <Text style={styles.headline}>{resume.headline}</Text>
             <Text style={styles.location}>{resume.location}</Text>
           </View>
+          {qr && (
+            <View style={styles.qrBox}>
+              <Link src={`https://${source}`} style={styles.qrFrame}>
+                {/* eslint-disable-next-line jsx-a11y/alt-text -- react-pdf Image has no alt prop */}
+                <Image src={{ data: qr, format: "png" }} style={styles.qr} />
+              </Link>
+              <Text style={styles.qrCaption}>Live portfolio</Text>
+            </View>
+          )}
           <View style={styles.headerAccent} />
         </View>
 
@@ -418,7 +453,7 @@ export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
 
         <View style={styles.body}>
           <View style={styles.sidebar}>
-            <Section title="Contact">
+            <Section title="Contact" compact={compact}>
               {resume.contact.map((c) => (
                 <View key={c.href} style={styles.contactItem}>
                   <Text style={styles.contactLabel}>{contactLabel(c.href)}</Text>
@@ -429,25 +464,35 @@ export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
               ))}
             </Section>
 
-            <Section title="Skills">
+            <Section title="Skills" compact={compact}>
               {resume.skills.map((g) => {
                 const core = g.name === "Core";
                 return (
-                  <View key={g.name} style={styles.skillGroup} wrap={false}>
-                    <Text style={styles.skillGroupName}>{core ? "Core strengths" : g.name}</Text>
-                    <View style={styles.chips}>
-                      {g.skills.map((s) => (
-                        <Text key={s} style={core ? [styles.chip, styles.chipCore] : styles.chip}>
-                          {s}
-                        </Text>
-                      ))}
-                    </View>
+                  <View key={g.name} style={compact ? styles.compactSkillGroup : styles.skillGroup} wrap={false}>
+                    {compact && !core ? (
+                      // One line per group on the single-page version: "Frontend: HTML, CSS, …".
+                      <Text style={styles.skillInline}>
+                        <Text style={styles.skillInlineName}>{g.name}: </Text>
+                        {g.skills.join(", ")}
+                      </Text>
+                    ) : (
+                      <Text style={styles.skillGroupName}>{core ? "Core strengths" : g.name}</Text>
+                    )}
+                    {compact && !core ? null : (
+                      <View style={styles.chips}>
+                        {g.skills.map((s) => (
+                          <Text key={s} style={core ? [styles.chip, styles.chipCore] : styles.chip}>
+                            {s}
+                          </Text>
+                        ))}
+                      </View>
+                    )}
                   </View>
                 );
               })}
             </Section>
 
-            <Section title="Education">
+            <Section title="Education" compact={compact}>
               {resume.education.map((e) => (
                 <View key={e.school} wrap={false}>
                   <Text style={styles.eduSchool}>{e.school}</Text>
@@ -459,20 +504,27 @@ export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
           </View>
 
           <View style={styles.main}>
-            <Section title="Profile">
+            <Section title="Profile" compact={compact}>
               <Text style={styles.summary}>{resume.summary}</Text>
             </Section>
 
-            <Section title="Experience">
+            <Section title="Experience" compact={compact}>
               {resume.roles.map((r, i) => (
                 <Role
                   key={`${r.company}-${r.position}-${r.period}`}
                   role={r}
+                  compact={compact}
                   current={/present/i.test(r.period)}
                   last={i === resume.roles.length - 1}
                 />
               ))}
-              {resume.earlierRoles.length > 0 && (
+              {resume.earlierRoles.length > 0 && compact && (
+                <View style={styles.earlier} wrap={false}>
+                  <Text style={styles.earlierTitle}>Earlier roles</Text>
+                  <Text style={styles.earlierInline}>{resume.earlierRoles.map((r) => r.company).join(" · ")}</Text>
+                </View>
+              )}
+              {resume.earlierRoles.length > 0 && !compact && (
                 <View style={styles.earlier} wrap={false}>
                   <Text style={styles.earlierTitle}>Earlier roles</Text>
                   {resume.earlierRoles.map((r) => (
@@ -487,20 +539,35 @@ export function ResumeDocument({ resume, source, photo }: ResumeDocumentProps) {
               )}
             </Section>
 
-            <Section title="Selected Projects">
-              <View style={styles.projects}>
-                {resume.projects.map((p) => (
-                  <View key={p.title} style={styles.project} wrap={false}>
+            <Section title="Selected Projects" compact={compact}>
+              {compact ? (
+                resume.projects.map((p) => (
+                  <View key={p.title} style={styles.projectRow} wrap={false}>
                     <View style={styles.projectHead}>
-                      <Text style={styles.projectTitle}>{p.title}</Text>
+                      <Text style={styles.projectTitle}>
+                        {p.title}
+                        <Text style={styles.projectRole}> · {p.role}</Text>
+                      </Text>
                       <Text style={styles.projectYear}>{p.year}</Text>
                     </View>
-                    <Text style={styles.projectRole}>{p.role}</Text>
                     <Text style={styles.projectDesc}>{p.description}</Text>
-                    {p.stack.length > 0 && <Text style={styles.projectStack}>{p.stack.join(" · ")}</Text>}
                   </View>
-                ))}
-              </View>
+                ))
+              ) : (
+                <View style={styles.projects}>
+                  {resume.projects.map((p) => (
+                    <View key={p.title} style={styles.project} wrap={false}>
+                      <View style={styles.projectHead}>
+                        <Text style={styles.projectTitle}>{p.title}</Text>
+                        <Text style={styles.projectYear}>{p.year}</Text>
+                      </View>
+                      <Text style={styles.projectRole}>{p.role}</Text>
+                      <Text style={styles.projectDesc}>{p.description}</Text>
+                      {p.stack.length > 0 && <Text style={styles.projectStack}>{p.stack.join(" · ")}</Text>}
+                    </View>
+                  ))}
+                </View>
+              )}
             </Section>
           </View>
         </View>

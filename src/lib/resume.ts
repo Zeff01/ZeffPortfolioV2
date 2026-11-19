@@ -60,7 +60,11 @@ const LIMITS = {
 } as const;
 
 /** Drop template notes like "[Add your hard metric here…]". */
-const clean = (text: string) => text.replace(/\s*\[Add[^\]]*\]/g, "").replace(/\s+/g, " ").trim();
+const clean = (text: string) =>
+  text
+    .replace(/\s*\[Add[^\]]*\]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const sentences = (text: string, count: number, maxChars: number) => {
   // A sentence ends at . ! ? followed by a capital (or the end) — so "Next.js" and "React.js" stay whole.
@@ -76,11 +80,15 @@ const sentences = (text: string, count: number, maxChars: number) => {
 
 /** "FullStack Developer | Mobile Developer" → "Full Stack Developer / Mobile Developer". */
 const tidyPosition = (position: string) =>
-  position.replace(/FullStack/gi, "Full Stack").replace(/\s*\|\s*/g, " / ").trim();
+  position
+    .replace(/FullStack/gi, "Full Stack")
+    .replace(/\s*\|\s*/g, " / ")
+    .trim();
 
 const prettyUrl = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
 export const RESUME_FILENAME = "Zeff-Somera-Resume.pdf";
+export const RESUME_ONE_PAGE_FILENAME = "Zeff-Somera-Resume-1-page.pdf";
 
 const toResumeProject = (proj: (typeof PORTFOLIO_PROJECTS)[number]): ResumeProject => ({
   title: proj.title,
@@ -97,7 +105,7 @@ const toResumeProject = (proj: (typeof PORTFOLIO_PROJECTS)[number]): ResumeProje
  */
 export const projectCandidates = (): ResumeProject[] =>
   [...PORTFOLIO_PROJECTS.filter((p) => p.kind === "work"), ...PORTFOLIO_PROJECTS.filter((p) => p.kind !== "work")].map(
-    toResumeProject
+    toResumeProject,
   );
 
 export function buildResume(): ResumeData {
@@ -144,5 +152,49 @@ export function buildResume(): ResumeData {
     projects,
     skills,
     education: p.education,
+  };
+}
+
+/**
+ * Progressively tighter single-page cuts. The PDF route renders the first and
+ * steps down until the result fits on one page (AI bullets vary in length).
+ */
+export const ONE_PAGE_CUTS = [
+  { roles: 4, bulletsPerRole: 2, projects: 4 },
+  { roles: 4, bulletsPerRole: 2, projects: 3 },
+  { roles: 4, bulletsPerRole: 1, projects: 3 },
+  { roles: 3, bulletsPerRole: 1, projects: 2 },
+] as const;
+
+const ONE_PAGE = {
+  roleSummaryMaxChars: 260,
+  /** Skill groups that are nice-to-have rather than headline. */
+  dropSkillGroups: ["Also"],
+} as const;
+
+/**
+ * A single-page cut of a (possibly AI-written) résumé: the newest roles with
+ * their top bullets, the rest folded into one "earlier roles" line, the top
+ * projects, and the headline skill groups.
+ */
+export function toOnePage(resume: ResumeData, cut: (typeof ONE_PAGE_CUTS)[number] = ONE_PAGE_CUTS[0]): ResumeData {
+  const detailed = resume.roles.slice(0, cut.roles).map((r) => ({
+    ...r,
+    bullets: r.bullets?.slice(0, cut.bulletsPerRole),
+    summary: r.summary ? sentences(r.summary, 1, ONE_PAGE.roleSummaryMaxChars) : r.summary,
+  }));
+  const folded = resume.roles
+    .slice(cut.roles)
+    .map(({ position, company, location, period }) => ({ position, company, location, period }));
+
+  return {
+    ...resume,
+    roles: detailed,
+    // One mention per company, newest first.
+    earlierRoles: [...folded, ...resume.earlierRoles].filter(
+      (r, i, all) => all.findIndex((x) => x.company === r.company) === i,
+    ),
+    projects: resume.projects.slice(0, cut.projects),
+    skills: resume.skills.filter((g) => !(ONE_PAGE.dropSkillGroups as readonly string[]).includes(g.name)),
   };
 }

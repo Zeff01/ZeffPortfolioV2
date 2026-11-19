@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import AnimatedNumbers from "@/hooks/AnimatedNumbers";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
+import GitHubActivity from "@/components/GitHubActivity";
 import { aboutStats } from "@/data/aboutStats";
 
 // Lazy load heavy components
@@ -219,6 +220,9 @@ const About = () => {
           <Experience />
         </div>
       </div>
+
+      {/* LIVE GITHUB ACTIVITY */}
+      <GitHubActivity />
 
       {/* TESTIMONIALS */}
       <div className="relative">

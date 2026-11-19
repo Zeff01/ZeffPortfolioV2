@@ -55,8 +55,8 @@ const CHAT_ENDPOINT = "/api/jarvis/chat";
 const LOG_ENDPOINT = "/api/jarvis/log";
 
 const TIMING = {
-  /** Let the hero's intro animation land before Jarvis speaks up. */
-  greetingDelayMs: 4300,
+  /** Let the hero's intro animation (~2 s) land before Jarvis speaks up. */
+  greetingDelayMs: 2300,
   thinkMs: 650,
   streamTickMs: 16,
   charsPerTick: 3,
