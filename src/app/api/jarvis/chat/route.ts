@@ -43,8 +43,6 @@ const RATE = {
 } as const;
 
 const PAGES = Object.keys(PAGE_PATHS) as JarvisPage[];
-const TAILOR_MIN_CHARS = 40;
-const TAILOR_MAX_CHARS = 6000;
 const SHARE_TARGETS: ShareTarget[] = ["github", "linkedin", "resume", "email"];
 const THEME_IDS = JARVIS_THEMES.map((t) => t.id);
 
@@ -70,7 +68,6 @@ Driving the site (tools):
 - If they want to see a page, call navigate. It happens after you finish speaking, so say where you're taking them.
 - For GitHub, LinkedIn, the résumé or email, call share_link — it puts a button on screen. Don't read out addresses.
 - If they ask for a tour, a walkthrough or to be shown around, call start_tour and reply with one short sentence.
-- If they describe a role they're hiring for or paste a job description, call tailor_resume with the role's requirements — it puts a button on screen that downloads his résumé rewritten for that role. Tell them it's there.
 - If they want his profile or CV sent to them, or sound like they're hiring, call offer_profile — it puts an email box in the chat that sends them a tailored summary and his résumé. Never ask them to type their email into the conversation.
 - Call set_theme when they ask for a different colour or armour finish.
 - Never mention tool names or that you're calling something. Just speak naturally ("It's up on screen now").
@@ -137,21 +134,6 @@ const TOOLS: Anthropic.Beta.BetaTool[] = [
       type: "object",
       properties: { target: { type: "string", enum: SHARE_TARGETS } },
       required: ["target"],
-      additionalProperties: false,
-    },
-    strict: true,
-    eager_input_streaming: true,
-  },
-  {
-    name: "tailor_resume",
-    description:
-      "Put a button on screen that downloads Zeff's résumé tailored to a specific role. Pass the role's requirements: paste the job description if they gave one, otherwise summarise what they've said they need (title, stack, domain, seniority).",
-    input_schema: {
-      type: "object",
-      properties: {
-        job: { type: "string", description: "The job description or a summary of the role's requirements (at least a few sentences)" },
-      },
-      required: ["job"],
       additionalProperties: false,
     },
     strict: true,
@@ -264,14 +246,6 @@ const toAction = (name: string, input: unknown): { action?: AgentAction; result:
       const themeId = oneOf(field(input, "theme"), THEME_IDS);
       if (!themeId) return null;
       return { action: { type: "theme", themeId }, result: `Finish switched to ${themeId}.` };
-    }
-    case "tailor_resume": {
-      const job = String(field(input, "job") ?? "").trim();
-      if (job.length < TAILOR_MIN_CHARS) return null;
-      return {
-        action: { type: "tailoredResume", job: job.slice(0, TAILOR_MAX_CHARS) },
-        result: "A 'tailored résumé' button is under your reply.",
-      };
     }
     case "offer_profile":
       return { action: { type: "profileForm" }, result: "An email box is under your reply." };

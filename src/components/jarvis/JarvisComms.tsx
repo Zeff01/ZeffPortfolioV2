@@ -18,7 +18,6 @@ import { JARVIS_THEMES, STORAGE_KEYS } from "./theme";
 import { usePref } from "./usePref";
 import { useJarvisListen } from "./useJarvisListen";
 import ProfileForm from "./ProfileForm";
-import TailoredResumeButton from "./TailoredResumeButton";
 import { askJarvis, QUICK_PROMPTS, speechOf, type JarvisAction, type JarvisReply } from "./jarvisBrain";
 import { CONTACT, findMentions, findSkillMentions } from "./portfolio";
 import {
@@ -467,11 +466,7 @@ export default function JarvisComms({ className, variant = "hero" }: JarvisComms
         else if (action.type === "profileForm") {
           open();
           setMessages((m) => m.map((msg) => (msg.id === id ? { ...msg, profileForm: true } : msg)));
-        } else if (action.type === "tailoredResume") {
-          open();
-          setMessages((m) => m.map((msg) => (msg.id === id ? { ...msg, tailorJob: action.job } : msg)));
-        }
-        else if (action.type === "share") {
+        } else if (action.type === "share") {
           open();
           addLink(id, SHARE_LINKS[action.target]);
         } else afterSpeech.push(action);
@@ -745,7 +740,6 @@ export default function JarvisComms({ className, variant = "hero" }: JarvisComms
                 {m.id === streamingId && <span className="jv-blink jv-accent">▍</span>}
                 {m.interrupted && <span className="jv-dim"> —</span>}
               </p>
-              {m.tailorJob && <TailoredResumeButton job={m.tailorJob} />}
               {m.profileForm && (
                 <ProfileForm
                   getHistory={() => historyRef.current}
@@ -875,7 +869,7 @@ function UnderTheHood({ trace, model, onClose }: UnderTheHoodProps) {
         <div>
           <p className="jv-accent tracking-widest">UNDER THE HOOD</p>
           <p className="jv-dim">
-            {model ? `${model} · grounded on portfolio data · 8 UI tools · streamed NDJSON` : "local intent brain (no API key) · deterministic"}
+            {model ? `${model} · grounded on portfolio data · 7 UI tools · streamed NDJSON` : "local intent brain (no API key) · deterministic"}
           </p>
           <p className="jv-dim">voice: sentence-chunked TTS · 2-slot upstream queue · CDN-cached lines</p>
         </div>

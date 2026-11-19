@@ -7,7 +7,7 @@ import { useDimensions } from "@/utils/useDimensions";
 import { MenuToggle } from "./MenuToggle";
 import { HiDocumentText } from "react-icons/hi2";
 
-/** The AI-generated, always-current CV (preview + tailor-to-a-job). */
+/** The AI-generated, always-current CV (preview + download). */
 const RESUME_PATH = "/resume";
 
 const Navbar = () => {

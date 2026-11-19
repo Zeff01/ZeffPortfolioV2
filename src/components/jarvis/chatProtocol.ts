@@ -16,9 +16,7 @@ export type AgentAction =
   | { type: "theme"; themeId: string }
   | { type: "tour" }
   /** Put the "email me his profile" form in the reply. */
-  | { type: "profileForm" }
-  /** A button that downloads his CV tailored to this role. */
-  | { type: "tailoredResume"; job: string };
+  | { type: "profileForm" };
 
 export interface TurnMetrics {
   model: string;
@@ -56,8 +54,6 @@ export interface ChatMessage {
   interrupted?: boolean;
   /** Show the "email me his profile" form under this message. */
   profileForm?: boolean;
-  /** Offer a CV tailored to this role (the job description / requirements). */
-  tailorJob?: string;
 }
 
 export interface ToolTrace {

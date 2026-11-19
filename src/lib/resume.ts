@@ -93,7 +93,7 @@ const toResumeProject = (proj: (typeof PORTFOLIO_PROJECTS)[number]): ResumeProje
 
 /**
  * Every project the AI may feature: client work first, then personal and team
- * builds — so a tailored CV can surface e.g. an AI side project for an AI role.
+ * builds — so the AI can pick the strongest mix.
  */
 export const projectCandidates = (): ResumeProject[] =>
   [...PORTFOLIO_PROJECTS.filter((p) => p.kind === "work"), ...PORTFOLIO_PROJECTS.filter((p) => p.kind !== "work")].map(

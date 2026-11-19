@@ -139,10 +139,8 @@ the plain data-built CV.
 - The general version is cached by content (it only changes when your data
   does). A download never waits more than 8 s: if the AI version isn't ready,
   the plain CV is served and the AI one is used from the next request.
-- **Tailoring:** paste a job description on `/resume` (or describe the role to
-  Jarvis — `tailor_resume` tool puts a button in the chat) and `POST /resume/pdf`
-  returns the CV re-angled toward that role.
-- Your brand headline stays fixed on the general CV; tailored versions may adapt it.
+- It's always built from your own experience, projects and skills — there's no
+  per-job tailoring. Your brand headline is never rewritten.
 
 ## Guided tour
 
